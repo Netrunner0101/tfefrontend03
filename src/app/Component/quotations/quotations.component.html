@@ -1,0 +1,47 @@
+<div class="container custom-container-2">
+  <!-- Show it when there is no employee -->
+  <div *ngIf="QuData.length == 0">
+    <p> Il y a auncun Offre de prix .</p>
+  </div>
+  <div *ngIf="QuData.length !== 0">
+    <h1 class="mb-3 text-center">Liste des Offres de prix </h1>
+    <div class="col-md-12">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th scope="col"> N° Offre  </th>
+          <th scope="col"> Adrese de départ : </th>
+          <th scope="col"> Ville de départ :  </th>
+          <th scope="col"> Code Postal  </th>
+          <th scope="col"> Adrese d'arrivée : </th>
+          <th scope="col"> Ville d'arrivée  :  </th>
+          <th scope="col"> Code Postal  </th>
+          <th scope="col"> Type de transport  </th>
+          <th scope="col"> Prix : </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let q of QuData">
+          <td>{{ q.id_quotations }} </td>
+          <td>{{ q.departure_adress }} </td>
+          <td>{{ q.departure_city }} </td>
+          <td>{{ q.departure_postal_code }} </td>
+          <td> {{ q.destination_adress }}</td>
+          <td> {{ q.destination_city }}</td>
+          <td>{{ q.destination_postal_code }} </td>
+          <td>{{  q.type_transport}} </td>
+          <td> {{ q.price }}</td>
+          <td>
+            <button type="button" (click)='deleteQuotations(q.id_quotations )'> Supprimer </button>
+            <button><a [routerLink]="['/quotations/',q.id_quotations]" [queryParams]="{id_quotations:q.id_quotations }"> Modifier l'Offre </a></button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div>
+  <button><a [routerLink]="['/quotations/newQuotations']"> Créer une nouvelle Offre de prix </a></button>
+</div>

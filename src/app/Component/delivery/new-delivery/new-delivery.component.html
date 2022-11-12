@@ -1,0 +1,67 @@
+<div>
+  <h1> Nouvelle Livraison </h1>
+  <hr>
+  <form [formGroup]="newDeliveryForm"  (ngSubmit)="createDelivery()">
+    <mat-form-field>
+      <mat-label for="number_package"> Nombre de packet : </mat-label>
+      <input matInput type="number" formControlName="number_package">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label  for="weight"> Poids: </mat-label>
+      <input matInput  type="number" formControlName="weight">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label  for="dimension"> Dimension :  </mat-label>
+      <input matInput  type="text" formControlName="dimension">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label  for="departure_adress"> Adresse de départ: </mat-label>
+      <input matInput  type="text" class="form-control" formControlName="departure_adress" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label  for="departure_city"> Ville de départ : </mat-label>
+      <input matInput  type="text" class="form-control" formControlName="departure_city" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label  for="departure_postal_code"> Code postal: </mat-label>
+      <input matInput type="text" formControlName="departure_postal_code">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label  for="destination_adress"> Adresse de destination  : </mat-label>
+      <input matInput type="text" formControlName="destination_adress">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label for="destination_city"> Ville de destination :  </mat-label >
+      <input  matInput type="text" formControlName="destination_city">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label  for="destination_postal_code"> Code postal : </mat-label>
+      <input matInput type="text" class="form-control" formControlName="destination_postal_code" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label  for="outbout_date"> Date de sortie: </mat-label>
+      <input matInput type="date" class="form-control" formControlName="outbout_date" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label  for="arrival_date"> Date d'arrivée : </mat-label>
+      <input matInput type="date" class="form-control" formControlName="arrival_date" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label for="remarks"> Remarque: </mat-label>
+      <input matInput type="text" formControlName="remarks">
+    </mat-form-field>
+
+    <button mat-button color="primary" type="submit">Submit</button>
+  </form>
+</div>

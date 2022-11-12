@@ -1,0 +1,315 @@
+<button mat-button type="button"> <a [routerLink]="'/delivery'">Retour</a> </button>
+<hr>
+<div>
+  <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h1> Modifier Livraison </h1>
+        </mat-panel-title>
+        <mat-panel-description>
+          <p> Changer les informations de La livraison </p>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div>
+        <h1> Livraison </h1>
+        <hr>
+        <form [formGroup]="updateDeliveryForm"  (ngSubmit)="updateDelivery()">
+          <mat-form-field>
+            <mat-label for="number_package"> Nombre de packet : </mat-label>
+            <input matInput type="number" class="form-control" formControlName="number_package">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label  for="weight"> Poids: </mat-label>
+            <input matInput  type="number" class="form-control" formControlName="weight">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label  for="dimension"> Dimension :  </mat-label>
+            <input matInput  type="text" class="form-control" formControlName="dimension">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label  for="departure_adress"> Adresse de départ: </mat-label>
+            <input matInput  type="text" class="form-control" formControlName="departure_adress" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label  for="departure_city"> Ville de départ : </mat-label>
+            <input matInput  type="text" class="form-control" formControlName="departure_city" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label  for="departure_postal_code"> Code postal: </mat-label>
+            <input matInput type="text" formControlName="departure_postal_code">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label  for="destination_adress"> Adresse de destination  : </mat-label>
+            <input matInput type="text" formControlName="destination_adress">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label for="destination_city"> Ville de destination :  </mat-label >
+            <input  matInput type="text" formControlName="destination_city">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label  for="destination_postal_code"> Code postal : </mat-label>
+            <input matInput type="text" class="form-control" formControlName="destination_postal_code" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label  for="outbout_date"> Date de sortie: </mat-label>
+            <input matInput type="date" class="form-control" formControlName="outbout_date" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label  for="arrival_date"> Date d'arrivée : </mat-label>
+            <input matInput type="date" class="form-control" formControlName="arrival_date" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label for="remarks"> Remarque: </mat-label>
+            <input matInput type="text" formControlName="remarks">
+          </mat-form-field>
+
+          <button mat-button color="primary" type="submit">Submit</button>
+        </form>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h1> Modifier Client </h1>
+        </mat-panel-title>
+        <mat-panel-description>
+          <p> Changer les informations du clients </p>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div *ngIf="delcus">
+        <h1> Client </h1>
+        <mat-form-field appearance="fill">
+          <mat-label>Liste des clients</mat-label>
+          <mat-select [(value)]="customer" >
+            <mat-option *ngFor="let cus of delcus" [value]="cus">
+              N°Client: {{cus.id_customer}} | Nom: {{cus.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-button (click)="InsertCustomer(delivery.id_delivery,customer.id_customer)" > Mettre à jour le Client </button>
+        <button mat-button (click)="deleteCustomer(delivery.id_delivery)"> Supprimer Client </button>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h1> Modifier Transporter </h1>
+        </mat-panel-title>
+        <mat-panel-description>
+          <p> Changer les informations du Transporter </p>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div *ngIf="deltrans">
+        <mat-form-field appearance="fill">
+          <mat-label>Liste de Transporteurs</mat-label>
+          <mat-select [(value)]="transporter" >
+            <mat-option *ngFor="let trans of deltrans" [value]="trans">
+              N°Transport: {{trans.id_transporter}} | Nom: {{trans.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-button (click)="InsertTransporter(delivery.id_delivery,transporter.id_transporter)" > Mettre à jour le transporteur </button>
+        <button mat-button (click)="deleteTransporter(delivery.id_delivery)"> Supprimer transporteur </button>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h1> Modifier Entrepot </h1>
+        </mat-panel-title>
+        <mat-panel-description>
+          <p> Changer les informations de l'entrepot </p>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div *ngIf="delwh">
+        <h1> Entrepot </h1>
+        <mat-form-field appearance="fill">
+          <mat-label>Liste de entrée </mat-label>
+          <mat-select [(value)]="warehouse" >
+            <mat-option *ngFor="let wh of delwh" [value]="wh">
+              N°:{{wh.id_warehouse}}| Ref: {{wh.ref_nummer }}| Date entrée:{{ wh.inbound_date }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-button (click)="InsertWarehouse(delivery.id_delivery,warehouse.id_warehouse)" > Mettre à jour l'entrepot </button>
+        <button mat-button (click)="deleteWarehouse(delivery.id_delivery)"> Supprimer l'entrepot </button>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+<mat-card *ngIf="delivery" class="example-card" id="deliveryDetail">
+  <mat-card-title> <h1> Livraison </h1> </mat-card-title>
+  <mat-card-subtitle> {{ delivery.id_delivery }} </mat-card-subtitle>
+  <mat-card-content>
+    <div>
+      <h1> Détails de livraison : </h1>
+      <h3>Nombre de packet </h3>
+      <p>{{delivery.number_package}} </p>
+
+      <h3> Poids (Kg) </h3>
+      <p> {{delivery.weight}}</p>
+
+      <h3> Dimension</h3>
+      <p> {{delivery.dimension}}</p>
+
+      <h3> Adresse de départ </h3>
+      <p> {{delivery.departure_adress}}</p>
+
+      <h3> Ville : </h3>
+      <p>{{delivery.departure_city}}</p>
+
+      <h3> Code postal : </h3>
+      <p> {{delivery.departure_postal_code}}</p>
+
+      <h3> Adresse d'arrivée </h3>
+      <p> {{delivery.destination_adress}}</p>
+
+      <h3> Ville :</h3>
+      <p>{{delivery.destination_city}} </p>
+
+      <h3>Code postal : </h3>
+      <p>{{delivery.destination_postal_code }} </p>
+
+      <h3>Date de sortie</h3>
+      <p> {{delivery.outbout_date | date:'M/d/yy' }}</p>
+
+      <h3>Date d'arrivée </h3>
+      <p> {{delivery.arrival_date| date:'M/d/yy' }}</p>
+
+      <h3> Remarques </h3>
+      <p>{{delivery.remarks}} </p>
+    </div>
+    <hr>
+
+    <div *ngIf="delivery.customer">
+      <h1> Détails du client de la livraison : </h1>
+      <div >
+        <h3>Nom de client :</h3>
+        <p>{{delivery.customer.name}} </p>
+
+        <h3> Numero TVA client:</h3>
+        <p> {{delivery.customer.vat}}</p>
+
+        <h3> Adresse du client:</h3>
+        <p> {{delivery.customer.adress}}</p>
+
+        <h3> Ville du client : </h3>
+        <p> {{delivery.customer. city}}</p>
+
+        <h3> Code postal d client : </h3>
+        <p>{{delivery.customer.postal_code}}</p>
+
+        <h3> Email client : </h3>
+        <p>{{delivery.customer.email}}</p>
+
+        <h3> Téléphone du client : </h3>
+        <p>{{delivery.customer.phoneNumber}}</p>
+      </div>
+    </div>
+
+    <div *ngIf="delivery.customer === null">
+      <h1> Détails du client de la livraison : </h1>
+      <p> Pas de client affecté </p>
+    </div>
+    <hr>
+    <div *ngIf="delivery.transporter">
+      <h1> Détails du transporter de la livraison : </h1>
+      <div >
+        <h3>Nom de Transporter:</h3>
+        <p>{{delivery.transporter.name }} </p>
+
+        <h3> Adresse Transporter: </h3>
+        <p> {{delivery.transporter.adress}}</p>
+
+        <h3> Ville: </h3>
+        <p> {{delivery.transporter.city}}</p>
+
+        <h3> Code postal:  </h3>
+        <p> {{delivery.transporter.postal_code}}</p>
+
+        <h3> Email du Transporter : </h3>
+        <p>{{delivery.transporter.email}}</p>
+
+        <h3> Numéro téléphone du Transporter : </h3>
+        <p>{{delivery.transporter.phoneNumber}}</p>
+      </div>
+    </div>
+
+    <div *ngIf="delivery.transporter == null">
+      <h1> Détails du Transporteur de la livraison : </h1>
+      <p> Pas de Transporteur affecté </p>
+    </div>
+
+    <hr>
+    <div *ngIf="delivery.warehouse">
+      <h1> Détails de la marchandise dans l'entrepot : </h1>
+      <div >
+        <h3>Numéro de référence (container):</h3>
+        <p>{{delivery.warehouse.ref_nummer  }} </p>
+
+        <h3> Nombre de packet: </h3>
+        <p> {{delivery.warehouse.number_package }}</p>
+
+        <h3> Poids total: </h3>
+        <p> {{delivery.warehouse.weight }}</p>
+
+        <h3> Dimension des packets:  </h3>
+        <p> {{delivery.warehouse.dimension  }}</p>
+
+        <h3> Adresse : </h3>
+        <p>{{delivery.warehouse.adress  }}</p>
+
+        <h3> Ville : </h3>
+        <td> {{ delivery.warehouse.city }} </td>
+
+        <h3> Code Postal : </h3>
+        <td> {{ delivery.warehouse.postal_code }} </td>
+
+        <h3> Date d'entrée (Marchandises) : </h3>
+        <p>{{delivery.warehouse.inbound_date | date:'M/d/yy' }}</p>
+
+        <h3>Date de sortie (Marchandises): </h3>
+        <p>{{delivery.warehouse.outbound_date | date:'M/d/yy' }}</p>
+
+        <h3> Remarques : </h3>
+        <p>{{delivery.warehouse.remarks  }}</p>
+      </div>
+    </div>
+    <div *ngIf="delivery.warehouse == null">
+      <h1> Détails de la marchandise dans l'entrepot  : </h1>
+      <p> Pas d'entrepot' affecté </p>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+
+
+
+
+
+
+
+
+

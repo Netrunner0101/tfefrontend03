@@ -1,0 +1,49 @@
+<div class="container custom-container-2">
+  <!-- Show it when there is no employee -->
+  <div *ngIf="CustomerData.length == 0">
+    <p> Il y a auncun clients .</p>
+    <!-- <button class="btn btn-outline-primary" routerLink="/create-employee">
+      Add Empoyee
+    </button> -->
+  </div>
+  <div *ngIf="CustomerData.length !== 0">
+    <h1 class="mb-3 text-center">Liste des clients </h1>
+    <div class="col-md-12">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th scope="col"> N° Client  </th>
+          <th scope="col"> Nom de client </th>
+          <th scope="col"> Numéro de TVA </th>
+          <th scope="col"> Adresse  </th>
+          <th scope="col"> Ville  </th>
+          <th scope="col"> Code postal  </th>
+          <th scope="col"> Email </th>
+          <th scope="col"> Numéro de téléphone </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let cus of CustomerData">
+
+          <td> {{ cus.id_customer }} </td>
+          <td> {{ cus.name }} </td>
+          <td> {{ cus.vat }} </td>
+          <td> {{ cus.adress }} </td>
+          <td> {{ cus.city }} </td>
+          <td> {{ cus.postal_code }} </td>
+          <td> {{ cus.email }} </td>
+          <td> {{ cus.phoneNumber }} </td>
+          <td>
+            <button type="button" (click)='deleteCustomer(cus.id_customer)'> Supprimer </button>
+            <button><a [routerLink]="['/customer/',cus.id_customer]" [queryParams]="{id_customer:cus.id_customer }"> Modifier du client </a></button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div>
+  <button><a [routerLink]="['/customer/newCustomer']"> Créer un nouveau client </a></button>
+</div>

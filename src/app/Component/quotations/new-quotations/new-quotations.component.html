@@ -1,0 +1,48 @@
+<div>
+  <h1> Nouvelle Offre de prix : </h1>
+  <hr>
+  <form [formGroup]="newQuotationsForm"  (ngSubmit)="createQuotations()">
+    <mat-form-field>
+      <mat-label for="departure_adress" > Adrese de départ : </mat-label>
+      <input matInput type="text" class="form-control" formControlName="departure_adress">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label  for="departure_city"> Ville de départ : </mat-label>
+      <input matInput  type="text" formControlName="departure_city">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label  for="departure_postal_code"> Code Postal : </mat-label>
+      <input matInput  type="text" class="form-control" formControlName="departure_postal_code" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label  for="destination_adress"> Adrese d'arrivée :  </mat-label>
+      <input matInput  type="text" class="form-control" formControlName="destination_adress" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label  for="destination_city"> Ville d'arrivée : </mat-label>
+      <input matInput type="text" class="form-control" formControlName="destination_city">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label  for="destination_postal_code"> Code Postal : </mat-label>
+      <input matInput type="text" class="form-control" formControlName="destination_postal_code">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label  for="type_transport"> Type de transport : </mat-label>
+      <input matInput type="text" class="form-control" formControlName="type_transport">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label  for="price"> Prix : </mat-label>
+      <input matInput type="text" class="form-control" formControlName="price">
+    </mat-form-field>
+
+    <button mat-button color="primary" type="submit">Submit</button>
+  </form>
+</div>
+

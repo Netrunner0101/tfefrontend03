@@ -1,0 +1,50 @@
+<div class="container custom-container-2">
+  <!-- Show it when there is no employee -->
+  <div *ngIf="WhData.length == 0">
+    <p> Il y a aucune entrée dans l'entrepot .</p>
+  </div>
+  <div *ngIf="WhData.length !== 0">
+    <h1 class="mb-3 text-center">Entrée dans l'entrepot </h1>
+    <div class="col-md-12">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th scope="col"> N° Entrée </th>
+          <th scope="col"> Référence du container </th>
+          <th scope="col"> Nombre de packet  </th>
+          <th scope="col"> Poids </th>
+          <th scope="col"> Dimension  </th>
+          <th scope="col"> Adresse </th>
+          <th scope="col"> Ville </th>
+          <th scope="col"> Code Postal </th>
+          <th scope="col"> Date entrée </th>
+          <th scope="col"> Date de sortie </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let wh of WhData">
+          <td> {{  wh.id_warehouse }} </td>
+          <td> {{ wh.ref_nummer }} </td>
+          <td> {{ wh.number_package }} </td>
+          <td> {{ wh.weight }}</td>
+          <td> {{ wh.dimension }} </td>
+          <td> {{ wh.adress }} </td>
+          <td> {{ wh.city }} </td>
+          <td> {{ wh.postal_code }} </td>
+          <td> {{ wh.inbound_date | date:'M/d/yy' }} </td>
+          <td> {{ wh.outbound_date | date:'M/d/yy' }} </td>
+          <td> {{ wh.remarks }} </td>
+          <td>
+            <button type="button" (click)='deleteWarehouse(wh.id_warehouse)'> Supprimer </button>
+            <button><a [routerLink]="['/warehouse/',wh.id_warehouse]" [queryParams]="{id_warehouse:wh.id_warehouse }"> Modifier l'entrée </a></button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div>
+  <button><a [routerLink]="['/warehouse/newWarehouse']"> Ajouter une Entrée </a></button>
+</div>
