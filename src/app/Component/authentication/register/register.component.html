@@ -1,0 +1,35 @@
+<div>
+  <h1> Enregistrer un nouveau collaborateur : </h1>
+  <hr>
+  <form *ngIf="newUserForm" [formGroup]="newUserForm"  (ngSubmit)=" registerUser()">
+
+
+    <mat-form-field>
+      <mat-label for="firstname">  Nom de famille:  </mat-label>
+      <input matInput  id="firstname" type="text" formControlName="firstname">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label for="lastname"> Prénom :  </mat-label>
+      <input matInput id="lastname" type="text" formControlName="lastname">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label for="Username"> Username :  </mat-label>
+      <input matInput id="Username" type="text" formControlName="Username">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label for="Email"> Email : </mat-label>
+      <input matInput id="Email" type="text" formControlName="Email">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label for="Password"> Mot de passe : </mat-label>
+      <input matInput id="Password" type="text" formControlName="Password">
+    </mat-form-field>
+
+    <button type="submit">Submit</button>
+
+  </form>
+</div>

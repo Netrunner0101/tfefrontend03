@@ -36,6 +36,8 @@ import {NewWarehouseComponent} from "./Component/warehouse/new-warehouse/new-war
 import {QuotationsIdComponent} from "./Component/quotations/quotations-id/quotations-id.component";
 import {NewQuotationsComponent} from "./Component/quotations/new-quotations/new-quotations.component";
 import {NewTransporterComponent} from "./Component/transporter/new-transporter/new-transporter.component";
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { RegisterComponent } from './Component/authentication/register/register.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,7 @@ import {NewTransporterComponent} from "./Component/transporter/new-transporter/n
     QuotationsIdComponent,
     NewQuotationsComponent,
     NewTransporterComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,6 +84,7 @@ import {NewTransporterComponent} from "./Component/transporter/new-transporter/n
     MatSelectModule,
     MatExpansionModule,
     MatGridListModule,
+    MatSnackBarModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS,useClass:TokenInterceptorInterceptor, multi:true},

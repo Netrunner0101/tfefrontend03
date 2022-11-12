@@ -13,6 +13,10 @@ export class AuthService {
 
   constructor(private http:HttpClient,private router:Router) { }
 
+  register(user:any){
+    this.http.post(this.url+'/api/Authenticate/register-user',user);
+  }
+
   login(user:any){
     this.http.post(this.url+'/api/Authenticate/login',user).subscribe(
       (data:any) =>{
@@ -31,10 +35,6 @@ export class AuthService {
   logout(){
     sessionStorage.removeItem('token')
     return this.router.navigateByUrl('')
-  }
-
-  register(user:any):any{
-    return this.http.post(this.url+'/tms/register',user)
   }
 
 }

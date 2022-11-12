@@ -26,29 +26,41 @@ export class DeliveryService {
   }
 
   create(delivery:any){
-    this.http.post(this.url+'/api/Delivery',delivery).subscribe(
-      (response) =>{
-        console.log(response)
-      }
-    );
+    try{
+      this.http.post(this.url+'/api/Delivery',delivery).subscribe(
+        (response) =>{
+          console.log(response)
+        }
+      );
+    }catch (e) {
+      console.log("Error");
+    }
   }
 
   update(id_delivery:any,delivery:any){
-    this.id = Number(id_delivery) ;
-    this.http.put(this.url+'/api/Delivery/'+this.id,delivery).subscribe(
-      (response) =>{
-        window.location.reload();
-        console.log(response);
-      }
-    );
+    try{
+      this.id = Number(id_delivery) ;
+      this.http.put(this.url+'/api/Delivery/'+this.id,delivery).subscribe(
+        (response) =>{
+          window.location.reload();
+          console.log(response);
+        }
+      );
+    }catch (e) {
+      console.log("Error");
+    }
   }
 
   delete(id_delivery:any){
-    this.http.delete(this.url+'/api/Delivery/'+id_delivery,{}).subscribe(
-      (data:any) =>{
-        console.log(data)
-      }
-    );
+    try{
+      this.http.delete(this.url+'/api/Delivery/'+id_delivery,{}).subscribe(
+        (data:any) =>{
+          console.log(data)
+        }
+      );
+    }catch (e) {
+      console.log("Error");
+    }
   }
 
   updateCustomerFromDelivery(id_delivery:number,id_customer:number){

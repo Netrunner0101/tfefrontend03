@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {WarehouseService} from "../../../Service/warehouse.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-new-warehouse',
@@ -26,9 +27,14 @@ export class NewWarehouseComponent implements OnInit {
 
   constructor(private whServ:WarehouseService,
               private router:Router,
-              private actiRoute:ActivatedRoute) { }
+              private actiRoute:ActivatedRoute,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+  }
+
+  showError(error:any ): void {
+    this.snackBar.open(error, 'X', {panelClass: ['error']});
   }
 
   createWarehouse(){
@@ -44,10 +50,9 @@ export class NewWarehouseComponent implements OnInit {
       outbound_date: this.newWhForm.value.outbound_date ,
       remarks : this.newWhForm.value.remarks ,
     }
-
-    this.whServ.create(newWh);
-    console.log("New Entry create"+ newWh)
-    this.router.navigate(['/warehouse']);
+      this.whServ.create(newWh);
+      console.log("New Entry create"+ newWh)
+      this.router.navigate(['/warehouse']);
   }
 
 }

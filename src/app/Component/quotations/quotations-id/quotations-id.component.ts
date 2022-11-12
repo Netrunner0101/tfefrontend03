@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {QuotationsService} from "../../../Service/quotations.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {TransporterService} from "../../../Service/transporter.service";
 
 @Component({
   selector: 'app-quotations-id',
@@ -12,6 +13,13 @@ export class QuotationsIdComponent implements OnInit {
 
   id_quotations:number = <number>{} ;
   quotations:any = [];
+
+  transItem: any ;
+
+  quotrans: any = [];
+
+  //Data binding for transporteur
+  transporter:any ;
 
   panelOpenState = false;
 
@@ -27,15 +35,21 @@ export class QuotationsIdComponent implements OnInit {
     price : new FormControl('') ,
   });
 
-  constructor(private quServ: QuotationsService,private router:Router,private actiRoute:ActivatedRoute) { }
+  constructor(private quServ: QuotationsService,
+              private transServ: TransporterService,
+              private router:Router,
+              private actiRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.actiRoute.queryParams.subscribe(
       params =>{
         this.id_quotations = params['id_quotations'];
         this.getQuotationsById(this.id_quotations);
+        console.log(this.getQuotationsById(this.id_quotations));
       }
     )
+
+    this.quotrans = this.AllTransporter();
   }
 
   /*
@@ -74,6 +88,22 @@ export class QuotationsIdComponent implements OnInit {
     this.quServ.update(this.id_quotations,updatedQuotations);
     console.log("Update quotations form data: ", updatedQuotations);
     console.log("This id quotations : ",this.id_quotations );
+  }
+
+  // Transporter
+  AllTransporter(){
+    this.transServ.AllTransporter().subscribe( (data)=>{
+        this.quotrans = data ;
+      }
+    )
+  }
+
+  InsertTransporter(id_quotations:number,id_transporter:number){
+    this.quServ.updateTransporterFromQuotations(id_quotations,id_transporter);
+  }
+
+  deleteTransporter(id_quotations:number,id_transporter:number){
+    this.quServ.deleteTransporterFromQuotations(id_quotations,id_transporter);
   }
 
 }

@@ -24,29 +24,41 @@ export class QuotationsService {
   }
 
   create(quotations:any){
-    this.http.post(this.url+'/api/Quotationse',quotations).subscribe(
-      (response) =>{
-        console.log(response)
-      }
-    );
+    try{
+      this.http.post(this.url+'/api/Quotationse',quotations).subscribe(
+        (response) =>{
+          console.log(response)
+        }
+      );
+    }catch (e) {
+      console.log("Error");
+    }
   }
 
   update(id_quotations:any,quotations:any){
-    this.id = Number(id_quotations) ;
-    this.http.put(this.url+'/api/Quotations/'+this.id,quotations).subscribe(
-      (response) =>{
-        window.location.reload();
-        console.log(response);
-      }
-    );
+    try{
+      this.id = Number(id_quotations) ;
+      this.http.put(this.url+'/api/Quotations/'+this.id,quotations).subscribe(
+        (response) =>{
+          window.location.reload();
+          console.log(response);
+        }
+      );
+    }catch (e) {
+      console.log("Error");
+    }
   }
 
   delete(id_quotations:any){
-    this.http.delete(this.url+'/api/Quotations/'+id_quotations,{}).subscribe(
-      (data:any) =>{
-        console.log(data)
-      }
-    );
+    try{
+      this.http.delete(this.url+'/api/Quotations/'+id_quotations,{}).subscribe(
+        (data:any) =>{
+          console.log(data)
+        }
+      );
+    }catch (e) {
+      console.log("Error");
+    }
   }
 
   updateTransporterFromQuotations(id_quotations:number,id_transporter:number){
@@ -61,9 +73,9 @@ export class QuotationsService {
     }
   }
 
-  deleteTransporterFromQuotations(id_quotations:number){
+  deleteTransporterFromQuotations(id_quotations:number,id_transporter:number){
     try{
-      this.http.delete(this.url+'/api/Delivery/'+id_quotations+'/transporter').subscribe(
+      this.http.delete(this.url+'/api/Quotations/'+id_quotations+'/transporter/'+id_transporter).subscribe(
         (res) => {
           window.location.reload();
         }

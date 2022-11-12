@@ -143,7 +143,6 @@ export class DeliveryIdComponent implements OnInit {
 
   InsertTransporter(id_delivery:number,id_transporter:number){
     this.delService.updateTransporterFromDelivery(id_delivery,id_transporter);
-
   }
 
 

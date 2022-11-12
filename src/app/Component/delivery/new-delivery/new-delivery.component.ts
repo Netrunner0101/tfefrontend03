@@ -20,7 +20,7 @@ export class NewDeliveryComponent implements OnInit {
   newDeliveryForm= new FormGroup({
     number_package : new FormControl('', [Validators.required]),
     weight: new FormControl('', [Validators.required]),
-    dimension: new FormControl('', [Validators.required]),
+    dimension: new FormControl('', ),
     departure_adress:new FormControl('', [Validators.required]),
     departure_city : new FormControl('', [Validators.required]),
     departure_postal_code : new FormControl('', [Validators.required]),
@@ -29,7 +29,7 @@ export class NewDeliveryComponent implements OnInit {
     destination_postal_code : new FormControl('', [Validators.required]),
     outbout_date: new FormControl('', [Validators.required]),
     arrival_date: new FormControl('', [Validators.required]),
-    remarks:new FormControl('', [Validators.required]),
+    remarks:new FormControl('', ),
   });
 
   ngOnInit(): void {
@@ -51,6 +51,7 @@ export class NewDeliveryComponent implements OnInit {
       remarks: this.newDeliveryForm.value.remarks ,
     }
     this.delService.create(newDelivery)
+    console.log("New delivery create"+newDelivery)
     this.router.navigate(['/delivery']).then(() => {
       window.location.reload();
     });

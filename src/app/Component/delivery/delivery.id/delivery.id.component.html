@@ -233,7 +233,9 @@
       <h1> Détails du client de la livraison : </h1>
       <p> Pas de client affecté </p>
     </div>
+
     <hr>
+
     <div *ngIf="delivery.transporter">
       <h1> Détails du transporter de la livraison : </h1>
       <div >
@@ -263,6 +265,7 @@
     </div>
 
     <hr>
+
     <div *ngIf="delivery.warehouse">
       <h1> Détails de la marchandise dans l'entrepot : </h1>
       <div >

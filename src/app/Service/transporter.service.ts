@@ -25,28 +25,42 @@ export class TransporterService {
   }
 
   create(transporter:any){
-    this.http.post(this.url+'/api/Transporter',transporter).subscribe(
-      (response) =>{
-        console.log(response)
-      }
-    );
+    try{
+      this.http.post(this.url+'/api/Transporter',transporter).subscribe(
+        (response) =>{
+          console.log(response)
+        }
+      );
+    }catch (e) {
+      console.log("Error");
+    }
   }
 
   update(id_transporter:any,transporter:any){
-    this.id = Number(id_transporter) ;
-    this.http.put(this.url+'/api/Transporter/'+this.id,transporter).subscribe(
-      (response) =>{
-        window.location.reload();
-        console.log(response);
-      }
-    );
+    try{
+      this.id = Number(id_transporter) ;
+      this.http.put(this.url+'/api/Transporter/'+this.id,transporter).subscribe(
+        (response) =>{
+          window.location.reload();
+          console.log(response);
+        }
+      );
+    }catch (e) {
+      console.log("Error");
+    }
   }
 
-  delete(id_customer:any){
-    this.http.delete(this.url+'/api/Customer/'+id_customer,{}).subscribe(
-      (data:any) =>{
-        console.log(data)
-      }
-    );
+  delete(id_transporter:any){
+    try{
+      this.http.delete(this.url+'/api/Transporter/'+id_transporter,{}).subscribe(
+        (data:any) =>{
+          window.location.reload();
+          console.log(data)
+        }
+      );
+    }catch (e) {
+      console.log("Error");
+    }
   }
+  
 }

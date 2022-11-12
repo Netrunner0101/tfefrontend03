@@ -18,6 +18,7 @@ import {QuotationsComponent} from "./Component/quotations/quotations.component";
 import {NewQuotationsComponent} from "./Component/quotations/new-quotations/new-quotations.component";
 import {QuotationsIdComponent} from "./Component/quotations/quotations-id/quotations-id.component";
 import {NewCustomerComponent} from "./Component/customer/new-customer/new-customer.component";
+import {RegisterComponent} from "./Component/authentication/register/register.component";
 
 const routes: Routes = [
 
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path:'' , component: AuthenticationComponent},
   // Route Login
   { path:'login' , component: AuthenticationComponent},
+  { path:'register' , component: RegisterComponent},
   // Delivery route
   { path:'delivery' , component: DeliveryComponent, canActivate:[AuthguardGuard]},
   { path:'delivery/newDelivery' , component: NewDeliveryComponent, canActivate:[AuthguardGuard]},
