@@ -35,7 +35,7 @@
           <td> {{ cus.phoneNumber }} </td>
           <td>
             <button type="button" (click)='deleteCustomer(cus.id_customer)'> Supprimer </button>
-            <button><a [routerLink]="['/customer/',cus.id_customer]" [queryParams]="{id_customer:cus.id_customer }"> Modifier du client </a></button>
+            <button><a [routerLink]="['/customer/',cus.id_customer]" [queryParams]="{id_customer:cus.id_customer }"> Voir détails du client </a></button>
           </td>
         </tr>
         </tbody>

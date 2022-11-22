@@ -46,7 +46,7 @@
 
           <td>
             <button type="button" (click)='deleteDelivery(deli.id_delivery)'> Supprimer </button>
-            <button><a [routerLink]="['/delivery/',deli.id_delivery]" [queryParams]="{id_delivery:deli.id_delivery}"> Modifier livraison </a></button>
+            <button><a [routerLink]="['/delivery/',deli.id_delivery]" [queryParams]="{id_delivery:deli.id_delivery}"> Voir détails de la livraison </a></button>
           </td>
         </tr>
         </tbody>

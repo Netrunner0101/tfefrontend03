@@ -55,6 +55,7 @@ export class CustomerService {
     try{
       this.http.delete(this.url+'/api/Customer/'+id_customer,{}).subscribe(
         (data:any) =>{
+          window.location.reload();
           console.log(data)
         }
       );

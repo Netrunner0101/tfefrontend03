@@ -31,6 +31,6 @@ export class CustomerComponent implements OnInit {
 
   deleteCustomer(id_customer:any){
     this.cusServ.delete(id_customer);
-    this.router.navigate(['/customer'])
+    window.location.reload();
   }
 }

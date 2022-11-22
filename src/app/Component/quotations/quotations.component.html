@@ -33,7 +33,7 @@
           <td> {{ q.price }}</td>
           <td>
             <button type="button" (click)='deleteQuotations(q.id_quotations )'> Supprimer </button>
-            <button><a [routerLink]="['/quotations/',q.id_quotations]" [queryParams]="{id_quotations:q.id_quotations }"> Modifier l'Offre </a></button>
+            <button><a [routerLink]="['/quotations/',q.id_quotations]" [queryParams]="{id_quotations:q.id_quotations }"> Voir détails de l'Offre </a></button>
           </td>
         </tr>
         </tbody>

@@ -53,6 +53,7 @@ export class DeliveryComponent implements OnInit {
 
   deleteDelivery(id_delivery:any){
     this.delService.delete(id_delivery);
+    window.location.reload();
   }
 
 

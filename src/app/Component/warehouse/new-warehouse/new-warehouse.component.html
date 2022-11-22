@@ -5,16 +5,25 @@
     <mat-form-field>
       <mat-label for="ref_nummer" > N° de référence  : </mat-label>
       <input matInput type="text" class="form-control" formControlName="ref_nummer">
+      <mat-error *ngIf="newWhForm.get('ref_nummer')?.errors?.['required']">
+        Error, le champ Numero de référence ne peut PAS etre vide !
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label  for="number_package"> Nombre de packet :  </mat-label>
       <input matInput  type="number" formControlName="number_package">
+      <mat-error *ngIf="newWhForm.get('number_package')?.errors?.['required']">
+        Error, le champ Nombre de packet ne peut PAS etre vide !
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label  for="weight">  Poids : </mat-label>
       <input matInput  type="number" class="form-control" formControlName="weight" />
+      <mat-error *ngIf="newWhForm.get('weight')?.errors?.['required']">
+        Error, le champ Poids ne peut PAS etre vide !
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
@@ -25,21 +34,33 @@
     <mat-form-field>
       <mat-label  for="adress"> Adresse : </mat-label>
       <input matInput type="text" class="form-control" formControlName="adress">
+      <mat-error *ngIf="newWhForm.get('adress')?.errors?.['required']">
+        Error, le champ Adresse ne peut PAS etre vide !
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label  for="city"> Ville: </mat-label>
       <input matInput type="text" class="form-control" formControlName="city">
+      <mat-error *ngIf="newWhForm.get('city')?.errors?.['required']">
+        Error, le champ Ville ne peut PAS etre vide !
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label  for="postal_code"> Code Postal: </mat-label>
       <input matInput type="text" class="form-control" formControlName="postal_code">
+      <mat-error *ngIf="newWhForm.get('postal_code')?.errors?.['required']">
+        Error, le champ Code Postal ne peut PAS etre vide !
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label  for="inbound_date"> Date entrée: </mat-label>
       <input matInput type="date" class="form-control" formControlName="inbound_date">
+      <mat-error *ngIf="newWhForm.get('inbound_date')?.errors?.['dateLessThan']">
+        Inbound date cannot be after outbound date.
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>

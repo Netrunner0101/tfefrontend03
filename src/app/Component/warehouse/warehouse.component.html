@@ -36,7 +36,7 @@
           <td> {{ wh.remarks }} </td>
           <td>
             <button type="button" (click)='deleteWarehouse(wh.id_warehouse)'> Supprimer </button>
-            <button><a [routerLink]="['/warehouse/',wh.id_warehouse]" [queryParams]="{id_warehouse:wh.id_warehouse }"> Modifier l'entrée </a></button>
+            <button><a [routerLink]="['/warehouse/',wh.id_warehouse]" [queryParams]="{id_warehouse:wh.id_warehouse }"> Voir détails de l'entrée </a></button>
           </td>
         </tr>
         </tbody>

@@ -63,6 +63,7 @@ export class WarehouseService {
     try{
       this.http.delete(this.url+'/api/Warehouse/'+id_warehouse,{}).subscribe(
         (data:any) =>{
+          window.location.reload();
           console.log(data)
         }
       );

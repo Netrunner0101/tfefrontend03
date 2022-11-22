@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {WarehouseService} from "../../../Service/warehouse.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {dateLessThan} from "../../validators/dateValidator";
 
 @Component({
   selector: 'app-new-warehouse',
@@ -17,13 +18,13 @@ export class NewWarehouseComponent implements OnInit {
     number_package: new FormControl('',[Validators.required]),
     weight: new FormControl('',[Validators.required]),
     dimension : new FormControl(''),
-    adress : new FormControl(''),
-    city : new FormControl(''),
-    postal_code : new FormControl(''),
+    adress : new FormControl('',[Validators.required]),
+    city : new FormControl('',[Validators.required]),
+    postal_code : new FormControl('',[Validators.required]),
     inbound_date : new FormControl('',[Validators.required]),
     outbound_date: new FormControl('',[Validators.required]),
     remarks : new FormControl(''),
-  });
+  }, {validators:dateLessThan('inbound_date','outbound_date')});
 
   constructor(private whServ:WarehouseService,
               private router:Router,
@@ -50,9 +51,18 @@ export class NewWarehouseComponent implements OnInit {
       outbound_date: this.newWhForm.value.outbound_date ,
       remarks : this.newWhForm.value.remarks ,
     }
+
+    if(!this.newWhForm.valid){
+      alert('La form Warehouse est invalide, veuillez remplir tous les champs requis.')
+      window.location.reload();
+    }else {
       this.whServ.create(newWh);
       console.log("New Entry create"+ newWh)
-      this.router.navigate(['/warehouse']);
+      this.router.navigate(['/warehouse']).then(() => {
+        window.location.reload();
+      });
+    }
+
   }
 
 }

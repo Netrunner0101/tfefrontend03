@@ -35,10 +35,16 @@ export class NewTransporterComponent implements OnInit {
       email : this.newTransporterForm.value.email ,
       phoneNumber : this.newTransporterForm.value.phoneNumber ,
     }
-    this.tranServ.create(newTransporter);
-    console.log("New delivery create"+ newTransporter)
-    this.router.navigate(['/transporter']).then(() => {
+    if(!this.newTransporterForm.valid){
+      alert('La form transporter est invalide, veuillez remplir tous les champs requis.')
       window.location.reload();
-    });
+    }else {
+      this.tranServ.create(newTransporter);
+      console.log("New delivery create"+ newTransporter)
+      this.router.navigate(['/transporter']).then(() => {
+        window.location.reload();
+      });
+    }
+
   }
 }

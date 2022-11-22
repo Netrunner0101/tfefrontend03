@@ -39,11 +39,17 @@ export class NewQuotationsComponent implements OnInit {
       type_transport : this.newQuotationsForm.value.type_transport ,
       price : this.newQuotationsForm.value.price ,
     }
-    this.quServ.create(newQuotations );
-    console.log("New quotations create"+ newQuotations )
-    this.router.navigate(['/quotations']).then(() => {
+    if(!this.newQuotationsForm.valid){
+      alert('La form customer est invalide, veuillez remplir tous les champs requis.')
       window.location.reload();
-    });
+    }else {
+      this.quServ.create(newQuotations);
+      console.log("New quotations create"+ newQuotations )
+      this.router.navigate(['/quotations']).then(() => {
+        window.location.reload();
+      });
+    }
+
   }
 
 

@@ -15,9 +15,7 @@ export class NewCustomerComponent implements OnInit {
     name : new FormControl('', [Validators.required]) ,
     vat : new FormControl('', [Validators.required]) ,
     // Unique Number
-    adress : new FormControl('', [
-      Validators.required
-    ]) ,
+    adress : new FormControl('', [Validators.required]) ,
     city :new FormControl('', [Validators.required])  ,
     postal_code : new FormControl('', [Validators.required]) ,
     email : new FormControl('', [Validators.required]) ,
@@ -39,11 +37,16 @@ export class NewCustomerComponent implements OnInit {
       email :  this.newCustomerForm.value.email ,
       phoneNumber :  this.newCustomerForm.value.phoneNumber ,
     }
-    this.cusServ.create(newCustomer);
-    console.log("New delivery create"+ newCustomer)
-    this.router.navigate(['/customer']).then(() => {
+    if(!this.newCustomerForm.valid){
+      alert('La form customer est invalide, veuillez remplir tous les champs requis.')
       window.location.reload();
-    });
+    }else {
+      this.cusServ.create(newCustomer);
+      console.log("New delivery create"+ newCustomer)
+      this.router.navigate(['/customer']).then(() => {
+        window.location.reload();
+      });
+    }
   }
 
 }

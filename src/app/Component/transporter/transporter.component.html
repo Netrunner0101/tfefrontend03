@@ -32,7 +32,7 @@
           <td> {{ trans.phoneNumber }} </td>
           <td>
             <button type="button" (click)='deleteTransporter(trans.id_transporter)'> Supprimer </button>
-            <button><a [routerLink]="['/transporter/',trans.id_transporter]" [queryParams]="{id_transporter:trans.id_transporter}">Modifier Transporteur </a></button>
+            <button><a [routerLink]="['/transporter/',trans.id_transporter]" [queryParams]="{id_transporter:trans.id_transporter}"> Voir détails du Transporteur </a></button>
           </td>
         </tr>
         </tbody>

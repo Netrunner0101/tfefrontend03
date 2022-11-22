@@ -29,6 +29,7 @@ export class WarehouseComponent implements OnInit {
 
   deleteWarehouse(id_warehouse:any){
     this.whServ.delete(id_warehouse);
+    window.location.reload();
   }
 
 }

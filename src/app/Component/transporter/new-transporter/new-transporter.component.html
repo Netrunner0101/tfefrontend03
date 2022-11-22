@@ -5,31 +5,49 @@
     <mat-form-field>
       <mat-label for="name" > Nom de société transport : </mat-label>
       <input matInput type="text" class="form-control" formControlName="name">
+      <mat-error *ngIf="newTransporterForm.get('name')?.errors?.['required']">
+        Error, le champ Nom de société transport ne peut PAS etre vide !
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label  for=" adress"> Adresse :   </mat-label>
+      <mat-label  for="adress"> Adresse du transporteur :   </mat-label>
       <input matInput  type="text" formControlName="adress">
+      <mat-error *ngIf="newTransporterForm.get('adress')?.errors?.['required']">
+        Error, le champ Adresse du transporteur ne peut PAS etre vide !
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label  for="city">  Ville : </mat-label>
       <input matInput  type="text" class="form-control" formControlName="city" />
+      <mat-error *ngIf="newTransporterForm.get('city')?.errors?.['required']">
+        Error, le champ Ville ne peut PAS etre vide !
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label  for="departure_city"> Code postal :  </mat-label>
       <input matInput  type="text" class="form-control" formControlName="postal_code" />
+      <mat-error *ngIf="newTransporterForm.get('departure_city')?.errors?.['required']">
+        Error, le champ Code postal ne peut PAS etre vide !
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label  for="email"> Email : </mat-label>
+      <mat-label  for="email"> Email du transporteur : </mat-label>
       <input matInput type="text" class="form-control" formControlName="email">
+      <mat-error *ngIf="newTransporterForm.get('email')?.errors?.['required']">
+        Error, le champ Email du transporteur ne peut PAS etre vide !
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label  for="phoneNumber"> Numéro de téléphone : </mat-label>
       <input matInput type="text" class="form-control" formControlName="phoneNumber">
+      <mat-error *ngIf="newTransporterForm.get('phoneNumber')?.errors?.['required']">
+        Error, le champ Numéro de téléphone ne peut PAS etre vide !
+      </mat-error>
     </mat-form-field>
 
     <button mat-button color="primary" type="submit">Submit</button>

@@ -25,7 +25,7 @@ export class QuotationsService {
 
   create(quotations:any){
     try{
-      this.http.post(this.url+'/api/Quotationse',quotations).subscribe(
+      this.http.post(this.url+'/api/Quotations',quotations).subscribe(
         (response) =>{
           console.log(response)
         }

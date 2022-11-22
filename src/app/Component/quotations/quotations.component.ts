@@ -29,6 +29,7 @@ export class QuotationsComponent implements OnInit {
 
   deleteQuotations(id_quotations:any){
     this.quServ.delete(id_quotations);
+    window.location.reload();
   }
 
 }

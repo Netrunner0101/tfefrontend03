@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {url_dev} from "../global";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {Delivery} from "../Models/Delivery";
@@ -33,7 +33,7 @@ export class DeliveryService {
         }
       );
     }catch (e) {
-      console.log("Error");
+      console.log("Error"+ e);
     }
   }
 
@@ -55,6 +55,7 @@ export class DeliveryService {
     try{
       this.http.delete(this.url+'/api/Delivery/'+id_delivery,{}).subscribe(
         (data:any) =>{
+          window.location.reload();
           console.log(data)
         }
       );

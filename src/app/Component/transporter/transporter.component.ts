@@ -29,5 +29,6 @@ export class TransporterComponent implements OnInit {
 
   deleteTransporter(id_transporter:any){
     this.tranServ.delete(id_transporter);
+    window.location.reload();
   }
 }
