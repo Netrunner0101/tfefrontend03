@@ -97,7 +97,7 @@
     </div>
 
     <hr>
-    <div *ngIf="quotations">
+    <div *ngIf="quotations.transporter_quotations">
       <div *ngFor="let trans of quotations.transporter_quotations" >
         <mat-card-content>
           <mat-label> Transporteur n° {{trans.id_transporter }} : </mat-label>
@@ -122,13 +122,16 @@
           </div>
           <button mat-button (click)="deleteTransporter(quotations.id_quotations,trans.id_transporter )"> Supprimer transporteur </button>
         </mat-card-content>
+
+        <div *ngIf="quotations.transporter_quotations == null">
+          <div>
+            <h1> Détails du Transporteur de la livraison : </h1>
+            <p> Pas de Transporteur affecté </p>
+          </div>
+        </div>
+
       </div>
     </div>
-    <div *ngIf="quotations.transporter == null">
-      <h1> Détails du Transporteur de la livraison : </h1>
-      <p> Pas de Transporteur affecté </p>
-    </div>
-    <hr>
   </mat-card-content>
 
 </mat-card>

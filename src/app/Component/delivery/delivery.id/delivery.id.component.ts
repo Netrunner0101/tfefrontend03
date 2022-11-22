@@ -115,6 +115,9 @@ export class DeliveryIdComponent implements OnInit {
     console.log("This id Delivery : ", this.id_del);
   }
 
+  // Validation form date .
+  
+
   // Customer
   AllCustomer(){
     this.custServ.AllCustomer().subscribe( (data)=>{

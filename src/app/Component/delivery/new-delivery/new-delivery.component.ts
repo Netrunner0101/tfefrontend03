@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DeliveryService} from "../../../Service/delivery.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-new-delivery',
@@ -16,6 +16,18 @@ export class NewDeliveryComponent implements OnInit {
     private actiRoute:ActivatedRoute
   ) { }
 
+  // Validator
+  dateDifference( control:AbstractControl ): ValidationErrors | null{
+    const out = control?.get('outbout_date')?.value
+    const arrival = control?.get('arrival_date')?.value
+    console.log("validators called");
+    // Safe navigator
+    if (out?.value !== null && arrival?.value !== null && out?.value > arrival?.value) {
+      return {'Invalid date': true}
+    }
+    return null;
+  }
+
   // Initial formgroup
   newDeliveryForm= new FormGroup({
     number_package : new FormControl('', [Validators.required]),
@@ -27,10 +39,11 @@ export class NewDeliveryComponent implements OnInit {
     destination_adress : new FormControl('', [Validators.required]),
     destination_city : new FormControl('', [Validators.required]),
     destination_postal_code : new FormControl('', [Validators.required]),
-    outbout_date: new FormControl('', [Validators.required]),
-    arrival_date: new FormControl('', [Validators.required]),
+    outbout_date: new FormControl('',[Validators.required,this.dateDifference]),
+    arrival_date: new FormControl( '',[Validators.required,this.dateDifference]),
     remarks:new FormControl('', ),
   });
+
 
   ngOnInit(): void {
   }
