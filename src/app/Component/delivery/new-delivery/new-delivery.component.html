@@ -1,7 +1,7 @@
 <div>
   <h1> Nouvelle Livraison </h1>
   <hr>
-  <form [formGroup]="newDeliveryForm"  (ngSubmit)="createDelivery()">
+  <form [formGroup]="newDeliveryForm"  (ngSubmit)="createNewDelivery()">
     <mat-form-field>
       <mat-label for="number_package"> Nombre de packet : </mat-label>
       <input matInput type="number" formControlName="number_package" >
@@ -42,7 +42,7 @@
     <mat-form-field>
       <mat-label  for="departure_postal_code"> Code postal: </mat-label>
       <input matInput type="text" formControlName="departure_postal_code"  >
-      <mat-error *ngIf="newDeliveryForm.get('departure_city')?.errors?.['required']">
+      <mat-error *ngIf="newDeliveryForm.get('departure_postal_code')?.errors?.['required']">
           Error, le champ code postal ne peut PAS etre vide !
       </mat-error>
     </mat-form-field>

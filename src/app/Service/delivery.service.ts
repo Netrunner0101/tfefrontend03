@@ -1,14 +1,20 @@
 import { Injectable } from '@angular/core';
 import {url_dev} from "../global";
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {Observable} from "rxjs";
-import {Delivery} from "../Models/Delivery";
+import {Observable, retry, throwError} from "rxjs";
+import {Delivery, DeliveryPost} from "../Models/Delivery";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DeliveryService {
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    }),
+  };
 
 
   id: undefined | number ;
@@ -26,14 +32,22 @@ export class DeliveryService {
   }
 
   create(delivery:any){
-    try{
       this.http.post(this.url+'/api/Delivery',delivery).subscribe(
-        (response) =>{
+        (response:any) =>{
           console.log(response)
         }
       );
-    }catch (e) {
-      console.log("Error"+ e);
+  }
+
+  createNewDelivery(delivery:any){
+    try {
+      this.http.post(this.url+'/api/Delivery/newDelivery',delivery).subscribe(
+        (response:any) =>{
+          console.log(response)
+        }
+      );
+    }catch (e){
+      console.log(e);
     }
   }
 

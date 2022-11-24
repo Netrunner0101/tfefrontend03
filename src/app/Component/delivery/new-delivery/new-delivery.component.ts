@@ -55,11 +55,39 @@ export class NewDeliveryComponent implements OnInit {
       alert('La form delivery est invalid, veuillez remplir tous les champs requis.')
       window.location.reload();
     }else {
-      this.delService.create(newDelivery);
+      //this.delService.create(newDelivery);
+      this.delService.createNewDelivery(newDelivery);
       console.log("New delivery create")
       this.router.navigate(['/delivery']);
     }
-
   }
+
+  createNewDelivery(){
+    const newDelivery = {
+      number_package : this.newDeliveryForm.value.number_package,
+      weight: this.newDeliveryForm.value.weight ,
+      dimension:  this.newDeliveryForm.value.dimension ,
+      departure_adress: this.newDeliveryForm.value.departure_adress ,
+      departure_city :  this.newDeliveryForm.value.departure_city ,
+      departure_postal_code : this.newDeliveryForm.value.departure_postal_code  ,
+      destination_adress : this.newDeliveryForm.value.destination_adress  ,
+      destination_city :  this.newDeliveryForm.value.destination_city ,
+      destination_postal_code :  this.newDeliveryForm.value.destination_postal_code ,
+      outbout_date:  this.newDeliveryForm.value.outbout_date ,
+      arrival_date: this.newDeliveryForm.value.arrival_date  ,
+      remarks: this.newDeliveryForm.value.remarks ,
+    }
+    if(!this.newDeliveryForm.valid){
+      alert('La form delivery est invalid, veuillez remplir tous les champs requis.')
+      window.location.reload();
+    }else {
+      this.delService.createNewDelivery(newDelivery);
+      console.log("New delivery create")
+      this.router.navigate(['/delivery']).then(() => {
+        window.location.reload();
+      });
+    }
+  }
+
 
 }
