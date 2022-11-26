@@ -8,5 +8,4 @@ export interface Transporter {
   postal_code : undefined |string ,
   email : undefined | string,
   phoneNumber : undefined | string,
-  delivery : undefined | Delivery,
 }

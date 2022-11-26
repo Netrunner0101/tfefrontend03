@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {url_dev} from "../global";
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
+import {catchError, Observable, throwError} from "rxjs";
 import {Warehouse} from "../Models/Warehouse";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
@@ -19,6 +19,27 @@ export class WarehouseService {
     private snackBar: MatSnackBar
     ) { }
 
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json'
+    })
+  };
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 0) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong.
+      console.error(
+        `Backend returned code ${error.status}, body was: `, error.error);
+    }
+    // Return an observable with a user-facing error message.
+    return throwError(() => new Error('Something bad happened; please try again later.'));
+  }
+
+
   showError(error:any ): void {
     this.snackBar.open(error, 'X', {panelClass: ['error']});
   }
@@ -31,16 +52,11 @@ export class WarehouseService {
     return this.http.get<Warehouse>(this.url+'/api/Warehouse/warehouses/'+id_warehouse);
   }
 
-  create(warehouse:any){
-    try{
-      this.http.post(this.url+'/api/Warehouse',warehouse).subscribe(
-        (response) =>{
-          console.log(response)
-        }
-      );
-    }catch (e) {
-      console.log("Error");
-    }
+  create(warehouse:any):Observable<any>{
+    return this.http.post(this.url+'/api/Warehouse',warehouse,this.httpOptions).pipe(
+      catchError((this.handleError)
+      )
+    );
   }
 
   update(id_warehouse:any,warehouse:any){

@@ -41,11 +41,19 @@ export class NewCustomerComponent implements OnInit {
       alert('La form customer est invalide, veuillez remplir tous les champs requis.')
       window.location.reload();
     }else {
-      this.cusServ.create(newCustomer);
-      console.log("New delivery create"+ newCustomer)
-      this.router.navigate(['/customer']).then(() => {
-        window.location.reload();
-      });
+      this.cusServ.create(newCustomer).subscribe(
+        (data)=> {
+          console.log("Success : " + data)
+          this.router.navigate(['/customer']).then(() => {
+            window.location.reload();
+          })
+        },
+        (error)=>{
+          console.log("Error : " + error);
+          alert("Error, sauvegarde d'une nouvelle donnée Customer est Impossible, veuillez corriger le formulaire");
+          window.location.reload();
+        }
+      );
     }
   }
 

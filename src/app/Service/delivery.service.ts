@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {url_dev} from "../global";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {Observable, retry, throwError} from "rxjs";
+import {catchError, Observable, retry, throwError} from "rxjs";
 import {Delivery, DeliveryPost} from "../Models/Delivery";
 
 @Injectable({
@@ -23,6 +23,21 @@ export class DeliveryService {
 
   constructor(private http:HttpClient,private router:Router) { }
 
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 0) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong.
+      console.error(
+        `Backend returned code ${error.status}, body was: `, error.error);
+    }
+    // Return an observable with a user-facing error message.
+    return throwError(() => new Error('Something bad happened; please try again later.'));
+  }
+
   AllDelivery():Observable<Delivery>{
     return this.http.get<Delivery>(this.url+'/api/Delivery/deliveries');
   }
@@ -40,15 +55,10 @@ export class DeliveryService {
   }
 
   createNewDelivery(delivery:any){
-    try {
-      this.http.post(this.url+'/api/Delivery/newDelivery',delivery).subscribe(
-        (response:any) =>{
-          console.log(response)
-        }
-      );
-    }catch (e){
-      console.log(e);
-    }
+    return this.http.post(this.url+'/api/Delivery/newDelivery',delivery).pipe(
+      catchError((this.handleError)
+      )
+    );
   }
 
   update(id_delivery:any,delivery:any){

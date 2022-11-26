@@ -56,13 +56,20 @@ export class NewWarehouseComponent implements OnInit {
       alert('La form Warehouse est invalide, veuillez remplir tous les champs requis.')
       window.location.reload();
     }else {
-      this.whServ.create(newWh);
-      console.log("New Entry create"+ newWh)
-      this.router.navigate(['/warehouse']).then(() => {
-        window.location.reload();
-      });
+
+      this.whServ.create(newWh).subscribe(
+        (data)=> {
+          console.log("Success : " + data)
+          this.router.navigate(['/warehouse']).then(() => {
+            window.location.reload();
+          })
+        },
+        (error)=>{
+          console.log("Error : " + error);
+          alert("Error, sauvegarde d'une nouvelle donnée Warehouse est Impossible, veuillez corriger le formulaire");
+          window.location.reload();
+        }
+      );
     }
-
   }
-
 }

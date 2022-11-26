@@ -116,7 +116,6 @@ export class DeliveryIdComponent implements OnInit {
   }
 
   // Validation form date .
-  
 
   // Customer
   AllCustomer(){
@@ -128,7 +127,6 @@ export class DeliveryIdComponent implements OnInit {
 
   InsertCustomer(id_delivery:number,id_customer:number){
     this.delService.updateCustomerFromDelivery(id_delivery,id_customer);
-
   }
 
   deleteCustomer(id_delivery:number){

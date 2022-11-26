@@ -39,12 +39,19 @@ export class NewTransporterComponent implements OnInit {
       alert('La form transporter est invalide, veuillez remplir tous les champs requis.')
       window.location.reload();
     }else {
-      this.tranServ.create(newTransporter);
-      console.log("New delivery create"+ newTransporter)
-      this.router.navigate(['/transporter']).then(() => {
-        window.location.reload();
-      });
+      this.tranServ.create(newTransporter).subscribe(
+        (data)=> {
+          console.log("Success : " + data)
+          this.router.navigate(['/transporter']).then(() => {
+            window.location.reload();
+          });
+        },
+        (error)=>{
+          console.log("Error : " + error);
+          alert("Error, sauvegarde d'une nouvelle donnée Transporter est Impossible, veuillez corriger le formulaire");
+          window.location.reload();
+        }
+      );
     }
-
   }
 }

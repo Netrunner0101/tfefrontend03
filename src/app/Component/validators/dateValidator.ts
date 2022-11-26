@@ -21,7 +21,7 @@ export function dateLessThan( firstDateField:string,secondDateField:string) : Va
     }
 
     const firstDate = new Date(firstDateValue);
-    const secondDate = new Date(secondDateValue );
+    const secondDate = new Date(secondDateValue);
 
     if(firstDate.getDate() > secondDate.getDate() ){
       const err = {dateLessThan:true};

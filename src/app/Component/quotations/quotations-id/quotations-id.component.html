@@ -34,7 +34,7 @@
         <p> Changer les informations </p>
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <form [formGroup]="updateQuotationsForm"  (ngSubmit)="updateQuotations()">
+    <form [formGroup]="updateQuotationsForm" (ngSubmit)="updateQuotations()">
       <mat-form-field>
         <mat-label for="departure_adress" > Adrese de départ : </mat-label>
         <input matInput type="text" class="form-control" formControlName="departure_adress">

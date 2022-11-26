@@ -43,13 +43,20 @@ export class NewQuotationsComponent implements OnInit {
       alert('La form customer est invalide, veuillez remplir tous les champs requis.')
       window.location.reload();
     }else {
-      this.quServ.create(newQuotations);
-      console.log("New quotations create"+ newQuotations )
-      this.router.navigate(['/quotations']).then(() => {
-        window.location.reload();
-      });
+      this.quServ.create(newQuotations).subscribe(
+        (data)=> {
+          console.log("Success : " + data)
+          this.router.navigate(['/quotations']).then(() => {
+            window.location.reload();
+          });
+        },
+        (error)=>{
+          console.log("Error : " + error);
+          alert("Error, sauvegarde d'une nouvelle donnée Quotations est Impossible, veuillez corriger le formulaire");
+          window.location.reload();
+        }
+      );
     }
-
   }
 
 

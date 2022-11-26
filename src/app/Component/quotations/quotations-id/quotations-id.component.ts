@@ -17,6 +17,7 @@ export class QuotationsIdComponent implements OnInit {
   transItem: any ;
 
   quotrans: any = [];
+  checkQuoTrans: any[] = [];
 
   //Data binding for transporteur
   transporter:any ;
@@ -48,8 +49,8 @@ export class QuotationsIdComponent implements OnInit {
         console.log(this.getQuotationsById(this.id_quotations));
       }
     )
-
     this.quotrans = this.AllTransporter();
+    this.checkQuoTrans.push(this.AllTransporter());
   }
 
   /*
@@ -59,6 +60,8 @@ export class QuotationsIdComponent implements OnInit {
     this.quServ.getById(id_quotations).subscribe(
       (data)=>{
         console.log(data);
+        console.log("Checktrans : " + this.checkQuoTrans)
+
         this.quotations = data;
         this.updateQuotationsForm.patchValue({
           departure_adress : this.quotations.departure_adress ,
@@ -99,7 +102,7 @@ export class QuotationsIdComponent implements OnInit {
   }
 
   InsertTransporter(id_quotations:number,id_transporter:number){
-    this.quServ.updateTransporterFromQuotations(id_quotations,id_transporter);
+      this.quServ.updateTransporterFromQuotations(id_quotations,id_transporter);
   }
 
   deleteTransporter(id_quotations:number,id_transporter:number){

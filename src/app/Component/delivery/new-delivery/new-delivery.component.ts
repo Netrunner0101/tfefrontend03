@@ -81,13 +81,19 @@ export class NewDeliveryComponent implements OnInit {
       alert('La form delivery est invalid, veuillez remplir tous les champs requis.')
       window.location.reload();
     }else {
-      this.delService.createNewDelivery(newDelivery);
-      console.log("New delivery create")
-      this.router.navigate(['/delivery']).then(() => {
-        window.location.reload();
-      });
+      this.delService.createNewDelivery(newDelivery).subscribe(
+        (data)=> {
+          console.log("Success : " + data)
+          this.router.navigate(['/delivery']).then(() => {
+            window.location.reload();
+          });
+        },
+        (error)=>{
+          console.log("Error : " + error);
+          alert("Error, sauvegarde d'une nouvelle donnée Delivery est Impossible, veuillez corriger le formulaire");
+          window.location.reload();
+        }
+      );
     }
   }
-
-
 }
