@@ -37,7 +37,7 @@ export class QuotationsService {
     return this.http.get<Quotations>(this.url+'/api/Quotations/quotations/'+id_quotations);
   }
 
-  create(quotations:any){
+  create(quotations:any):Observable<any>{
     return this.http.post(this.url+'/api/Quotations',quotations).pipe(
       catchError((this.handleError)
       )

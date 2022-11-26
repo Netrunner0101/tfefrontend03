@@ -38,7 +38,7 @@ export class TransporterService {
     return this.http.get<Transporter>(this.url+'/api/Transporter/transporters/'+id_transporter);
   }
 
-  create(transporter:any){
+  create(transporter:any):Observable<any>{
     return this.http.post(this.url+'/api/Transporter',transporter).pipe(
       catchError((this.handleError)
       )

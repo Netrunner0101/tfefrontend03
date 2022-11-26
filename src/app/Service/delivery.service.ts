@@ -54,7 +54,7 @@ export class DeliveryService {
       );
   }
 
-  createNewDelivery(delivery:any){
+  createNewDelivery(delivery:any):Observable<any>{
     return this.http.post(this.url+'/api/Delivery/newDelivery',delivery).pipe(
       catchError((this.handleError)
       )
