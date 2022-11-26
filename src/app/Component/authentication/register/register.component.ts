@@ -31,9 +31,23 @@ export class RegisterComponent implements OnInit {
       Email: this.newUserForm.value.Email,
       Password: this.newUserForm.value.Password,
     }
+    this.auth.register(newUser).subscribe(
+      (data)=> {
+        console.log("Success : " + data)
+        this.router.navigate(['login']);
+      },
+      (error)=>{
+        console.log("Error : " + error);
+        alert("Error, sauvegarde d'un nouveau User est Impossible, veuillez corriger le formulaire");
+        window.location.reload();
+      }
+    );
+    /*
     this.auth.register(newUser);
     console.log("New user create"+newUser);
     this.router.navigate(['delivery']);
+
+     */
   }
 
 }
