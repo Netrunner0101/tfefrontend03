@@ -50,7 +50,9 @@ export class QuotationsIdComponent implements OnInit {
       }
     )
     this.quotrans = this.AllTransporter();
+    console.log(this.quotrans)
     this.checkQuoTrans.push(this.AllTransporter());
+    console.log(this.checkQuoTrans)
   }
 
   /*
@@ -101,8 +103,28 @@ export class QuotationsIdComponent implements OnInit {
     )
   }
 
+  /*
+  *
+  * Check if possible to find duplicate
+  *
+  * https://stackoverflow.com/questions/38375781/how-can-i-avoid-duplicate-values-when-inserting-to-the-database
+  *
+  * https://www.google.com/search?q=angular+avoid+duplicate+value&sxsrf=ALiCzsaCZmuZfVaFMhrbr1KXxEapaO2bTQ%3A1669429037336&ei=LXeBY5GVFIq0sAeH8rTADA&oq=angular+&gs_lcp=Cgxnd3Mtd2l6LXNlcnAQAxgAMgQIIxAnMgQIIxAnMgQIIxAnMgQIABBDMgQIABBDMgUIABCRAjIKCAAQsQMQgwEQQzIECAAQQzIECAAQQzIFCAAQkQI6BwgjECcQnQI6EQguEIAEELEDEIMBEMcBENEDOggIABCxAxCDAToLCAAQgAQQsQMQgwE6BwguELEDEEM6BAguEEM6CwgAELEDEIMBEJECSgQIQRgASgQIRhgAUABYkglgkxBoAHAAeACAAeABiAHfBZIBBTYuMS4xmAEAoAEBwAEB&sclient=gws-wiz-serp
+  *
+  * */
+
   InsertTransporter(id_quotations:number,id_transporter:number){
-      this.quServ.updateTransporterFromQuotations(id_quotations,id_transporter);
+    this.quServ.updateTransporterFromQuotations(id_quotations,id_transporter).subscribe(
+      (data)=> {
+        console.log("Success ajout Reussit")
+        window.location.reload();
+      },
+      (error)=>{
+        console.log("Error : " + error);
+        alert("Error, ajouter un transporteur est Impossible !");
+        window.location.reload();
+      }
+    );
   }
 
   deleteTransporter(id_quotations:number,id_transporter:number){

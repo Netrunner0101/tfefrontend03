@@ -1,4 +1,3 @@
-<p>delivery works!</p>
 <div class="container custom-container-2">
   <!-- Show it when there is no employee -->
   <div *ngIf="DeliveryData.length == 0">
@@ -45,18 +44,19 @@
           <td>{{deli.remarks}}</td>
 
           <td>
-            <button type="button" (click)='deleteDelivery(deli.id_delivery)'> Supprimer </button>
-            <button><a [routerLink]="['/delivery/',deli.id_delivery]" [queryParams]="{id_delivery:deli.id_delivery}"> Voir détails de la livraison </a></button>
+            <button mat-flat-button color="primary" type="button"(click)='deleteDelivery(deli.id_delivery)'> Supprimer </button>
+            <button mat-flat-button color="primary" type="button" ><a [routerLink]="['/delivery/',deli.id_delivery]" [queryParams]="{id_delivery:deli.id_delivery}"> Voir détails de la livraison </a></button>
           </td>
         </tr>
         </tbody>
       </table>
+
     </div>
   </div>
-</div>
-
+  <div>
 <div>
-  <button><a [routerLink]="['/delivery/newDelivery']"> Créer une nouvelle Livraison </a></button>
+  <button mat-flat-button color="primary" type="button"><a [routerLink]="['/delivery/newDelivery']"> Créer une nouvelle Livraison </a></button>
+  <button mat-button color="primary" type="button" (click)="exportExcel()" > <mat-icon> import_export</mat-icon>  Générer un Excel </button>
 </div>
 
 

@@ -4,7 +4,7 @@
   <form [formGroup]="newDeliveryForm"  (ngSubmit)="createNewDelivery()">
     <mat-form-field>
       <mat-label for="number_package"> Nombre de packet : </mat-label>
-      <input matInput type="number" formControlName="number_package" >
+      <input matInput type="number" formControlName="number_package" min="0">
       <mat-error *ngIf="newDeliveryForm.get('number_package')?.errors?.['required']">
        Erreur, le champ nombre de packet ne peut PAS etre vide !
       </mat-error>
@@ -12,7 +12,7 @@
 
     <mat-form-field>
       <mat-label  for="weight"> Poids: </mat-label>
-      <input matInput  type="number" formControlName="weight" >
+      <input matInput  type="number" formControlName="weight" min="0">
       <mat-error *ngIf="newDeliveryForm.get('weight')?.errors?.['required']">
         Erreur, le champ de poids ne peut PAS etre vide !
       </mat-error>

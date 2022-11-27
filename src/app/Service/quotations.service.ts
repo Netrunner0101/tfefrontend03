@@ -70,16 +70,11 @@ export class QuotationsService {
     }
   }
 
-  updateTransporterFromQuotations(id_quotations:number,id_transporter:number){
-    try{
-      this.http.put(this.url+'/api/Quotations/'+id_quotations+'/transporter/'+id_transporter,{}).subscribe(
-        (res) =>{
-          window.location.reload();
-        }
-      );
-    }catch (e) {
-      console.log({ e });
-    }
+  updateTransporterFromQuotations(id_quotations:number,id_transporter:number):Observable<any>{
+    return this.http.put(this.url+'/api/Quotations/'+id_quotations+'/transporter/'+id_transporter,{}).pipe(
+      catchError((this.handleError)
+      )
+    );
   }
 
   deleteTransporterFromQuotations(id_quotations:number,id_transporter:number){

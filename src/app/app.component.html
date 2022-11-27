@@ -2,7 +2,7 @@
 <header></header>
 <body>
 <mat-sidenav-container class="example-container" >
-  <mat-sidenav mode="side" opened>
+  <mat-sidenav color="primary" mode="side" opened>
     <span>TMS</span>
     <mat-nav-list>
       <a mat-list-item [routerLink]="''" > Login </a>
@@ -11,8 +11,8 @@
       <a mat-list-item [routerLink]="'customer'" > Customer </a>
       <a mat-list-item [routerLink]="'transporter'" > Transporter </a>
       <a mat-list-item [routerLink]="'warehouse'" > Warehouse </a>
-      <a mat-list-item [routerLink]="'quotations'" > Quotations </a>
-      <button mat-button (click)="logout()" >  Logout </button>
+      <a  mat-list-item [routerLink]="'quotations'" > Quotations </a>
+      <button mat-flat-button color="primary" (click)="logout()" >  Logout </button>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

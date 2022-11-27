@@ -38,6 +38,7 @@ import {NewQuotationsComponent} from "./Component/quotations/new-quotations/new-
 import {NewTransporterComponent} from "./Component/transporter/new-transporter/new-transporter.component";
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { RegisterComponent } from './Component/authentication/register/register.component';
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -85,6 +86,8 @@ import { RegisterComponent } from './Component/authentication/register/register.
     MatExpansionModule,
     MatGridListModule,
     MatSnackBarModule,
+    MatIconModule,
+
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS,useClass:TokenInterceptorInterceptor, multi:true},
