@@ -6,6 +6,12 @@
   <div *ngIf="QuData.length !== 0">
     <h1 class="mb-3 text-center">Liste des Offres de prix </h1>
     <div class="col-md-12">
+      <div id="search_bar">
+        <div class="search_quotations">
+          Recherche :
+          <input type="text" name="search" [(ngModel)]="searchQuotations" placeholder="Rechercher Livraison" >
+        </div>
+      </div>
       <table class="table table-bordered">
         <thead>
         <tr>
@@ -21,7 +27,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let q of QuData">
+        <tr *ngFor="let q of QuData | filter:searchQuotations">
           <td>{{ q.id_quotations }} </td>
           <td>{{ q.departure_adress }} </td>
           <td>{{ q.departure_city }} </td>
@@ -30,10 +36,10 @@
           <td> {{ q.destination_city }}</td>
           <td>{{ q.destination_postal_code }} </td>
           <td>{{  q.type_transport}} </td>
-          <td> {{ q.price }}</td>
+          <td> {{ q.price }} €</td>
           <td>
-            <button type="button" (click)='deleteQuotations(q.id_quotations )'> Supprimer </button>
-            <button><a [routerLink]="['/quotations/',q.id_quotations]" [queryParams]="{id_quotations:q.id_quotations }"> Voir détails de l'Offre </a></button>
+            <button type="button" (click)='deleteQuotations(q.id_quotations )'> <mat-icon  type="button" matTooltip="Supprimer">delete_outline</mat-icon> </button>
+            <button><a [routerLink]="['/quotations/',q.id_quotations]" [queryParams]="{id_quotations:q.id_quotations }"> <mat-icon>description</mat-icon></a></button>
           </td>
         </tr>
         </tbody>
@@ -43,6 +49,6 @@
 </div>
 
 <div>
-  <button><a [routerLink]="['/quotations/newQuotations']"> Créer une nouvelle Offre de prix </a></button>
+  <button><a [routerLink]="['/quotations/newQuotations']"> <mat-icon>create</mat-icon> Créer une nouvelle Offre de prix </a></button>
   <button mat-button color="primary" type="button" (click)="exportExcel()" > <mat-icon> import_export</mat-icon>  Générer un Excel </button>
 </div>

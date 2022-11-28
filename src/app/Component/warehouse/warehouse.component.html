@@ -6,6 +6,12 @@
   <div *ngIf="WhData.length !== 0">
     <h1 class="mb-3 text-center">Entrée dans l'entrepot </h1>
     <div class="col-md-12">
+      <div id="search_bar">
+        <div class="search_quotations">
+          Recherche :
+          <input type="text" name="search" [(ngModel)]="searchWarehouse" placeholder="Rechercher entrée entrepot" >
+        </div>
+      </div>
       <table class="table table-bordered">
         <thead>
         <tr>
@@ -22,7 +28,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let wh of WhData">
+        <tr *ngFor="let wh of WhData | filter:searchWarehouse">
           <td> {{  wh.id_warehouse }} </td>
           <td> {{ wh.ref_nummer }} </td>
           <td> {{ wh.number_package }} </td>
@@ -35,8 +41,8 @@
           <td> {{ wh.outbound_date | date:'M/d/yy' }} </td>
           <td> {{ wh.remarks }} </td>
           <td>
-            <button type="button" (click)='deleteWarehouse(wh.id_warehouse)'> Supprimer </button>
-            <button><a [routerLink]="['/warehouse/',wh.id_warehouse]" [queryParams]="{id_warehouse:wh.id_warehouse }"> Voir détails de l'entrée </a></button>
+            <button type="button" (click)='deleteWarehouse(wh.id_warehouse)'> <mat-icon  type="button" matTooltip="Supprimer">delete_outline</mat-icon> </button>
+            <button><a [routerLink]="['/warehouse/',wh.id_warehouse]" [queryParams]="{id_warehouse:wh.id_warehouse }"> <mat-icon>description</mat-icon> </a></button>
           </td>
         </tr>
         </tbody>
@@ -46,6 +52,6 @@
 </div>
 
 <div>
-  <button><a [routerLink]="['/warehouse/newWarehouse']"> Ajouter une Entrée </a></button>
+  <button><a [routerLink]="['/warehouse/newWarehouse']"> <mat-icon>create</mat-icon> Ajouter une Entrée </a></button>
   <button mat-button color="primary" type="button" (click)="exportExcel()" > <mat-icon> import_export</mat-icon>  Générer un Excel </button>
 </div>

@@ -5,6 +5,11 @@ import {TransporterService} from "../../../Service/transporter.service";
 import {CustomerService} from "../../../Service/customer.service";
 import {DeliveryService} from "../../../Service/delivery.service";
 import {ActivatedRoute, Router} from "@angular/router";
+// @ts-ignore
+import pdfMake from 'pdfmake/build/pdfmake';
+// @ts-ignore
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'app-delivery.id',
@@ -12,7 +17,6 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./delivery.id.component.css']
 })
 export class DeliveryIdComponent implements OnInit {
-
 
   delivery:any = [];
   delcus: any = [];
@@ -165,6 +169,42 @@ export class DeliveryIdComponent implements OnInit {
 
   deleteWarehouse(id_delivery:number){
     this.delService.deleteWarehouseFromDelivery(id_delivery);
+  }
+
+
+
+  // PDFMAKE
+
+
+  generatePDF(action = 'open') {
+
+
+    let docDefinition = {
+      header: {text:'Livraison : '+ this.delivery.id_delivery, styles: 'header'},
+      content: [
+        {text:' Nom de client : '+ this.delivery.customer.name, styles: 'content'}
+      ],
+      styles: {
+        header: {
+          fontSize: 20,
+          bold: true,
+          alignment: 'right',
+          margin:25,
+        },
+        content:{
+          fontSize: 25,
+          margin: [20, 0, 40, 0],
+        },
+        title:{
+          fontSize: 50,
+        },
+
+      },
+      pageMargins: [ 40, 40, 40, 40 ],
+    };
+
+    pdfMake.createPdf(docDefinition).download();
+
   }
 
 }

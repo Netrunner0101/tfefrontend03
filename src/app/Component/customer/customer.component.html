@@ -9,6 +9,12 @@
   <div *ngIf="CustomerData.length !== 0">
     <h1 class="mb-3 text-center">Liste des clients </h1>
     <div class="col-md-12">
+      <div id="search_bar">
+        <div class="search_customer">
+          Recherche :
+          <input type="text" name="search" [(ngModel)]="searchCustomer" placeholder="Rechercher Client" >
+        </div>
+      </div>
       <table class="table table-bordered">
         <thead>
         <tr>
@@ -23,7 +29,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let cus of CustomerData">
+        <tr *ngFor="let cus of CustomerData | filter:searchCustomer">
 
           <td> {{ cus.id_customer }} </td>
           <td> {{ cus.name }} </td>
@@ -34,8 +40,8 @@
           <td> {{ cus.email }} </td>
           <td> {{ cus.phoneNumber }} </td>
           <td>
-            <button type="button" (click)='deleteCustomer(cus.id_customer)'> Supprimer </button>
-            <button><a [routerLink]="['/customer/',cus.id_customer]" [queryParams]="{id_customer:cus.id_customer }"> Voir détails du client </a></button>
+            <button type="button" (click)='deleteCustomer(cus.id_customer)'> <mat-icon  type="button" matTooltip="Supprimer">delete_outline</mat-icon> </button>
+            <button><a [routerLink]="['/customer/',cus.id_customer]" [queryParams]="{id_customer:cus.id_customer }"> <mat-icon color="white">description</mat-icon> </a></button>
           </td>
         </tr>
         </tbody>
@@ -45,6 +51,6 @@
 </div>
 
 <div>
-  <button><a [routerLink]="['/customer/newCustomer']"> Créer un nouveau client </a></button>
+  <button><a [routerLink]="['/customer/newCustomer']"> <mat-icon>create</mat-icon> Créer un nouveau client </a></button>
   <button mat-button color="primary" type="button" (click)="exportExcel()" > <mat-icon> import_export</mat-icon>  Générer un Excel </button>
 </div>

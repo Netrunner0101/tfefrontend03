@@ -9,6 +9,12 @@
   <div *ngIf="TransporterData.length !== 0">
     <h1 class="mb-3 text-center">Liste des clients </h1>
     <div class="col-md-12">
+      <div id="search_bar">
+        <div class="search_quotations">
+          Recherche :
+          <input type="text" name="search" [(ngModel)]="searchTransporter" placeholder="Rechercher Transporter" >
+        </div>
+      </div>
       <table class="table table-bordered">
         <thead>
         <tr>
@@ -22,7 +28,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let trans of TransporterData">
+        <tr *ngFor="let trans of TransporterData | filter:searchTransporter">
           <td> {{ trans.id_transporter }} </td>
           <td> {{ trans.name }} </td>
           <td> {{ trans.adress }} </td>
@@ -31,8 +37,8 @@
           <td> {{ trans.email }} </td>
           <td> {{ trans.phoneNumber }} </td>
           <td>
-            <button type="button" (click)='deleteTransporter(trans.id_transporter)'> Supprimer </button>
-            <button><a [routerLink]="['/transporter/',trans.id_transporter]" [queryParams]="{id_transporter:trans.id_transporter}"> Voir détails du Transporteur </a></button>
+            <button type="button" (click)='deleteTransporter(trans.id_transporter)'> <mat-icon  type="button" matTooltip="Supprimer">delete_outline</mat-icon>  </button>
+            <button><a [routerLink]="['/transporter/',trans.id_transporter]" [queryParams]="{id_transporter:trans.id_transporter}"> <mat-icon>description</mat-icon> </a></button>
           </td>
         </tr>
         </tbody>
@@ -42,6 +48,6 @@
 </div>
 
 <div>
-  <button><a [routerLink]="['/transporter/newTransporter']"> Ajouter un Transporteur </a></button>
+  <button><a [routerLink]="['/transporter/newTransporter']"> <mat-icon>create</mat-icon>  Ajouter un Transporteur </a></button>
   <button mat-button color="primary" type="button" (click)="exportExcel()" > <mat-icon> import_export</mat-icon>  Générer un Excel </button>
 </div>

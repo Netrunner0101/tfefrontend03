@@ -10,6 +10,8 @@ import * as FileSaver from "file-saver";
 })
 export class TransporterComponent implements OnInit {
 
+  searchTransporter:any;
+
   TransporterData: any = [];
 
   constructor(private tranServ:TransporterService,private router:Router) { }

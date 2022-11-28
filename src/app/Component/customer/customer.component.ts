@@ -10,6 +10,8 @@ import * as FileSaver from "file-saver";
 })
 export class CustomerComponent implements OnInit {
 
+  searchCustomer:any;
+
   CustomerData: any = [];
 
   constructor(private cusServ: CustomerService,private router:Router) { }

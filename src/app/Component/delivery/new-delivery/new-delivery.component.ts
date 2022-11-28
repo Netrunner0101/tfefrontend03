@@ -11,6 +11,8 @@ import {dateLessThan} from "../../validators/dateValidator";
 })
 export class NewDeliveryComponent implements OnInit {
 
+  searchDelivery:any;
+
   constructor(
     private delService:DeliveryService,
     private router:Router,

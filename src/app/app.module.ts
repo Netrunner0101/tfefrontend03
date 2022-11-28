@@ -8,7 +8,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {NoopAnimationsModule} from "@angular/platform-browser/animations";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatButtonModule} from "@angular/material/button";
 import {MatTableModule} from "@angular/material/table";
@@ -39,6 +39,7 @@ import {NewTransporterComponent} from "./Component/transporter/new-transporter/n
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { RegisterComponent } from './Component/authentication/register/register.component';
 import {MatIconModule} from "@angular/material/icon";
+import {Ng2SearchPipeModule} from "ng2-search-filter";
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import {MatIconModule} from "@angular/material/icon";
     MatGridListModule,
     MatSnackBarModule,
     MatIconModule,
-
+    Ng2SearchPipeModule,
+    FormsModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS,useClass:TokenInterceptorInterceptor, multi:true},

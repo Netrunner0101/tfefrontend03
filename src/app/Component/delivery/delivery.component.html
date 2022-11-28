@@ -1,5 +1,6 @@
 <div class="container custom-container-2">
   <!-- Show it when there is no employee -->
+
   <div *ngIf="DeliveryData.length == 0">
     <p> Il y a aucune livraison .</p>
     <!-- <button class="btn btn-outline-primary" routerLink="/create-employee">
@@ -9,6 +10,12 @@
   <div *ngIf="DeliveryData.length !== 0">
     <h1 class="mb-3 text-center">Liste des livraisons </h1>
     <div class="col-md-12">
+      <div id="search_bar">
+        <div class="search_delivery">
+          Recherche :
+          <input type="text" name="search" [(ngModel)]="searchDelivery" placeholder="Rechercher Livraison" >
+        </div>
+      </div>
       <table class="table table-bordered">
         <thead>
         <tr>
@@ -28,7 +35,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let deli of DeliveryData">
+        <tr *ngFor="let deli of DeliveryData | filter:searchDelivery" >
           <td>{{deli.id_delivery}}</td>
           <td>{{deli.number_package }}</td>
           <td>{{deli.weight}}</td>
@@ -44,8 +51,8 @@
           <td>{{deli.remarks}}</td>
 
           <td>
-            <button mat-flat-button color="primary" type="button"(click)='deleteDelivery(deli.id_delivery)'> Supprimer </button>
-            <button mat-flat-button color="primary" type="button" ><a [routerLink]="['/delivery/',deli.id_delivery]" [queryParams]="{id_delivery:deli.id_delivery}"> Voir détails de la livraison </a></button>
+            <button type="button"(click)='deleteDelivery(deli.id_delivery)'> <mat-icon  type="button" matTooltip="Supprimer">delete_outline</mat-icon> </button>
+            <button type="button" ><a [routerLink]="['/delivery/',deli.id_delivery]" [queryParams]="{id_delivery:deli.id_delivery}" ><mat-icon>description</mat-icon></a></button>
           </td>
         </tr>
         </tbody>
@@ -55,8 +62,8 @@
   </div>
   <div>
 <div>
-  <button mat-flat-button color="primary" type="button"><a [routerLink]="['/delivery/newDelivery']"> Créer une nouvelle Livraison </a></button>
-  <button mat-button color="primary" type="button" (click)="exportExcel()" > <mat-icon> import_export</mat-icon>  Générer un Excel </button>
+  <button mat-flat-button type="button"><a [routerLink]="['/delivery/newDelivery']"> <mat-icon>create</mat-icon> Créer une nouvelle Livraison </a></button>
+  <button mat-button type="button" (click)="exportExcel()" > <mat-icon> import_export</mat-icon>  Générer un Excel </button>
 </div>
 
 

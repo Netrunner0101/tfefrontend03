@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import {url_dev} from "../global";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {catchError, throwError} from "rxjs";
+import {catchError, Observable, throwError} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  registerSucess:boolean = false;
   private url = url_dev;
   private isLogged:boolean = false;
 
@@ -41,9 +42,17 @@ export class AuthService {
       (data:any) =>{
         console.log(data);
         sessionStorage.setItem('token',data.token);
-        //this.isLogged = true;
+        this.registerSucess=true;
       }
     );
+
+    /*
+    return this.http.post(this.url+'/api/Authenticate/login',user).pipe(
+      catchError((this.handleError)
+      )
+    );
+    */
+
   }
 
   isLoggedValue(){

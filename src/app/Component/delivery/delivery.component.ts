@@ -11,6 +11,9 @@ import * as FileSaver from 'file-saver';
   styleUrls: ['./delivery.component.css']
 })
 export class DeliveryComponent implements OnInit {
+
+  searchDelivery:any;
+
   DeliveryData: any = [];
 
   // columns we will show on the table

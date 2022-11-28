@@ -10,6 +10,8 @@ import * as FileSaver from "file-saver";
 })
 export class QuotationsComponent implements OnInit {
 
+  searchQuotations:any;
+
   QuData: any = [];
 
   constructor(private quServ:QuotationsService,private router:Router) { }

@@ -160,6 +160,7 @@
   </mat-accordion>
 </div>
 <mat-card *ngIf="delivery" class="example-card" id="deliveryDetail">
+  <button mat-flat-button color="primary" type="button" (click)="generatePDF()"> Pdf Livraison </button>
   <mat-card-title> <h1> Livraison </h1> </mat-card-title>
   <mat-card-subtitle> {{ delivery.id_delivery }} </mat-card-subtitle>
   <mat-card-content>
@@ -227,6 +228,7 @@
         <h3> Téléphone du client : </h3>
         <p>{{delivery.customer.phoneNumber}}</p>
       </div>
+      <button mat-button (click)="deleteCustomer(delivery.id_delivery)"> Supprimer Client </button>
     </div>
 
     <div *ngIf="delivery.customer === null">
@@ -257,6 +259,7 @@
         <h3> Numéro téléphone du Transporter : </h3>
         <p>{{delivery.transporter.phoneNumber}}</p>
       </div>
+      <button mat-button (click)="deleteTransporter(delivery.id_delivery)"> Supprimer transporteur </button>
     </div>
 
     <div *ngIf="delivery.transporter == null">
@@ -299,6 +302,7 @@
         <h3> Remarques : </h3>
         <p>{{delivery.warehouse.remarks  }}</p>
       </div>
+      <button mat-button (click)="deleteWarehouse(delivery.id_delivery)"> Supprimer l'entrepot </button>
     </div>
     <div *ngIf="delivery.warehouse == null">
       <h1> Détails de la marchandise dans l'entrepot  : </h1>

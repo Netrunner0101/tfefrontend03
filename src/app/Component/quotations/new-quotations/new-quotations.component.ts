@@ -19,7 +19,7 @@ export class NewQuotationsComponent implements OnInit {
     destination_adress : new FormControl('', [Validators.required]) ,
     destination_city : new FormControl('', [Validators.required]) ,
     destination_postal_code : new FormControl('', [Validators.required]) ,
-    type_transport : new FormControl('', [Validators.required]) ,
+    type_transport : new FormControl('') ,
     price : new FormControl('', [Validators.required]) ,
   });
 

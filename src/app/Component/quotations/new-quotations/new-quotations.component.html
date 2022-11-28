@@ -53,9 +53,11 @@
     <mat-form-field>
       <mat-label  for="type_transport"> Type de transport : </mat-label>
       <input matInput type="text" class="form-control" formControlName="type_transport">
+      <!--
       <mat-error *ngIf="newQuotationsForm.get('type_transport')?.errors?.['required']">
         Error, le champ Type de transport ne peut PAS etre vide !
       </mat-error>
+      -->
     </mat-form-field>
 
     <mat-form-field>

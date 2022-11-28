@@ -10,6 +10,8 @@ import * as FileSaver from "file-saver";
 })
 export class WarehouseComponent implements OnInit {
 
+  searchWarehouse:any;
+
   WhData: any = [];
 
   constructor(private whServ:WarehouseService,private router:Router) { }
