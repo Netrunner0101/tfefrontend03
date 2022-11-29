@@ -9,6 +9,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import pdfMake from 'pdfmake/build/pdfmake';
 // @ts-ignore
 import pdfFonts from 'pdfmake/build/vfs_fonts';
+import {dateLessThan} from "../../validators/dateValidator";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -49,7 +50,7 @@ export class DeliveryIdComponent implements OnInit {
     outbout_date: new FormControl(''),
     arrival_date: new FormControl(''),
     remarks:new FormControl(''),
-  });
+  }, {validators:dateLessThan('outbout_date','arrival_date')} );
 
   tiles = [
     {text: 'Information', cols: 2},
@@ -114,9 +115,28 @@ export class DeliveryIdComponent implements OnInit {
       arrival_date: this.updateDeliveryForm.value.arrival_date,
       remarks:this.updateDeliveryForm.value.remarks,
     }
-    this.delService.update(this.id_del,updateDelivery);
-    console.log("Update Delivery form data: ", updateDelivery);
-    console.log("This id Delivery : ", this.id_del);
+    if(!this.updateDeliveryForm.valid){
+      alert('La mise à jour du form delivery est invalid, veuillez corriger.')
+      window.location.reload();
+    }else {
+      let iddel = this.id_del;
+      this.delService.update(iddel,updateDelivery).subscribe(
+        (data)=> {
+          console.log("Success : " + data)
+          this.router.navigate(['/delivery']).then(() => {
+            window.location.reload();
+          });
+        },
+        (error)=>{
+          console.log("Error : " + error);
+          alert("Error, la mise à jour de la donnée Delivery est Impossible, veuillez corriger le formulaire");
+          window.location.reload();
+        }
+      );
+    }
+    //this.delService.update(this.id_del,updateDelivery);
+    //console.log("Update Delivery form data: ", updateDelivery);
+    //console.log("This id Delivery : ", this.id_del);
   }
 
   // Validation form date .
@@ -171,32 +191,141 @@ export class DeliveryIdComponent implements OnInit {
     this.delService.deleteWarehouseFromDelivery(id_delivery);
   }
 
-
-
   // PDFMAKE
 
-
-  generatePDF(action = 'open') {
-
-
+  generatePDF() {
     let docDefinition = {
-      header: {text:'Livraison : '+ this.delivery.id_delivery, styles: 'header'},
+
+      layout: 'lightHorizontalLines',
       content: [
-        {text:' Nom de client : '+ this.delivery.customer.name, styles: 'content'}
+        {text:'Fait le : '+ new Date().toDateString(),
+        fontSize: 12,
+        bold: true,
+        margin: [330, 0, 0, 0],
+        },
+        {text:'Livraison n° '+ this.delivery.id_delivery,
+          fontSize: 20,
+          bold: true,
+          margin: [150, 10]
+        },
+        {text:' Adresse de livraison : '  ,
+          styles: 'content_title',
+          fontSize: 12
+        },
+        {text: this.delivery.destination_adress ,
+          fontSize: 15,
+          bold: true,
+          margin: [20, 10]
+        },
+        {text:' Date de Sortie : ',
+          fontSize: 12
+        },
+        {text: new Date(this.delivery.outbout_date).toLocaleDateString() ,
+          fontSize: 15 ,
+          bold: true ,
+          margin: [20, 10] ,
+          lineHeight: 2 ,
+        },
+        {text: ' Transporteur : ',
+          fontSize: 18 ,
+        },
+        {text:  'Nom du transporteur : ' ,
+          fontSize: 12 ,
+        },
+        {text:  this.delivery.transporter.name,
+          fontSize: 15 ,
+          bold: true ,
+          margin: [20, 10]
+        },
+        {text:  ' Email : ' ,
+          fontSize: 12 ,
+        },
+        {text:  this.delivery.transporter.email ,
+          fontSize: 15 ,
+          bold: true ,
+          margin: [20, 10]
+        },
+        {text:  ' Numéro téléphone : ' ,
+          fontSize: 12 ,
+        },
+        {text:+ this.delivery.transporter.phoneNumber ,
+          fontSize: 15 ,
+          bold: true ,
+          margin: [20, 10] ,
+          lineHeight: 2 ,
+        },
+        {text: ' Client : ',
+          fontSize: 18 ,
+        },
+        {text:' Nom de client : ',
+          fontSize: 12 ,
+        },
+        {text: this.delivery.customer.name,
+          fontSize: 15 ,
+          bold: true ,
+          margin: [20, 10] ,
+          lineHeight: 2 ,
+        },
+        {text:' Email client : ',
+          fontSize: 12 ,
+        },
+        {text: this.delivery.customer.email,
+          fontSize: 15 ,
+          bold: true ,
+          margin: [20, 10] ,
+          lineHeight: 2 ,
+        },
+
+        //{text:' TVA: '+ this.delivery.customer.vat,
+        //  styles: 'content'},
+        {text: 'Contenu : ',
+          fontSize: 18 ,
+        },
+        {text:' Nombre de packets : ' ,
+          fontSize: 12 ,
+        },
+        {text:this.delivery.number_package + ' pcs',
+          fontSize: 15 ,
+          bold: true ,
+          margin: [20, 10]
+        },
+        {text:' Poids : ' ,
+          fontSize: 12,
+        },
+        {text: this.delivery.weight  + ' kg',
+          fontSize: 15,
+          bold: true,
+          margin: [20, 10]
+        },
+        {text:' Dimension : ' ,
+          fontSize: 12,
+        },
+        {text: this.delivery.dimension ,
+          fontSize: 15,
+          bold: true,
+          margin: [20, 10],
+          lineHeight: 2,
+        },
+        {text: ' Remarques : ',
+          fontSize: 15},
+        {text: this.delivery.remarks , styles: 'remarks',
+          fontSize: 20},
       ],
       styles: {
         header: {
-          fontSize: 20,
+          fontSize: 45,
           bold: true,
-          alignment: 'right',
-          margin:25,
+          margin: [10, 10],
         },
         content:{
           fontSize: 25,
+          bold: true,
           margin: [20, 0, 40, 0],
         },
-        title:{
-          fontSize: 50,
+        content_title:{
+          fontSize: 25,
+          bold: true,
+          margin: [20, 0, 40, 0],
         },
 
       },

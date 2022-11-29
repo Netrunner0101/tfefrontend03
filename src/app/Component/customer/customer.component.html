@@ -51,6 +51,6 @@
 </div>
 
 <div>
-  <button><a [routerLink]="['/customer/newCustomer']"> <mat-icon>create</mat-icon> Créer un nouveau client </a></button>
+  <button mat-flat-button type="button"> <a [routerLink]="['/customer/newCustomer']"> <mat-icon>create</mat-icon> Créer un nouveau client </a></button>
   <button mat-button color="primary" type="button" (click)="exportExcel()" > <mat-icon> import_export</mat-icon>  Générer un Excel </button>
 </div>

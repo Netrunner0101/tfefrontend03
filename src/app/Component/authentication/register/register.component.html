@@ -27,6 +27,13 @@
     <mat-form-field>
       <mat-label for="Password"> Mot de passe : </mat-label>
       <input matInput id="Password" type="text" formControlName="Password">
+      <mat-hint >
+        Password must have :
+        <ol> One or more special charaters </ol>
+        <ol> One or more Upper case letter </ol>
+        <ol> One or more Lower case letter </ol>
+        <ol> One or more number case  </ol>
+      </mat-hint>
     </mat-form-field>
 
     <button mat-flat-button color="primary" type="submit">Enregistrer un nouveau utilisateur</button>

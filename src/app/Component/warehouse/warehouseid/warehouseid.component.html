@@ -67,12 +67,15 @@
         </mat-form-field>
 
         <mat-form-field>
-          <mat-label  for="inbound_date"> Date entrée: </mat-label>
+          <mat-label  for="inbound_date"> Date entrée: {{ wh.inbound_date | date:'M/d/yy' }}  </mat-label>
           <input matInput type="date" class="form-control" formControlName="inbound_date">
+          <mat-error *ngIf="updateWhForm.get('inbound_date')?.errors?.['dateLessThan']">
+            Inbound date cannot be after outbound date.
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-          <mat-label  for="outbound_date"> Date de sortie: </mat-label>
+          <mat-label  for="outbound_date"> Date de sortie: {{ wh.outbound_date | date:'M/d/yy' }} </mat-label>
           <input matInput type="date" class="form-control" formControlName="outbound_date">
         </mat-form-field>
 

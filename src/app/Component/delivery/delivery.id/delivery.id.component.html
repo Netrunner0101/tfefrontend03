@@ -62,12 +62,15 @@
           </mat-form-field>
 
           <mat-form-field>
-            <mat-label for="outbout_date"> Date de sortie:  </mat-label>
+            <mat-label for="outbout_date"> Date de sortie: {{delivery.outbout_date | date:'M/d/yy' }} </mat-label>
             <input matInput type="date" class="form-control" formControlName="outbout_date" />
+            <mat-error *ngIf="updateDeliveryForm.get('outbout_date')?.errors?.['dateLessThan']">
+              Date de sortie ne peut pas etre APRES la date d'arrivée.
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field>
-            <mat-label for="arrival_date"> Date d'arrivée :  </mat-label>
+            <mat-label for="arrival_date"> Date d'arrivée : {{delivery.arrival_date | date:'M/d/yy' }}  </mat-label>
             <input matInput type="date" class="form-control" formControlName="arrival_date" />
           </mat-form-field>
 
@@ -132,6 +135,8 @@
       </div>
     </mat-expansion-panel>
   </mat-accordion>
+  <!-- Warehouse -->
+  <!--
   <mat-accordion>
     <mat-expansion-panel (opened)="panelOpenState = true"
                          (closed)="panelOpenState = false">
@@ -158,24 +163,26 @@
       </div>
     </mat-expansion-panel>
   </mat-accordion>
+  -->
 </div>
 <mat-card *ngIf="delivery" class="example-card" id="deliveryDetail">
-  <button mat-flat-button color="primary" type="button" (click)="generatePDF()"> Pdf Livraison </button>
-  <mat-card-title> <h1> Livraison </h1> </mat-card-title>
-  <mat-card-subtitle> {{ delivery.id_delivery }} </mat-card-subtitle>
+  <div class="pdfButton">
+    <button mat-flat-button [disabled]="!delivery.customer || !delivery.transporter" color="primary" type="button" (click)="generatePDF()"> Pdf Livraison </button>
+  </div>
+  <mat-card-title> <h1> Livraison n° {{ delivery.id_delivery }}</h1> </mat-card-title>
   <mat-card-content>
     <div>
       <h1> Détails de livraison : </h1>
-      <h3>Nombre de packet </h3>
-      <p>{{delivery.number_package}} </p>
+      <h3>Nombre de packet : </h3>
+      <p>{{delivery.number_package }} </p>
 
-      <h3> Poids (Kg) </h3>
+      <h3> Poids (Kg) : </h3>
       <p> {{delivery.weight}}</p>
 
-      <h3> Dimension</h3>
+      <h3> Dimension :</h3>
       <p> {{delivery.dimension}}</p>
 
-      <h3> Adresse de départ </h3>
+      <h3> Adresse de départ :</h3>
       <p> {{delivery.departure_adress}}</p>
 
       <h3> Ville : </h3>
@@ -184,7 +191,7 @@
       <h3> Code postal : </h3>
       <p> {{delivery.departure_postal_code}}</p>
 
-      <h3> Adresse d'arrivée </h3>
+      <h3> Adresse d'arrivée : </h3>
       <p> {{delivery.destination_adress}}</p>
 
       <h3> Ville :</h3>
@@ -193,13 +200,13 @@
       <h3>Code postal : </h3>
       <p>{{delivery.destination_postal_code }} </p>
 
-      <h3>Date de sortie</h3>
+      <h3>Date de sortie :</h3>
       <p> {{delivery.outbout_date | date:'M/d/yy' }}</p>
 
-      <h3>Date d'arrivée </h3>
+      <h3>Date d'arrivée :</h3>
       <p> {{delivery.arrival_date| date:'M/d/yy' }}</p>
 
-      <h3> Remarques </h3>
+      <h3> Remarques :</h3>
       <p>{{delivery.remarks}} </p>
     </div>
     <hr>
@@ -267,6 +274,7 @@
       <p> Pas de Transporteur affecté </p>
     </div>
 
+    <!--
     <hr>
 
     <div *ngIf="delivery.warehouse">
@@ -308,6 +316,7 @@
       <h1> Détails de la marchandise dans l'entrepot  : </h1>
       <p> Pas d'entrepot' affecté </p>
     </div>
+    -->
   </mat-card-content>
 </mat-card>
 

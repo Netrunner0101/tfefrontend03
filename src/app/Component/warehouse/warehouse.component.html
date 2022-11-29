@@ -25,6 +25,8 @@
           <th scope="col"> Code Postal </th>
           <th scope="col"> Date entrée </th>
           <th scope="col"> Date de sortie </th>
+          <th scope="col"> Remarque </th>
+          <th scope="col"> Id_transporteur </th>
         </tr>
         </thead>
         <tbody>
@@ -52,6 +54,6 @@
 </div>
 
 <div>
-  <button><a [routerLink]="['/warehouse/newWarehouse']"> <mat-icon>create</mat-icon> Ajouter une Entrée </a></button>
+  <button mat-flat-button type="button"><a [routerLink]="['/warehouse/newWarehouse']"> <mat-icon>create</mat-icon> Ajouter une Entrée </a></button>
   <button mat-button color="primary" type="button" (click)="exportExcel()" > <mat-icon> import_export</mat-icon>  Générer un Excel </button>
 </div>

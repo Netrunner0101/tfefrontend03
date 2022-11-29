@@ -18,7 +18,7 @@ export class WarehouseComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('Interceptor : '+ sessionStorage.getItem('token'));
-    console.log("Customer data : "+ this.WhData);
+    console.log("Warehouse data : "+ this.WhData);
     this.AllWarehouse();
   }
 
@@ -42,7 +42,7 @@ export class WarehouseComponent implements OnInit {
         const worksheet = xlsx.utils.json_to_sheet(this.WhData);
         const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
         const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
-        this.saveAsExcelFile(excelBuffer, "delivery");
+        this.saveAsExcelFile(excelBuffer, "warehouse");
       });
     }
   }

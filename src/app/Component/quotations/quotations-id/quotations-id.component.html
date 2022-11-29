@@ -100,7 +100,7 @@
     <div *ngIf="quotations.transporter_quotations">
       <div *ngFor="let trans of quotations.transporter_quotations" >
         <mat-card-content>
-          <mat-label> Transporteur n° {{trans.id_transporter }} : </mat-label>
+          <mat-label> Transporteur n° {{trans.transporter.id_transporter }} : </mat-label>
           <div >
             <h3>Nom de Transporter:</h3>
             <p>{{trans.transporter.name }} </p>

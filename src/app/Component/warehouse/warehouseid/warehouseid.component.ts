@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {WarehouseService} from "../../../Service/warehouse.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {dateLessThan} from "../../validators/dateValidator";
 
 @Component({
   selector: 'app-warehouseid',
@@ -16,7 +17,6 @@ export class WarehouseidComponent implements OnInit {
 
   panelOpenState = false;
 
-
   // Initial formgroup
   updateWhForm= new FormGroup({
     ref_nummer : new FormControl(''),
@@ -29,7 +29,7 @@ export class WarehouseidComponent implements OnInit {
     inbound_date : new FormControl(''),
     outbound_date: new FormControl(''),
     remarks : new FormControl(''),
-  });
+  }, {validators:dateLessThan('inbound_date','outbound_date')});
 
   constructor(private whServ:WarehouseService,
               private router:Router,
@@ -81,9 +81,27 @@ export class WarehouseidComponent implements OnInit {
       outbound_date: this.updateWhForm.value.outbound_date ,
       remarks : this.updateWhForm.value.remarks ,
     }
-    this.whServ.update(this.id_warehouse,updatedWh)
-    console.log("Update Warehouse form data: ", updatedWh);
-    console.log("This id_warehouse : ", this.id_warehouse);
+    if(!this.updateWhForm.valid){
+      alert('La mise à jour d form Warehouse est invalide, veuillez corriger.')
+      window.location.reload();
+    }else {
+      this.whServ.update(this.id_warehouse,updatedWh).subscribe(
+        (data)=> {
+          console.log("Success : " + data)
+          this.router.navigate(['/warehouse']).then(() => {
+            window.location.reload();
+          })
+        },
+        (error)=>{
+          console.log("Error : " + error);
+          alert("Error, mise à jour de Warehouse est Impossible, veuillez corriger le formulaire");
+          window.location.reload();
+        }
+      );
+    }
+    //this.whServ.update(this.id_warehouse,updatedWh)
+    //console.log("Update Warehouse form data: ", updatedWh);
+    //console.log("This id_warehouse : ", this.id_warehouse);
   }
 
 

@@ -56,7 +56,6 @@ export class NewWarehouseComponent implements OnInit {
       alert('La form Warehouse est invalide, veuillez remplir tous les champs requis.')
       window.location.reload();
     }else {
-
       this.whServ.create(newWh).subscribe(
         (data)=> {
           console.log("Success : " + data)
