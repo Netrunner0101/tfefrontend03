@@ -2,6 +2,9 @@
   margin: 1em;
 }
 
+#butupd{
+  margin: 1em;
+}
 
 p{
   font-size: 15px;
@@ -12,6 +15,11 @@ p{
 .flex-container {
   display: flex;
   align-content: space-between;
+}
+
+mat-form-field{
+  margin-left: 20px;
+  border-radius: 5px;
 }
 
 #carti{
@@ -43,7 +51,10 @@ p{
 mat-accordion{
   margin: 2.5em;
   height: 50px;
+  width: 100%;
 }
 
 mat-panel-title{
+  width: 50%;
+  height: 80%;
 }

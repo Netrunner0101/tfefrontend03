@@ -41,6 +41,7 @@ import { RegisterComponent } from './Component/authentication/register/register.
 import {MatIconModule} from "@angular/material/icon";
 import {Ng2SearchPipeModule} from "ng2-search-filter";
 import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     FormsModule,
     RouterLink,
     MatToolbarModule,
+    MatTooltipModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS,useClass:TokenInterceptorInterceptor, multi:true},

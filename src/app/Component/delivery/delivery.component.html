@@ -54,8 +54,8 @@
           <td>{{ deli.arrival_date| date:'M/d/yy' }}</td>
           <td>{{ deli.remarks }}</td>
           <td>
-            <button type="button"(click)='deleteDelivery(deli.id_delivery)'> <mat-icon  type="button" matTooltip="Supprimer">delete_outline</mat-icon> </button>
-            <button type="button" ><a [routerLink]="['/delivery/',deli.id_delivery]" [queryParams]="{id_delivery:deli.id_delivery}" ><mat-icon>description</mat-icon></a></button>
+            <button type="button"(click)='deleteDelivery(deli.id_delivery)' matTooltip="Supprimer"> <mat-icon  type="button" matTooltip="Supprimer">delete_outline</mat-icon> </button>
+            <button type="button" ><a [routerLink]="['/delivery/',deli.id_delivery]" [queryParams]="{id_delivery:deli.id_delivery}" matTooltip="Détails livraison"><mat-icon>description</mat-icon></a></button>
           </td>
         </tr>
         </tbody>

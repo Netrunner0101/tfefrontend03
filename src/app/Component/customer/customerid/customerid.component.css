@@ -40,3 +40,8 @@ p{
   font-weight: bold;
   margin-left: 2em;
 }
+
+mat-form-field{
+  margin-left: 20px;
+  border-radius: 5px;
+}

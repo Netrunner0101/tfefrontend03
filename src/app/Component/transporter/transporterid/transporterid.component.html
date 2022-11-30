@@ -1,5 +1,4 @@
 <button id="return" mat-flat-button color="primary"  type="button" [routerLink]="'/transporter'"> Retour </button>
-
 <div class="flex-container">
   <div id="carti">
     <mat-card *ngIf="transporter" class="example-card" id="deliveryDetail">
@@ -8,16 +7,22 @@
       <mat-card-content>
         <div>
           <h1> Détails : </h1>
+
           <h3> Nom de Transpoteur:  </h3>
           <p> {{ transporter.name }} </p>
+
           <h3> Adresse : </h3>
           <p> {{ transporter.adress }}  </p>
+
           <h3> Ville : </h3>
           <p> {{ transporter.city }} </p>
+
           <h3> Code postal : </h3>
           <p> {{ transporter.postal_code }}  </p>
+
           <h3> Email :  </h3>
           <p> {{ transporter.email }} </p>
+
           <h3> Numéro de téléphone :  </h3>
           <p> {{ transporter.email }} </p>
         </div>
@@ -68,7 +73,7 @@
             <input matInput type="text" class="form-control" formControlName="phoneNumber">
           </mat-form-field>
 
-          <button mat-button color="primary" type="submit">Submit</button>
+          <button id="butupd" mat-flat-button color="primary" type="submit">Submit</button>
         </form>
       </mat-expansion-panel>
     </mat-accordion>

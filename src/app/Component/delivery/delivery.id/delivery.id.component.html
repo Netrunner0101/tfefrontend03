@@ -5,7 +5,12 @@
       <mat-card-title>
         <h1>
           Livraison n° {{ delivery.id_delivery }}
-          <button id="pdf" mat-flat-button [disabled]="!delivery.customer || !delivery.transporter" color="primary" type="button" (click)="generatePDF()"> Pdf Livraison </button>
+          <button id="pdf" mat-flat-button [disabled]="!delivery.customer || !delivery.transporter" color="primary" type="button" (click)="generatePDF()">
+            Pdf Livraison
+            <mat-error *ngIf="!delivery.customer || !delivery.transporter">
+              Ajouter le client et transporteur
+            </mat-error>
+          </button>
         </h1>
       </mat-card-title>
       <mat-card-content>

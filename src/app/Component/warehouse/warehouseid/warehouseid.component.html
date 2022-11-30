@@ -1,5 +1,4 @@
 <button mat-flat-button color="primary" id="return" type="button" [routerLink]="'/warehouse'"> Retour </button>
-<hr>
 <div class="flex-container">
   <div id="carti">
     <mat-card *ngIf="wh" class="example-card" id="deliveryDetail">
@@ -99,7 +98,7 @@
             <input matInput type="text" class="form-control" formControlName="remarks">
           </mat-form-field>
 
-          <button mat-button color="primary" type="submit">Submit</button>
+          <button id="butupd" mat-flat-button color="primary" type="submit">Submit</button>
         </form>
       </mat-expansion-panel>
     </mat-accordion>

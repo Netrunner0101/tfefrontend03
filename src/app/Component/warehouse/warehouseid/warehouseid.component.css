@@ -2,6 +2,10 @@
   margin: 1em;
 }
 
+#butupd{
+  margin: 1em;
+}
+
 p{
   font-size: 15px;
   font-weight: bold;
@@ -11,6 +15,11 @@ p{
 .flex-container {
   display: flex;
   align-content: space-between;
+}
+
+mat-form-field{
+  margin-left: 20px;
+  border-radius: 5px;
 }
 
 #carti{

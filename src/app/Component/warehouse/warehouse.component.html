@@ -47,8 +47,8 @@
           <td> {{ wh.outbound_date | date:'M/d/yy' }} </td>
           <td> {{ wh.remarks }} </td>
           <td>
-            <button type="button" (click)='deleteWarehouse(wh.id_warehouse)'> <mat-icon  type="button" matTooltip="Supprimer">delete_outline</mat-icon> </button>
-            <button ><a [routerLink]="['/warehouse/',wh.id_warehouse]" [queryParams]="{id_warehouse:wh.id_warehouse }"> <mat-icon>description</mat-icon> </a></button>
+            <button type="button" (click)='deleteWarehouse(wh.id_warehouse)' matTooltip="Supprimer"> <mat-icon>delete_outline</mat-icon> </button>
+            <button ><a [routerLink]="['/warehouse/',wh.id_warehouse]" [queryParams]="{id_warehouse:wh.id_warehouse }" matTooltip="Détails d'entrée"> <mat-icon>description</mat-icon> </a></button>
           </td>
         </tr>
         </tbody>

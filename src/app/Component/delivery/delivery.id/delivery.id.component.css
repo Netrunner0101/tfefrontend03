@@ -17,6 +17,11 @@ mat-accordion{
   margin-left: 10em;
 }
 
+mat-form-field{
+  margin-left: 20px;
+  border-radius: 5px;
+}
+
 .flex-container {
   display: flex;
   align-content: space-between;

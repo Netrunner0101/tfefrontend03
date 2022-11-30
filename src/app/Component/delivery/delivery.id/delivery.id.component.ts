@@ -120,19 +120,7 @@ export class DeliveryIdComponent implements OnInit {
       window.location.reload();
     }else {
       let iddel = this.id_del;
-      this.delService.update(iddel,updateDelivery).subscribe(
-        (data)=> {
-          console.log("Success : " + data)
-          this.router.navigate(['/delivery']).then(() => {
-            window.location.reload();
-          });
-        },
-        (error)=>{
-          console.log("Error : " + error);
-          alert("Error, la mise à jour de la donnée Delivery est Impossible, veuillez corriger le formulaire");
-          window.location.reload();
-        }
-      );
+      this.delService.update(iddel,updateDelivery);
     }
     //this.delService.update(this.id_del,updateDelivery);
     //console.log("Update Delivery form data: ", updateDelivery);

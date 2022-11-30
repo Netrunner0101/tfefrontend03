@@ -43,8 +43,8 @@
               <td> {{ q.type_transport}} </td>
               <td> {{ q.price }} € </td>
               <td>
-                <button type="button" (click)='deleteQuotations(q.id_quotations )'> <mat-icon  type="button" matTooltip="Supprimer"> delete_outline </mat-icon> </button>
-                <button><a [routerLink]="['/quotations/',q.id_quotations]" [queryParams]="{id_quotations:q.id_quotations }"> <mat-icon> description </mat-icon> </a> </button>
+                <button type="button" (click)='deleteQuotations(q.id_quotations )' matTooltip="Supprimer"> <mat-icon> delete_outline </mat-icon> </button>
+                <button><a [routerLink]="['/quotations/',q.id_quotations]" [queryParams]="{id_quotations:q.id_quotations }" matTooltip="Détails offre de prix"> <mat-icon> description </mat-icon> </a> </button>
               </td>
             </tr>
           </tbody>

@@ -2,10 +2,19 @@
   margin: 1em;
 }
 
+#butupd{
+  margin: 1em;
+}
+
 p{
   font-size: 15px;
   font-weight: bold;
   margin-left: 2em;
+}
+
+mat-form-field{
+  margin-left: 20px;
+  border-radius: 5px;
 }
 
 .flex-container {

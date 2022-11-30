@@ -44,8 +44,8 @@
           <td> {{ cus.email }} </td>
           <td> {{ cus.phoneNumber }} </td>
           <td>
-            <button type="button" (click)='deleteCustomer(cus.id_customer)'> <mat-icon  type="button" matTooltip="Supprimer">delete_outline</mat-icon> </button>
-            <button><a [routerLink]="['/customer/',cus.id_customer]" [queryParams]="{id_customer:cus.id_customer }"> <mat-icon color="white">description</mat-icon> </a></button>
+            <button type="button" (click)='deleteCustomer(cus.id_customer)' matTooltip="Supprimer"> <mat-icon>delete_outline</mat-icon> </button>
+            <button><a [routerLink]="['/customer/',cus.id_customer]" [queryParams]="{id_customer:cus.id_customer }" matTooltip="Détails Clients"> <mat-icon color="white">description</mat-icon> </a></button>
           </td>
         </tr>
         </tbody>

@@ -63,9 +63,14 @@ export class DeliveryService {
 
   update(id_delivery:any,delivery:any){
     this.id = Number(id_delivery) ;
-    return this.http.put(this.url+'/api/Delivery/'+this.id,delivery).pipe(
-      catchError((this.handleError)
-      )
+    return this.http.put(this.url+'/api/Delivery/'+this.id,delivery).subscribe(
+      (response) =>{
+        window.location.reload();
+        console.log(response);
+      },
+      (error) =>{
+        console.log("Error : "+ error);
+      }
     );
     /*
     try{
