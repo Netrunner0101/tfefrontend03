@@ -1,72 +1,94 @@
 <button id="return" mat-flat-button color="primary" [routerLink]="'/customer'" type="button"> Retour </button>
-<hr>
-<mat-card *ngIf="customer" class="example-card" id="deliveryDetail">
-  <mat-card-title> <h1> Détails Client  </h1> </mat-card-title>
-  <mat-card-subtitle> N°client : {{ customer.id_customer }} </mat-card-subtitle>
-  <mat-card-content>
-    <div>
-      <h1> Détails : </h1>
-      <h3> Nom de client : {{ customer.name }} </h3>
-      <h3> Numéro de TVA : {{ customer.vat }} </h3>
-      <h3> Adresse : {{ customer.adress }} </h3>
-      <h3>  Ville : {{ customer.city }}</h3>
-      <h3> Code postal : {{ customer.postal_code }} </h3>
-      <h3> Email : {{ customer.email }} </h3>
-      <h3> Numéro de téléphone : {{customer.email }} </h3>
-    </div>
-    <hr>
-  </mat-card-content>
-  <mat-accordion>
-    <mat-expansion-panel (opened)="panelOpenState = true"
-                         (closed)="panelOpenState = false">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <h1> Modifier </h1>
-        </mat-panel-title>
-        <mat-panel-description>
-          <p> Changer les informations du clients </p>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <form [formGroup]="updateCustomerForm"  (ngSubmit)="updateCustomer()">
-        <mat-form-field>
-          <mat-label for="name" > Nom de client : </mat-label>
-          <input matInput type="text" class="form-control" formControlName="name">
-        </mat-form-field>
+<div class="flex-container">
+  <div id="cartm">
+    <mat-card *ngIf="customer" class="example-card" id="deliveryDetail">
+      <mat-card-title> <h1> Détails Client  </h1> </mat-card-title>
+      <mat-card-subtitle> N°client : {{ customer.id_customer }} </mat-card-subtitle>
+      <mat-card-content>
+        <div>
+          <h1> Détails : </h1>
+          <h3> Nom de client :  </h3>
+          <p> {{ customer.name }}</p>
 
-        <mat-form-field>
-          <mat-label  for="vat"> Numéro de TVA : </mat-label>
-          <input matInput  type="text" class="form-control" formControlName="vat">
-        </mat-form-field>
+          <h3> Numéro de TVA :  </h3>
+          <p> {{ customer.vat }}</p>
 
-        <mat-form-field>
-          <mat-label  for=" adress"> Adresse :   </mat-label>
-          <input matInput  type="text" formControlName="adress">
-        </mat-form-field>
+          <h3> Adresse : </h3>
+          <p>  {{ customer.adress }}</p>
 
-        <mat-form-field>
-          <mat-label  for="city">  Ville : </mat-label>
-          <input matInput  type="text" class="form-control" formControlName="city" />
-        </mat-form-field>
+          <h3>  Ville : </h3>
+          <p> {{ customer.city }}</p>
 
-        <mat-form-field>
-          <mat-label  for="departure_city"> Code postal :  </mat-label>
-          <input matInput  type="text" class="form-control" formControlName="postal_code" />
-        </mat-form-field>
+          <h3> Code postal :  </h3>
+          <p> {{ customer.postal_code }}</p>
 
-        <mat-form-field>
-          <mat-label  for="email"> Email : </mat-label>
-          <input matInput type="text" class="form-control" formControlName="email">
-        </mat-form-field>
+          <h3> Email : </h3>
+          <p>  {{ customer.email }}</p>
 
-        <mat-form-field>
-          <mat-label  for="phoneNumber"> Numéro de téléphone : </mat-label>
-          <input matInput type="text" class="form-control" formControlName="phoneNumber">
-        </mat-form-field>
+          <h3> Numéro de téléphone :  </h3>
+          <p> {{customer.phoneNumber }}</p>
 
-        <button mat-button color="primary" type="submit">Submit</button>
-      </form>
-    </mat-expansion-panel>
-  </mat-accordion>
-</mat-card>
+        </div>
+        <hr>
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+  <div id="carti">
+    <mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h1> Modifier </h1>
+          </mat-panel-title>
+          <mat-panel-description>
+            <div> Changer les informations du clients </div>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <form [formGroup]="updateCustomerForm"  (ngSubmit)="updateCustomer()">
+          <mat-form-field>
+            <mat-label for="name" > Nom de client : </mat-label>
+            <input matInput type="text" class="form-control" formControlName="name">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label  for="vat"> Numéro de TVA : </mat-label>
+            <input matInput  type="text" class="form-control" formControlName="vat">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label  for=" adress"> Adresse :   </mat-label>
+            <input matInput  type="text" formControlName="adress">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label  for="city">  Ville : </mat-label>
+            <input matInput  type="text" class="form-control" formControlName="city" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label  for="departure_city"> Code postal :  </mat-label>
+            <input matInput  type="text" class="form-control" formControlName="postal_code" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label  for="email"> Email : </mat-label>
+            <input matInput type="text" class="form-control" formControlName="email">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label  for="phoneNumber"> Numéro de téléphone : </mat-label>
+            <input matInput type="text" class="form-control" formControlName="phoneNumber">
+          </mat-form-field>
+
+          <button mat-button color="primary" type="submit">Submit</button>
+        </form>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
+
+
 
 

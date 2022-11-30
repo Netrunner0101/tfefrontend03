@@ -1,1 +1,58 @@
+#return{
+  margin: 1em;
+}
 
+p{
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 2em;
+}
+
+mat-accordion{
+  margin: 1em;
+  padding: 1em;
+}
+
+#pdf{
+  margin-left: 10em;
+}
+
+.flex-container {
+  display: flex;
+  align-content: space-between;
+}
+
+#carti{
+  text-align: justify;
+  border: solid;
+  border-color: white;
+  padding-left: 2em;
+  margin-right: 2em;
+  background-color: white;
+  border-radius: 5px;
+  margin: 2em;
+  margin-left: 2em;
+  padding: 2em;
+  width: 90%;
+}
+
+#cartm{
+  text-align: justify;
+  border: solid;
+  border-color: white;
+  padding-left: 2em;
+  margin-right: 2em;
+  background-color: white;
+  border-radius: 5px;
+  margin: 2em;
+  padding: 2em;
+  width: 90%;
+}
+
+.butdel{
+  margin-left: 100px;
+}
+
+.butchg{
+  margin-left: 10px;
+}

@@ -14,7 +14,7 @@
     <mat-label  for="vat"> Numéro de TVA : </mat-label>
     <input matInput  type="text" class="form-control" formControlName="vat">
     <mat-error *ngIf="newCustomerForm.get('vat')?.errors?.['required']">
-      Error, le champ nom du client Ne Peut PAS etre vide.
+      Error, le champ numéro TVA Ne Peut PAS etre vide.
     </mat-error>
     <!--- Faire Unique pour le numéro TVA --->
   </mat-form-field>

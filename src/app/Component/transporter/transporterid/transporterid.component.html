@@ -1,64 +1,78 @@
-<button id="return" mat-button color="primary" type="button" [routerLink]="'/transporter'"> Retour </button>
-<hr>
-<mat-card *ngIf="transporter" class="example-card" id="deliveryDetail">
-  <mat-card-title> <h1> Détails Transpoteur  </h1> </mat-card-title>
-  <mat-card-subtitle> N°Transpoteur : {{ transporter.id_transporter }} </mat-card-subtitle>
-  <mat-card-content>
-    <div>
-      <h1> Détails : </h1>
-      <h3> Nom de Transpoteur: {{ transporter.name }} </h3>
-      <h3> Adresse : {{ transporter.adress }} </h3>
-      <h3> Ville : {{ transporter.city }}</h3>
-      <h3> Code postal : {{ transporter.postal_code }} </h3>
-      <h3> Email : {{ transporter.email }} </h3>
-      <h3> Numéro de téléphone : {{ transporter.email }} </h3>
-    </div>
-    <hr>
-  </mat-card-content>
-  <mat-accordion>
-    <mat-expansion-panel (opened)="panelOpenState = true"
-                         (closed)="panelOpenState = false">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <h1> Modifier </h1>
-        </mat-panel-title>
-        <mat-panel-description>
-          <p> Changer les informations du transporteur </p>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <form [formGroup]="updateTransporterForm"  (ngSubmit)="updateTransporter()">
-        <mat-form-field>
-          <mat-label for="name" > Nom de transporteur : </mat-label>
-          <input matInput type="text" class="form-control" formControlName="name">
-        </mat-form-field>
+<button id="return" mat-flat-button color="primary"  type="button" [routerLink]="'/transporter'"> Retour </button>
 
-        <mat-form-field>
-          <mat-label  for=" adress"> Adresse :   </mat-label>
-          <input matInput  type="text" formControlName="adress">
-        </mat-form-field>
+<div class="flex-container">
+  <div id="carti">
+    <mat-card *ngIf="transporter" class="example-card" id="deliveryDetail">
+      <mat-card-title> <h1> Détails Transporteurs  </h1> </mat-card-title>
+      <mat-card-subtitle> N°Transpoteur : {{ transporter.id_transporter }} </mat-card-subtitle>
+      <mat-card-content>
+        <div>
+          <h1> Détails : </h1>
+          <h3> Nom de Transpoteur:  </h3>
+          <p> {{ transporter.name }} </p>
+          <h3> Adresse : </h3>
+          <p> {{ transporter.adress }}  </p>
+          <h3> Ville : </h3>
+          <p> {{ transporter.city }} </p>
+          <h3> Code postal : </h3>
+          <p> {{ transporter.postal_code }}  </p>
+          <h3> Email :  </h3>
+          <p> {{ transporter.email }} </p>
+          <h3> Numéro de téléphone :  </h3>
+          <p> {{ transporter.email }} </p>
+        </div>
+        <hr>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div id="cartm">
+    <mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h1> Modifier </h1>
+          </mat-panel-title>
+          <mat-panel-description>
+            <div> Changer les informations du transporteur </div>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <form [formGroup]="updateTransporterForm"  (ngSubmit)="updateTransporter()">
+          <mat-form-field>
+            <mat-label for="name" > Nom de transporteur : </mat-label>
+            <input matInput type="text" class="form-control" formControlName="name">
+          </mat-form-field>
 
-        <mat-form-field>
-          <mat-label  for="city">  Ville : </mat-label>
-          <input matInput  type="text" class="form-control" formControlName="city" />
-        </mat-form-field>
+          <mat-form-field>
+            <mat-label  for=" adress"> Adresse :   </mat-label>
+            <input matInput  type="text" formControlName="adress">
+          </mat-form-field>
 
-        <mat-form-field>
-          <mat-label  for="departure_city"> Code postal :  </mat-label>
-          <input matInput  type="text" class="form-control" formControlName="postal_code" />
-        </mat-form-field>
+          <mat-form-field>
+            <mat-label  for="city">  Ville : </mat-label>
+            <input matInput  type="text" class="form-control" formControlName="city" />
+          </mat-form-field>
 
-        <mat-form-field>
-          <mat-label  for="email"> Email : </mat-label>
-          <input matInput type="text" class="form-control" formControlName="email">
-        </mat-form-field>
+          <mat-form-field>
+            <mat-label  for="departure_city"> Code postal :  </mat-label>
+            <input matInput  type="text" class="form-control" formControlName="postal_code" />
+          </mat-form-field>
 
-        <mat-form-field>
-          <mat-label  for="phoneNumber"> Numéro de téléphone : </mat-label>
-          <input matInput type="text" class="form-control" formControlName="phoneNumber">
-        </mat-form-field>
+          <mat-form-field>
+            <mat-label  for="email"> Email : </mat-label>
+            <input matInput type="text" class="form-control" formControlName="email">
+          </mat-form-field>
 
-        <button mat-button color="primary" type="submit">Submit</button>
-      </form>
-    </mat-expansion-panel>
-  </mat-accordion>
-</mat-card>
+          <mat-form-field>
+            <mat-label  for="phoneNumber"> Numéro de téléphone : </mat-label>
+            <input matInput type="text" class="form-control" formControlName="phoneNumber">
+          </mat-form-field>
+
+          <button mat-button color="primary" type="submit">Submit</button>
+        </form>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
+
+

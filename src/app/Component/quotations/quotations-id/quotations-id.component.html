@@ -1,137 +1,155 @@
 <button id="return" mat-flat-button color="primary" type="button" [routerLink]="'/quotations'"> Retour </button>
-<mat-accordion>
-  <mat-expansion-panel (opened)="panelOpenState = true"
-                       (closed)="panelOpenState = false">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        <h1> Modifier Transporteur </h1>
-      </mat-panel-title>
-      <mat-panel-description>
-        <p> Changer les informations de le transporteur </p>
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <div *ngIf="quotrans">
-      <mat-form-field appearance="fill">
-        <mat-label>Liste de Transporteurs</mat-label>
-        <mat-select [(value)]="transporter" >
-          <mat-option *ngFor="let trans of quotrans" [value]="trans">
-            N°Transport: {{trans.id_transporter}} | Nom: {{trans.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <button mat-button (click)="InsertTransporter(quotations.id_quotations ,transporter.id_transporter)" > Mettre à jour le transporteur </button>
-    </div>
-  </mat-expansion-panel>
-</mat-accordion>
-<mat-accordion>
-  <mat-expansion-panel (opened)="panelOpenState = true"
-                       (closed)="panelOpenState = false">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        <h1> Modifier Quotation </h1>
-      </mat-panel-title>
-      <mat-panel-description>
-        <p> Changer les informations </p>
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <form [formGroup]="updateQuotationsForm" (ngSubmit)="updateQuotations()">
-      <mat-form-field>
-        <mat-label for="departure_adress" > Adrese de départ : </mat-label>
-        <input matInput type="text" class="form-control" formControlName="departure_adress">
-      </mat-form-field>
 
-      <mat-form-field>
-        <mat-label  for="departure_city"> Ville de départ : </mat-label>
-        <input matInput  type="text" formControlName="departure_city">
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label  for="departure_postal_code"> Code Postal : </mat-label>
-        <input matInput  type="text" class="form-control" formControlName="departure_postal_code" />
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label  for="destination_adress"> Adrese d'arrivée :  </mat-label>
-        <input matInput  type="text" class="form-control" formControlName="destination_adress" />
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label  for="destination_city"> Ville d'arrivée : </mat-label>
-        <input matInput type="text" class="form-control" formControlName="destination_city">
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label  for="destination_postal_code"> Code Postal : </mat-label>
-        <input matInput type="text" class="form-control" formControlName="destination_postal_code">
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label  for="type_transport"> Type de transport : </mat-label>
-        <input matInput type="text" class="form-control" formControlName="type_transport">
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label  for="price"> Prix : </mat-label>
-        <input matInput type="text" class="form-control" formControlName="price">
-      </mat-form-field>
-
-      <button mat-button color="primary" type="submit">Submit</button>
-    </form>
-  </mat-expansion-panel>
-</mat-accordion>
 <hr>
-<mat-card *ngIf="quotations" class="example-card" id="deliveryDetail">
-  <mat-card-title> <h1> Détails Offre de prix  </h1> </mat-card-title>
-  <mat-card-subtitle> N°Offre : {{ quotations.id_quotations }} </mat-card-subtitle>
-  <mat-card-content>
-    <div>
-      <h1> Détails : </h1>
-      <h3> Adrese de départ : {{ quotations.departure_adress }}</h3>
-      <h3> Ville de départ : {{ quotations.departure_city }} </h3>
-      <h3> Code Postal : {{ quotations.departure_postal_code }} </h3>
-      <h3> Adrese d'arrivée :  {{ quotations.destination_adress }}</h3>
-      <h3> Ville d'arrivée  : {{ quotations.destination_city }} </h3>
-      <h3> Code Postal : {{ quotations.destination_postal_code }}</h3>
-      <h3> Type de transport : {{ quotations.type_transport }} </h3>
-      <h3> Prix : {{ quotations.price  }} € </h3>
-    </div>
 
-    <hr>
-    <div *ngIf="quotations.transporter_quotations">
-      <div *ngFor="let trans of quotations.transporter_quotations" >
-        <mat-card-content>
-          <mat-label> Transporteur n° {{trans.transporter.id_transporter }} : </mat-label>
-          <div >
-            <h3>Nom de Transporter:</h3>
-            <p>{{trans.transporter.name }} </p>
-
-            <h3> Adresse Transporter: </h3>
-            <p> {{trans.transporter.adress}}</p>
-
-            <h3> Ville: </h3>
-            <p> {{trans.transporter.city}}</p>
-
-            <h3> Code postal:  </h3>
-            <p> {{trans.transporter.postal_code}}</p>
-
-            <h3> Email du Transporter : </h3>
-            <p>{{trans.transporter.email}}</p>
-
-            <h3> Numéro téléphone du Transporter : </h3>
-            <p>{{trans.transporter.phoneNumber}}</p>
-          </div>
-          <button mat-button (click)="deleteTransporter(quotations.id_quotations,trans.id_transporter )"> Supprimer transporteur </button>
-        </mat-card-content>
-
-        <div *ngIf="quotations.transporter_quotations == null">
-          <div>
-            <h1> Détails du Transporteur de la livraison : </h1>
-            <p> Pas de Transporteur affecté </p>
-          </div>
+<div class="flex-container">
+  <div id="carti">
+    <mat-card *ngIf="quotations" class="example-card" id="deliveryDetail">
+      <mat-card-title> <h1> Détails Offre de prix  </h1> </mat-card-title>
+      <mat-card-subtitle> N°Offre : {{ quotations.id_quotations }} </mat-card-subtitle>
+      <mat-card-content>
+        <div>
+          <h1> Détails : </h1>
+          <h3> Adrese de départ : </h3>
+          <p> {{ quotations.departure_adress }} </p>
+          <h3> Ville de départ :  </h3>
+          <p> {{ quotations.departure_city }} </p>
+          <h3> Code Postal :  </h3>
+          <p> {{ quotations.departure_postal_code }} </p>
+          <h3> Adrese d'arrivée :  </h3>
+          <p> {{ quotations.destination_adress }} </p>
+          <h3> Ville d'arrivée  :  </h3>
+          <p> {{ quotations.destination_city }} </p>
+          <h3> Code Postal : </h3>
+          <p> {{ quotations.destination_postal_code }} </p>
+          <h3> Type de transport :  </h3>
+          <p> {{ quotations.type_transport }} </p>
+          <h3> Prix :  </h3>
+          <p> {{ quotations.price  }} € </p>
         </div>
 
-      </div>
-    </div>
-  </mat-card-content>
+        <hr>
+        <div *ngIf="quotations.transporter_quotations">
+          <div *ngFor="let trans of quotations.transporter_quotations" >
+            <mat-card-content>
+              <mat-label> Transporteur n° {{trans.transporter.id_transporter }} : </mat-label>
+              <div >
+                <h3>Nom de Transporter:</h3>
+                <p>{{trans.transporter.name }} </p>
 
-</mat-card>
+                <h3> Adresse Transporter: </h3>
+                <p> {{trans.transporter.adress}}</p>
+
+                <h3> Ville: </h3>
+                <p> {{trans.transporter.city}}</p>
+
+                <h3> Code postal:  </h3>
+                <p> {{trans.transporter.postal_code}}</p>
+
+                <h3> Email du Transporter : </h3>
+                <p>{{trans.transporter.email}}</p>
+
+                <h3> Numéro téléphone du Transporter : </h3>
+                <p>{{trans.transporter.phoneNumber}}</p>
+              </div>
+              <button mat-button (click)="deleteTransporter(quotations.id_quotations,trans.id_transporter )"> Supprimer transporteur </button>
+            </mat-card-content>
+
+            <div *ngIf="quotations.transporter_quotations == null">
+              <div>
+                <h1> Détails du Transporteur de la livraison : </h1>
+                <p> Pas de Transporteur affecté </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+  <div id="cartm">
+    <mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h2> Modifier Quotation </h2>
+          </mat-panel-title>
+          <mat-panel-description>
+            <div> Changer les informations </div>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <form [formGroup]="updateQuotationsForm" (ngSubmit)="updateQuotations()">
+          <mat-form-field>
+            <mat-label for="departure_adress" > Adrese de départ : </mat-label>
+            <input matInput type="text" class="form-control" formControlName="departure_adress">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label  for="departure_city"> Ville de départ : </mat-label>
+            <input matInput  type="text" formControlName="departure_city">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label  for="departure_postal_code"> Code Postal : </mat-label>
+            <input matInput  type="text" class="form-control" formControlName="departure_postal_code" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label  for="destination_adress"> Adrese d'arrivée :  </mat-label>
+            <input matInput  type="text" class="form-control" formControlName="destination_adress" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label  for="destination_city"> Ville d'arrivée : </mat-label>
+            <input matInput type="text" class="form-control" formControlName="destination_city">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label  for="destination_postal_code"> Code Postal : </mat-label>
+            <input matInput type="text" class="form-control" formControlName="destination_postal_code">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label  for="type_transport"> Type de transport : </mat-label>
+            <input matInput type="text" class="form-control" formControlName="type_transport">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label  for="price"> Prix : </mat-label>
+            <input matInput type="text" class="form-control" formControlName="price">
+          </mat-form-field>
+
+          <button mat-button color="primary" type="submit">Submit</button>
+        </form>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h2>Modifier Transporteur</h2>
+        </mat-panel-title>
+        <mat-panel-description>
+          <div> Changer les informations de le transporteur </div>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div *ngIf="quotrans">
+        <mat-form-field appearance="fill">
+          <mat-label>Liste de Transporteurs</mat-label>
+          <mat-select [(value)]="transporter" >
+            <mat-option *ngFor="let trans of quotrans" [value]="trans">
+              N°Transport: {{trans.id_transporter}} | Nom: {{trans.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-button (click)="InsertTransporter(quotations.id_quotations ,transporter.id_transporter)" > Mettre à jour le transporteur </button>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  </div>
+</div>
+
+

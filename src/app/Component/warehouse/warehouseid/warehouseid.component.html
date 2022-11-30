@@ -1,91 +1,109 @@
 <button mat-flat-button color="primary" id="return" type="button" [routerLink]="'/warehouse'"> Retour </button>
 <hr>
-<mat-card *ngIf="wh" class="example-card" id="deliveryDetail">
-  <mat-card-title> <h1> Détails de l'entrée  </h1> </mat-card-title>
-  <mat-card-subtitle> N°Entrée : {{ wh.id_warehouse }} </mat-card-subtitle>
-  <mat-card-content>
-    <div>
-      <h1> Détails : </h1>
-      <h3> N° de référence : {{ wh.ref_nummer }} </h3>
-      <h3> Nombre de packet : {{  wh.number_package}} </h3>
-      <h3> Poids (kg) : {{ wh.weight }}</h3>
-      <h3> Dimension: {{   wh.dimension }} </h3>
-      <h3> Adresse : {{ wh.adress }} </h3>
-      <h3> Ville: {{  wh.city }} </h3>
-      <h3> Code Postal: {{ wh.postal_code }} </h3>
-      <h3> Date d'entrée : {{ wh.inbound_date | date:'M/d/yy' }} </h3>
-      <h3> Date de sortie : {{ wh.outbound_date | date:'M/d/yy' }} </h3>
-      <h3> Remarques : {{ wh.remarks  }} </h3>
-    </div>
-    <hr>
-  </mat-card-content>
-  <mat-accordion>
-    <mat-expansion-panel (opened)="panelOpenState = true"
-                         (closed)="panelOpenState = false">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <h1> Modifier </h1>
-        </mat-panel-title>
-        <mat-panel-description>
-          <p> Changer les informations de l'entrée  </p>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <form [formGroup]="updateWhForm"  (ngSubmit)="updateWh()">
-        <mat-form-field>
-          <mat-label for="ref_nummer" > N° de référence  : </mat-label>
-          <input matInput type="text" class="form-control" formControlName="ref_nummer">
-        </mat-form-field>
+<div class="flex-container">
+  <div id="carti">
+    <mat-card *ngIf="wh" class="example-card" id="deliveryDetail">
+      <mat-card-title> <h1> Détails de l'entrée  </h1> </mat-card-title>
+      <mat-card-subtitle> N°Entrée : {{ wh.id_warehouse }} </mat-card-subtitle>
+      <mat-card-content>
+        <div>
+          <h1> Détails : </h1>
+          <h3> N° de référence :  </h3>
+          <p> {{ wh.ref_nummer }} </p>
+          <h3> Nombre de packet : </h3>
+          <p>  {{  wh.number_package}} </p>
+          <h3> Poids (kg) :</h3>
+          <p>  {{ wh.weight }} </p>
+          <h3> Dimension:  </h3>
+          <p> {{ wh.dimension }} </p>
+          <h3> Adresse :  </h3>
+          <p> {{ wh.adress }} </p>
+          <h3> Ville:  </h3>
+          <p> {{  wh.city }} </p>
+          <h3> Code Postal:  </h3>
+          <p> {{ wh.postal_code }} </p>
+          <h3> Date d'entrée :  </h3>
+          <p> {{ wh.inbound_date | date:'M/d/yy' }} </p>
+          <h3> Date de sortie :  </h3>
+          <p> {{ wh.outbound_date | date:'M/d/yy' }} </p>
+          <h3> Remarques :  </h3>
+          <p> {{ wh.remarks  }} </p>
+        </div>
+        <hr>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div id="cartm">
+    <mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h1> Modifier </h1>
+          </mat-panel-title>
+          <mat-panel-description>
+            <p> Changer les informations de l'entrée  </p>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <form [formGroup]="updateWhForm"  (ngSubmit)="updateWh()">
+          <mat-form-field>
+            <mat-label for="ref_nummer" > N° de référence  : </mat-label>
+            <input matInput type="text" class="form-control" formControlName="ref_nummer">
+          </mat-form-field>
 
-        <mat-form-field>
-          <mat-label  for="number_package"> Nombre de packet :   </mat-label>
-          <input matInput  type="number" formControlName="number_package">
-        </mat-form-field>
+          <mat-form-field>
+            <mat-label  for="number_package"> Nombre de packet :   </mat-label>
+            <input matInput  type="number" formControlName="number_package">
+          </mat-form-field>
 
-        <mat-form-field>
-          <mat-label  for="weight">  Poids : </mat-label>
-          <input matInput  type="number" class="form-control" formControlName="weight" />
-        </mat-form-field>
+          <mat-form-field>
+            <mat-label  for="weight">  Poids : </mat-label>
+            <input matInput  type="number" class="form-control" formControlName="weight" />
+          </mat-form-field>
 
-        <mat-form-field>
-          <mat-label  for="dimension"> Dimension :  </mat-label>
-          <input matInput  type="text" class="form-control" formControlName="dimension" />
-        </mat-form-field>
+          <mat-form-field>
+            <mat-label  for="dimension"> Dimension :  </mat-label>
+            <input matInput  type="text" class="form-control" formControlName="dimension" />
+          </mat-form-field>
 
-        <mat-form-field>
-          <mat-label  for="adress"> Adresse : </mat-label>
-          <input matInput type="text" class="form-control" formControlName="adress">
-        </mat-form-field>
+          <mat-form-field>
+            <mat-label  for="adress"> Adresse : </mat-label>
+            <input matInput type="text" class="form-control" formControlName="adress">
+          </mat-form-field>
 
-        <mat-form-field>
-          <mat-label  for="city"> Ville: </mat-label>
-          <input matInput type="text" class="form-control" formControlName="city">
-        </mat-form-field>
+          <mat-form-field>
+            <mat-label  for="city"> Ville: </mat-label>
+            <input matInput type="text" class="form-control" formControlName="city">
+          </mat-form-field>
 
-        <mat-form-field>
-          <mat-label  for="postal_code"> Code Postal: </mat-label>
-          <input matInput type="text" class="form-control" formControlName="postal_code">
-        </mat-form-field>
+          <mat-form-field>
+            <mat-label  for="postal_code"> Code Postal: </mat-label>
+            <input matInput type="text" class="form-control" formControlName="postal_code">
+          </mat-form-field>
 
-        <mat-form-field>
-          <mat-label  for="inbound_date"> Date entrée: {{ wh.inbound_date | date:'M/d/yy' }}  </mat-label>
-          <input matInput type="date" class="form-control" formControlName="inbound_date">
-          <mat-error *ngIf="updateWhForm.get('inbound_date')?.errors?.['dateLessThan']">
-            Inbound date cannot be after outbound date.
-          </mat-error>
-        </mat-form-field>
+          <mat-form-field>
+            <mat-label  for="inbound_date"> Date entrée: {{ wh.inbound_date | date:'M/d/yy' }}  </mat-label>
+            <input matInput type="date" class="form-control" formControlName="inbound_date">
+            <mat-error *ngIf="updateWhForm.get('inbound_date')?.errors?.['dateLessThan']">
+              Inbound date cannot be after outbound date.
+            </mat-error>
+          </mat-form-field>
 
-        <mat-form-field>
-          <mat-label  for="outbound_date"> Date de sortie: {{ wh.outbound_date | date:'M/d/yy' }} </mat-label>
-          <input matInput type="date" class="form-control" formControlName="outbound_date">
-        </mat-form-field>
+          <mat-form-field>
+            <mat-label  for="outbound_date"> Date de sortie: {{ wh.outbound_date | date:'M/d/yy' }} </mat-label>
+            <input matInput type="date" class="form-control" formControlName="outbound_date">
+          </mat-form-field>
 
-        <mat-form-field>
-          <mat-label  for="remarks"> Remarques: </mat-label>
-          <input matInput type="text" class="form-control" formControlName="remarks">
-        </mat-form-field>
+          <mat-form-field>
+            <mat-label  for="remarks"> Remarques: </mat-label>
+            <input matInput type="text" class="form-control" formControlName="remarks">
+          </mat-form-field>
 
-        <button mat-button color="primary" type="submit">Submit</button>
-      </form>
-    </mat-expansion-panel>
-  </mat-accordion>
-</mat-card>
+          <button mat-button color="primary" type="submit">Submit</button>
+        </form>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
+
+

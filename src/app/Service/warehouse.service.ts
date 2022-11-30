@@ -61,25 +61,15 @@ export class WarehouseService {
 
   update(id_warehouse:any,warehouse:any){
     this.id = Number(id_warehouse);
-    return this.http.put(this.url+'/api/Warehouse/'+this.id,warehouse).pipe(
-      catchError((this.handleError)
-      )
+    return this.http.put(this.url+'/api/Warehouse/'+this.id,warehouse).subscribe(
+      (response) =>{
+        window.location.reload();
+        console.log(response);
+      },
+      (error) =>{
+        console.log("Error : "+ error);
+      }
     );
-    /*
-    try{
-      this.id = Number(id_warehouse) ;
-      this.http.put(this.url+'/api/Warehouse/'+this.id,warehouse).subscribe(
-        (response) =>{
-          window.location.reload();
-          console.log(response);
-        }
-      );
-    }catch (e) {
-      let error = e ;
-      console.log("Error");
-      this.showError(error);
-    }
-     */
   }
 
   delete(id_warehouse:any){

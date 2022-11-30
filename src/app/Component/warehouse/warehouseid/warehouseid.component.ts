@@ -57,7 +57,7 @@ export class WarehouseidComponent implements OnInit {
           number_package: this.wh.number_package ,
           weight: this.wh.weight ,
           dimension : this.wh.dimension ,
-          adress : this.wh.address ,
+          adress : this.wh.adress ,
           city : this.wh.city ,
           postal_code : this.wh.postal_code ,
           inbound_date : this.wh.inbound_date ,
@@ -85,19 +85,7 @@ export class WarehouseidComponent implements OnInit {
       alert('La mise à jour d form Warehouse est invalide, veuillez corriger.')
       window.location.reload();
     }else {
-      this.whServ.update(this.id_warehouse,updatedWh).subscribe(
-        (data)=> {
-          console.log("Success : " + data)
-          this.router.navigate(['/warehouse']).then(() => {
-            window.location.reload();
-          })
-        },
-        (error)=>{
-          console.log("Error : " + error);
-          alert("Error, mise à jour de Warehouse est Impossible, veuillez corriger le formulaire");
-          window.location.reload();
-        }
-      );
+      this.whServ.update(this.id_warehouse,updatedWh);
     }
     //this.whServ.update(this.id_warehouse,updatedWh)
     //console.log("Update Warehouse form data: ", updatedWh);

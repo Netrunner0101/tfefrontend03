@@ -63,7 +63,7 @@ export class CustomeridComponent implements OnInit {
       name : this.updateCustomerForm.value.name ,
       vat : this.updateCustomerForm.value.vat ,
       adress : this.updateCustomerForm.value.adress ,
-      city :this.updateCustomerForm.value.city  ,
+      city :this.updateCustomerForm.value.city ,
       postal_code : this.updateCustomerForm.value.postal_code  ,
       email : this.updateCustomerForm.value.email  ,
       phoneNumber : this.updateCustomerForm.value.phoneNumber ,

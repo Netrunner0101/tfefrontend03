@@ -1,0 +1,19 @@
+.login{
+  border: solid;
+  border-color: white;
+  padding-left: 2em;
+  margin-right: 2em;
+  background-color: white;
+  border-radius: 5px;
+  margin: 2.5em;
+  padding: 1em;
+  width: 60%;
+}
+
+mat-form-field{
+  margin: 1em;
+}
+
+button{
+  margin: 1em;
+}
