@@ -1,4 +1,4 @@
-<div class="container custom-container-2">
+<div class="maintab">
   <!-- Show it when there is no employee -->
 
   <div *ngIf="DeliveryData.length == 0">
@@ -8,12 +8,15 @@
     </button> -->
   </div>
   <div *ngIf="DeliveryData.length !== 0">
-    <h1 class="mb-3 text-center">Liste des livraisons </h1>
+    <h1 class="mb-3 text-center">
+      Liste des livraisons
+      <button id="excel" mat-flat-button color="primary" type="button" (click)="exportExcel()" > <mat-icon> import_export</mat-icon>  Générer un Excel </button>
+      <button id="new" mat-flat-button type="button" [routerLink]="['/delivery/newDelivery']" color="primary"> <mat-icon>create</mat-icon> Créer une nouvelle Livraison </button>
+    </h1>
     <div class="col-md-12">
-      <div id="search_bar">
+      <div>
         <div class="search_delivery">
-          Recherche :
-          <input type="text" name="search" [(ngModel)]="searchDelivery" placeholder="Rechercher Livraison" >
+          <div>Recherche : <input type="text" name="search" [(ngModel)]="searchDelivery" placeholder="Rechercher Livraison" ></div>
         </div>
       </div>
       <table class="table table-bordered">
@@ -56,14 +59,9 @@
         </tr>
         </tbody>
       </table>
-
     </div>
   </div>
-  <div>
-<div>
-  <button mat-flat-button type="button"><a [routerLink]="['/delivery/newDelivery']"> <mat-icon>create</mat-icon> Créer une nouvelle Livraison </a></button>
-  <button mat-button type="button" (click)="exportExcel()" > <mat-icon> import_export</mat-icon>  Générer un Excel </button>
-</div>
+
 
 <!--
 <table mat-table [dataSource]="deldataSource" class="mat-elevation-z8">

@@ -1,0 +1,25 @@
+#carti{
+  text-align: justify;
+  border: solid;
+  border-color: white;
+  padding-left: 2em;
+  margin-right: 2em;
+  background-color: white;
+  border-radius: 5px;
+  margin: 5em;
+  margin-left: 20em;
+  padding: 5em;
+  width: 50%;
+}
+
+mat-form-field{
+  margin-left: 20px;
+  border-radius: 5px;
+}
+
+#bf{
+  margin-top: 2em;
+}
+#return{
+  margin: 1em;
+}

@@ -198,10 +198,10 @@ export class DeliveryIdComponent implements OnInit {
 
       layout: 'lightHorizontalLines',
       content: [
-        {text:'Fait le : '+ new Date().toDateString(),
+        {text:'Fait le : '+ new Date().toLocaleDateString("fr-FR", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}),
         fontSize: 12,
         bold: true,
-        margin: [330, 0, 0, 0],
+        margin: [300, 0, 0, 0],
         },
         {text:'Livraison n° '+ this.delivery.id_delivery,
           fontSize: 20,
@@ -332,8 +332,7 @@ export class DeliveryIdComponent implements OnInit {
       pageMargins: [ 40, 40, 40, 40 ],
     };
 
-    pdfMake.createPdf(docDefinition).download();
-
+    pdfMake.createPdf(docDefinition).download('delivery_n°'+this.delivery.id_delivery);
   }
 
 }

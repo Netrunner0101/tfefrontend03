@@ -1,4 +1,4 @@
-<div class="container custom-container-2">
+<div class="maintab">
   <!-- Show it when there is no employee -->
   <div *ngIf="CustomerData.length == 0">
     <p> Il y a auncun clients .</p>
@@ -7,7 +7,10 @@
     </button> -->
   </div>
   <div *ngIf="CustomerData.length !== 0">
-    <h1 class="mb-3 text-center">Liste des clients </h1>
+    <h1 class="mb-3 text-center">
+      Clients
+      <button id="excel" mat-flat-button color="primary" type="button" (click)="exportExcel()" > <mat-icon> import_export</mat-icon>  Générer un Excel </button>
+      <button id="new" mat-flat-button color="primary" [routerLink]="['/customer/newCustomer']" type="button"> <mat-icon>create</mat-icon> Créer un nouveau client </button></h1>
     <div class="col-md-12">
       <div id="search_bar">
         <div class="search_customer">
@@ -48,9 +51,4 @@
       </table>
     </div>
   </div>
-</div>
-
-<div>
-  <button mat-flat-button type="button"> <a [routerLink]="['/customer/newCustomer']"> <mat-icon>create</mat-icon> Créer un nouveau client </a></button>
-  <button mat-button color="primary" type="button" (click)="exportExcel()" > <mat-icon> import_export</mat-icon>  Générer un Excel </button>
 </div>

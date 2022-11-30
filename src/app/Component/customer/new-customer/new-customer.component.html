@@ -1,64 +1,63 @@
-<div>
+<button id="return" mat-flat-button color="primary" [routerLink]="'/customer'" type="button"> Retour </button>
+<form id="carti" [formGroup]="newCustomerForm"  (ngSubmit)="createCustomer()">
   <h1> Nouveau Client : </h1>
   <hr>
-  <form [formGroup]="newCustomerForm"  (ngSubmit)="createCustomer()">
-    <mat-form-field>
-      <mat-label for="name" > Nom de client : </mat-label>
-      <input matInput type="text" class="form-control" formControlName="name">
-      <mat-error *ngIf="newCustomerForm.get('name')?.errors?.['required']">
-        Error, le champ nom du client Ne Peut PAS etre vide.
-      </mat-error>
-    </mat-form-field>
+  <mat-form-field>
+    <mat-label for="name" > Nom de client : </mat-label>
+    <input matInput type="text" class="form-control" formControlName="name">
+    <mat-error *ngIf="newCustomerForm.get('name')?.errors?.['required']">
+      Error, le champ nom du client Ne Peut PAS etre vide.
+    </mat-error>
+  </mat-form-field>
 
-    <mat-form-field>
-      <mat-label  for="vat"> Numéro de TVA : </mat-label>
-      <input matInput  type="text" class="form-control" formControlName="vat">
-      <mat-error *ngIf="newCustomerForm.get('vat')?.errors?.['required']">
-        Error, le champ nom du client Ne Peut PAS etre vide.
-      </mat-error>
-      <!--- Faire Unique pour le numéro TVA --->
-    </mat-form-field>
+  <mat-form-field>
+    <mat-label  for="vat"> Numéro de TVA : </mat-label>
+    <input matInput  type="text" class="form-control" formControlName="vat">
+    <mat-error *ngIf="newCustomerForm.get('vat')?.errors?.['required']">
+      Error, le champ nom du client Ne Peut PAS etre vide.
+    </mat-error>
+    <!--- Faire Unique pour le numéro TVA --->
+  </mat-form-field>
 
-    <mat-form-field>
-      <mat-label  for="adress"> Adresse :   </mat-label>
-      <input matInput  type="text" formControlName="adress">
-      <mat-error *ngIf="newCustomerForm.get('adress')?.errors?.['required']">
-        Error, le champ Adresse du client Ne Peut PAS etre vide.
-      </mat-error>
-    </mat-form-field>
+  <mat-form-field>
+    <mat-label  for="adress"> Adresse :   </mat-label>
+    <input matInput  type="text" formControlName="adress">
+    <mat-error *ngIf="newCustomerForm.get('adress')?.errors?.['required']">
+      Error, le champ Adresse du client Ne Peut PAS etre vide.
+    </mat-error>
+  </mat-form-field>
 
-    <mat-form-field>
-      <mat-label  for="city">  Ville : </mat-label>
-      <input matInput  type="text" class="form-control" formControlName="city" />
-      <mat-error *ngIf="newCustomerForm.get('city')?.errors?.['required']">
-        Error, le champ Ville du client Ne Peut PAS etre vide.
-      </mat-error>
-    </mat-form-field>
+  <mat-form-field>
+    <mat-label  for="city">  Ville : </mat-label>
+    <input matInput  type="text" class="form-control" formControlName="city" />
+    <mat-error *ngIf="newCustomerForm.get('city')?.errors?.['required']">
+      Error, le champ Ville du client Ne Peut PAS etre vide.
+    </mat-error>
+  </mat-form-field>
 
-    <mat-form-field>
-      <mat-label  for="postal_code"> Code postal :  </mat-label>
-      <input matInput  type="text" class="form-control" formControlName="postal_code" />
-      <mat-error *ngIf="newCustomerForm.get('postal_code')?.errors?.['required']">
-        Error, le champ Code postal du client Ne Peut PAS etre vide.
-      </mat-error>
-    </mat-form-field>
+  <mat-form-field>
+    <mat-label  for="postal_code"> Code postal :  </mat-label>
+    <input matInput  type="text" class="form-control" formControlName="postal_code" />
+    <mat-error *ngIf="newCustomerForm.get('postal_code')?.errors?.['required']">
+      Error, le champ Code postal du client Ne Peut PAS etre vide.
+    </mat-error>
+  </mat-form-field>
 
-    <mat-form-field>
-      <mat-label  for="email"> Email : </mat-label>
-      <input matInput type="text" class="form-control" formControlName="email">
-      <mat-error *ngIf="newCustomerForm.get('email')?.errors?.['required']">
-        Error, le champ email du client Ne Peut PAS etre vide.
-      </mat-error>
-    </mat-form-field>
+  <mat-form-field>
+    <mat-label  for="email"> Email : </mat-label>
+    <input matInput type="text" class="form-control" formControlName="email">
+    <mat-error *ngIf="newCustomerForm.get('email')?.errors?.['required']">
+      Error, le champ email du client Ne Peut PAS etre vide.
+    </mat-error>
+  </mat-form-field>
 
-    <mat-form-field>
-      <mat-label  for="phoneNumber"> Numéro de téléphone : </mat-label>
-      <input matInput type="text" class="form-control" formControlName="phoneNumber">
-      <mat-error *ngIf="newCustomerForm.get('phoneNumber')?.errors?.['required']">
-        Error, le champ Numéro de téléphon du client Ne Peut PAS etre vide.
-      </mat-error>
-    </mat-form-field>
-
-    <button mat-button color="primary" type="submit">Submit</button>
-  </form>
-</div>
+  <mat-form-field>
+    <mat-label  for="phoneNumber"> Numéro de téléphone : </mat-label>
+    <input matInput type="text" class="form-control" formControlName="phoneNumber">
+    <mat-error *ngIf="newCustomerForm.get('phoneNumber')?.errors?.['required']">
+      Error, le champ Numéro de téléphon du client Ne Peut PAS etre vide.
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <button id="bf" mat-flat-button color="primary" type="submit">Submit</button>
+</form>

@@ -1,11 +1,14 @@
 <ng-container>
-  <div class="container custom-container-2">
+  <div class="maintab">
     <!-- Show it when there is no employee -->
     <div *ngIf="QuData.length == 0">
       <p> Il y a auncun Offre de prix .</p>
     </div>
     <div *ngIf="QuData.length !== 0">
-      <h1 class="mb-3 text-center">Liste des Offres de prix </h1>
+      <h1 class="mb-3 text-center">
+        Liste des Offres de prix
+        <button id="excel" mat-flat-button color="primary" color="primary" type="button" (click)="exportExcel()" > <mat-icon> import_export</mat-icon>  Générer un Excel </button>
+        <button id="new" mat-flat-button color="primary" type="button" [routerLink]="['/quotations/newQuotations']"> <mat-icon>create</mat-icon> Créer une nouvelle Offre de prix </button></h1>
       <div class="col-md-12">
         <div id="search_bar">
           <div class="search_quotations">
@@ -40,8 +43,8 @@
               <td> {{ q.type_transport}} </td>
               <td> {{ q.price }} € </td>
               <td>
-                <button type="button" (click)='deleteQuotations(q.id_quotations )'> <mat-icon  type="button" matTooltip="Supprimer">delete_outline</mat-icon> </button>
-                <button><a [routerLink]="['/quotations/',q.id_quotations]" [queryParams]="{id_quotations:q.id_quotations }"> <mat-icon>description</mat-icon></a></button>
+                <button type="button" (click)='deleteQuotations(q.id_quotations )'> <mat-icon  type="button" matTooltip="Supprimer"> delete_outline </mat-icon> </button>
+                <button><a [routerLink]="['/quotations/',q.id_quotations]" [queryParams]="{id_quotations:q.id_quotations }"> <mat-icon> description </mat-icon> </a> </button>
               </td>
             </tr>
           </tbody>
@@ -51,8 +54,7 @@
   </div>
 
   <div>
-    <button mat-flat-button type="button"><a [routerLink]="['/quotations/newQuotations']"> <mat-icon>create</mat-icon> Créer une nouvelle Offre de prix </a></button>
-    <button mat-button color="primary" type="button" (click)="exportExcel()" > <mat-icon> import_export</mat-icon>  Générer un Excel </button>
+
   </div>
 
 </ng-container>

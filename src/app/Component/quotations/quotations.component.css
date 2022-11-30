@@ -1,6 +1,29 @@
+
 table, th, td {
   border: 1px solid;
   margin: 1rem;
   padding: 1rem;
 }
 
+.maintab {
+  border: solid;
+  border-color: white;
+  padding-left: 2em;
+  margin-right: 2em;
+  background-color: white;
+  border-radius: 5px;
+  margin: 2.5em;
+  padding: 1em;
+}
+
+#excel{
+  margin-left: 50em;
+}
+
+#new{
+  margin-left: 10px;
+}
+
+.search_quotations{
+  margin-left: 25em;
+}

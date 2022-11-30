@@ -1,10 +1,14 @@
-<div class="container custom-container-2">
+<div class="maintab">
   <!-- Show it when there is no employee -->
   <div *ngIf="WhData.length == 0">
     <p> Il y a aucune entrée dans l'entrepot .</p>
   </div>
   <div *ngIf="WhData.length !== 0">
-    <h1 class="mb-3 text-center">Entrée dans l'entrepot </h1>
+    <h1 class="mb-3 text-center">
+      Entrée dans l'entrepot
+      <button id="excel" mat-flat-button color="primary" type="button" (click)="exportExcel()" > <mat-icon> import_export</mat-icon>  Générer un Excel </button>
+      <button id="new" mat-flat-button color="primary" type="button" [routerLink]="['/warehouse/newWarehouse']"><mat-icon>create</mat-icon> Ajouter une Entrée </button>
+    </h1>
     <div class="col-md-12">
       <div id="search_bar">
         <div class="search_quotations">
@@ -44,7 +48,7 @@
           <td> {{ wh.remarks }} </td>
           <td>
             <button type="button" (click)='deleteWarehouse(wh.id_warehouse)'> <mat-icon  type="button" matTooltip="Supprimer">delete_outline</mat-icon> </button>
-            <button><a [routerLink]="['/warehouse/',wh.id_warehouse]" [queryParams]="{id_warehouse:wh.id_warehouse }"> <mat-icon>description</mat-icon> </a></button>
+            <button ><a [routerLink]="['/warehouse/',wh.id_warehouse]" [queryParams]="{id_warehouse:wh.id_warehouse }"> <mat-icon>description</mat-icon> </a></button>
           </td>
         </tr>
         </tbody>
@@ -53,7 +57,5 @@
   </div>
 </div>
 
-<div>
-  <button mat-flat-button type="button"><a [routerLink]="['/warehouse/newWarehouse']"> <mat-icon>create</mat-icon> Ajouter une Entrée </a></button>
-  <button mat-button color="primary" type="button" (click)="exportExcel()" > <mat-icon> import_export</mat-icon>  Générer un Excel </button>
-</div>
+
+

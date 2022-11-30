@@ -2,21 +2,23 @@
 <header></header>
 <body>
 <mat-sidenav-container class="example-container" >
-  <mat-sidenav color="primary" mode="side" opened>
-    <span>TMS</span>
+  <mat-sidenav id="mainnav" mode="side" opened >
+    <mat-toolbar >
+      <h1>Little transporter</h1>
+    </mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item [routerLink]="''" > Login </a>
-      <a mat-list-item [routerLink]="'register'" > S'enregistrer </a>
-      <a mat-list-item [routerLink]="'delivery'" > Delivery </a>
-      <a mat-list-item [routerLink]="'customer'" > Customer </a>
-      <a mat-list-item [routerLink]="'transporter'" > Transporter </a>
-      <a mat-list-item [routerLink]="'warehouse'" > Warehouse </a>
-      <a  mat-list-item [routerLink]="'quotations'" > Quotations </a>
+      <a class="navit" mat-list-item [routerLink]="''" > Login </a>
+      <a class="navit" mat-list-item [routerLink]="'register'" > S'enregistrer </a>
+      <a class="navit" mat-list-item [routerLink]="'delivery'" > Delivery </a>
+      <a class="navit" mat-list-item [routerLink]="'customer'" > Customer </a>
+      <a class="navit" mat-list-item [routerLink]="'transporter'" > Transporter </a>
+      <a class="navit" mat-list-item [routerLink]="'warehouse'" > Warehouse </a>
+      <a class="navit" mat-list-item [routerLink]="'quotations'" > Quotations </a>
       <button mat-flat-button color="primary" (click)="logout()" >  Logout </button>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div style="height: 100vh;">
+    <div style="height: 100vh;" id="maincont">
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import {RouterLinkWithHref, RouterOutlet} from "@angular/router";
+import {RouterLink, RouterLinkWithHref, RouterOutlet} from "@angular/router";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {NoopAnimationsModule} from "@angular/platform-browser/animations";
 import {MatSidenavModule} from "@angular/material/sidenav";
@@ -40,6 +40,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { RegisterComponent } from './Component/authentication/register/register.component';
 import {MatIconModule} from "@angular/material/icon";
 import {Ng2SearchPipeModule} from "ng2-search-filter";
+import {MatToolbarModule} from "@angular/material/toolbar";
 
 @NgModule({
   declarations: [
@@ -90,6 +91,8 @@ import {Ng2SearchPipeModule} from "ng2-search-filter";
     MatIconModule,
     Ng2SearchPipeModule,
     FormsModule,
+    RouterLink,
+    MatToolbarModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS,useClass:TokenInterceptorInterceptor, multi:true},
