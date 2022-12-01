@@ -4,6 +4,10 @@ table, th, td {
   padding: 1rem;
 }
 
+td{
+  font-size: 15px;
+}
+
 .maintab {
   border: solid;
   border-color: white;
@@ -16,7 +20,7 @@ table, th, td {
 }
 
 #excel{
-  margin-left: 50em;
+  margin-left: 35em;
 }
 
 #new{

@@ -3,14 +3,14 @@
   <div id="carti">
     <mat-card *ngIf="delivery" class="example-card" id="deliveryDetail">
       <mat-card-title>
+        <button id="pdf" mat-flat-button [disabled]="!delivery.customer || !delivery.transporter" color="primary" type="button" (click)="generatePDF()">
+          Pdf Livraison
+          <mat-error *ngIf="!delivery.customer || !delivery.transporter">
+            Client et transporteur vide
+          </mat-error>
+        </button>
         <h1>
           Livraison n° {{ delivery.id_delivery }}
-          <button id="pdf" mat-flat-button [disabled]="!delivery.customer || !delivery.transporter" color="primary" type="button" (click)="generatePDF()">
-            Pdf Livraison
-            <mat-error *ngIf="!delivery.customer || !delivery.transporter">
-              Ajouter le client et transporteur
-            </mat-error>
-          </button>
         </h1>
       </mat-card-title>
       <mat-card-content>

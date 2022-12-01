@@ -36,12 +36,13 @@
 }
 
 p{
-  font-size: 15px;
+  font-size: 20px;
   font-weight: bold;
-  margin-left: 2em;
+  margin-left: 1em;
 }
 
-mat-form-field{
-  margin-left: 20px;
+mat-expansion-panel-header{
+  margin: 50px;
+  padding: 2em;
   border-radius: 5px;
 }

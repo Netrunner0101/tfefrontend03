@@ -194,14 +194,14 @@ export class DeliveryIdComponent implements OnInit {
         {text:'Livraison n° '+ this.delivery.id_delivery,
           fontSize: 20,
           bold: true,
-          margin: [150, 10]
+          margin: [ 150, 10, 10, 0 ]
         },
         {text:' Adresse de livraison : '  ,
           styles: 'content_title',
           fontSize: 12
         },
         {text: this.delivery.destination_adress ,
-          fontSize: 15,
+          fontSize: 16,
           bold: true,
           margin: [20, 10]
         },
@@ -209,95 +209,104 @@ export class DeliveryIdComponent implements OnInit {
           fontSize: 12
         },
         {text: new Date(this.delivery.outbout_date).toLocaleDateString() ,
-          fontSize: 15 ,
+          fontSize: 16 ,
           bold: true ,
           margin: [20, 10] ,
           lineHeight: 2 ,
         },
         {text: ' Transporteur : ',
-          fontSize: 18 ,
+          fontSize: 15 ,
+
         },
         {text:  'Nom du transporteur : ' ,
           fontSize: 12 ,
+          margin: [ 100, 5, 0, 0 ]
         },
         {text:  this.delivery.transporter.name,
-          fontSize: 15 ,
+          fontSize: 16 ,
           bold: true ,
-          margin: [20, 10]
+          margin: [ 100, 5, 0, 0 ]
         },
         {text:  ' Email : ' ,
           fontSize: 12 ,
+          margin: [ 100, 5, 0, 0 ]
         },
         {text:  this.delivery.transporter.email ,
-          fontSize: 15 ,
+          fontSize: 16 ,
           bold: true ,
-          margin: [20, 10]
+          margin: [ 100, 5, 0, 0 ]
         },
         {text:  ' Numéro téléphone : ' ,
           fontSize: 12 ,
+          margin: [ 100, 5, 0, 0 ]
         },
         {text:+ this.delivery.transporter.phoneNumber ,
-          fontSize: 15 ,
+          fontSize: 16 ,
           bold: true ,
-          margin: [20, 10] ,
+          margin: [ 100, 5, 0, 0 ],
           lineHeight: 2 ,
         },
         {text: ' Client : ',
-          fontSize: 18 ,
+          fontSize: 15 ,
         },
         {text:' Nom de client : ',
           fontSize: 12 ,
+          margin: [ 100, 5, 0, 0 ]
         },
         {text: this.delivery.customer.name,
-          fontSize: 15 ,
+          fontSize: 16 ,
           bold: true ,
-          margin: [20, 10] ,
+          margin: [ 100, 5, 0, 0 ] ,
           lineHeight: 2 ,
         },
         {text:' Email client : ',
           fontSize: 12 ,
+          margin: [ 100, 5, 0, 0 ]
         },
         {text: this.delivery.customer.email,
-          fontSize: 15 ,
+          fontSize: 16 ,
           bold: true ,
-          margin: [20, 10] ,
+          margin: [ 100, 5, 0, 0 ] ,
           lineHeight: 2 ,
         },
-
-        //{text:' TVA: '+ this.delivery.customer.vat,
-        //  styles: 'content'},
         {text: 'Contenu : ',
-          fontSize: 18 ,
+          fontSize: 15 ,
         },
         {text:' Nombre de packets : ' ,
           fontSize: 12 ,
+          margin: [ 100, 5 , 0, 0 ]
         },
         {text:this.delivery.number_package + ' pcs',
-          fontSize: 15 ,
+          fontSize: 16 ,
           bold: true ,
-          margin: [20, 10]
+          margin: [ 100, 5, 0, 0 ]
         },
         {text:' Poids : ' ,
           fontSize: 12,
+          margin: [ 100, 5, 0, 0 ]
         },
         {text: this.delivery.weight  + ' kg',
-          fontSize: 15,
+          fontSize: 16,
           bold: true,
-          margin: [20, 10]
+          margin: [ 100, 5, 0, 0 ]
         },
         {text:' Dimension : ' ,
           fontSize: 12,
         },
         {text: this.delivery.dimension ,
-          fontSize: 15,
+          fontSize: 16,
           bold: true,
-          margin: [20, 10],
+          margin: [ 100, 5, 0, 0 ],
           lineHeight: 2,
         },
         {text: ' Remarques : ',
-          fontSize: 15},
+          fontSize: 13
+
+        },
         {text: this.delivery.remarks , styles: 'remarks',
-          fontSize: 20},
+          fontSize: 17,
+          margin: [ 100, 5, 0, 0 ]
+        },
       ],
       styles: {
         header: {

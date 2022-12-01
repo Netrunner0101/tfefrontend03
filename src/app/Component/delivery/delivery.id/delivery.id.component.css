@@ -3,9 +3,9 @@
 }
 
 p{
-  font-size: 15px;
+  font-size: 20px;
   font-weight: bold;
-  margin-left: 2em;
+  margin-left: 1em;
 }
 
 mat-accordion{
@@ -14,11 +14,12 @@ mat-accordion{
 }
 
 #pdf{
-  margin-left: 10em;
+  margin-left: 400px;
 }
 
-mat-form-field{
-  margin-left: 20px;
+mat-expansion-panel-header{
+  margin: 50px;
+  padding: 2em;
   border-radius: 5px;
 }
 
@@ -31,27 +32,28 @@ mat-form-field{
   text-align: justify;
   border: solid;
   border-color: white;
-  padding-left: 2em;
-  margin-right: 2em;
+  padding-left: 1em;
+  margin-right: 1em;
   background-color: white;
   border-radius: 5px;
-  margin: 2em;
+  margin: 1em;
   margin-left: 2em;
-  padding: 2em;
-  width: 90%;
+  padding: 1em;
+  width: 50%;
 }
 
 #cartm{
   text-align: justify;
   border: solid;
   border-color: white;
-  padding-left: 2em;
-  margin-right: 2em;
+  padding-left: 1em;
+  margin-right: 1em;
   background-color: white;
   border-radius: 5px;
-  margin: 2em;
-  padding: 2em;
-  width: 90%;
+  margin: 1em;
+  margin-left: 2em;
+  padding: 1em;
+  width: 50%;
 }
 
 .butdel{

@@ -7,8 +7,10 @@
   <br>
   <mat-form-field class="password">
     <mat-label  for="password" > mot de passe :</mat-label>
-    <input matInput placeholder="mot de passe" id="password" formControlName="password" />
-  </mat-form-field>
+    <input matInput [type]="showPassword ? 'text' : 'password'" placeholder="mot de passe" id="password" formControlName="password" />
+    <mat-icon matSuffix (click)="togglePasswordVisibility()">
+      {{showPassword?'visibility_off':'visibility'}}
+    </mat-icon></mat-form-field>
   <div class="button-wrapper">
     <button mat-flat-button color="primary" >Submit</button>
     <button mat-flat-button color="primary" type="button" [routerLink]="'/register'" > S'enregistrer   </button>

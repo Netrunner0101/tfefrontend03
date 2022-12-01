@@ -10,6 +10,12 @@ import {FormControl, FormGroup} from "@angular/forms";
 })
 export class AuthenticationComponent implements OnInit {
 
+  public showPassword: boolean = false;
+
+  public togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+  }
+
   constructor(private auth:AuthService, private router : Router) { }
 
   ngOnInit(): void {
