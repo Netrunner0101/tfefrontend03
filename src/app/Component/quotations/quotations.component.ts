@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {QuotationsService} from "../../Service/quotations.service";
 import {Router} from "@angular/router";
 import * as FileSaver from "file-saver";
+import {TransporterService} from "../../Service/transporter.service";
 
 @Component({
   selector: 'app-quotations',
@@ -14,7 +15,9 @@ export class QuotationsComponent implements OnInit {
 
   QuData: any = [];
 
-  constructor(private quServ:QuotationsService,private router:Router) { }
+  trans: any = [];
+
+  constructor(private quServ:QuotationsService, private transServ:TransporterService ,private router:Router) { }
 
   ngOnInit(): void {
     console.log('Interceptor : '+ sessionStorage.getItem('token'));
@@ -30,6 +33,15 @@ export class QuotationsComponent implements OnInit {
     })
   }
 
+  getTransporterById(id_transporter:number){
+    this.transServ.TransporterById(id_transporter).subscribe(
+      (data)=>{
+        console.log(data);
+        this.trans = data.name;
+      })
+    return this.trans;
+  }
+
   deleteQuotations(id_quotations:any){
     this.quServ.delete(id_quotations);
     window.location.reload();
@@ -41,7 +53,7 @@ export class QuotationsComponent implements OnInit {
         const worksheet = xlsx.utils.json_to_sheet(this.QuData);
         const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
         const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
-        this.saveAsExcelFile(excelBuffer, "delivery");
+        this.saveAsExcelFile(excelBuffer, "quotations");
       });
     }
   }
@@ -51,8 +63,7 @@ export class QuotationsComponent implements OnInit {
     const data: Blob = new Blob([buffer], {
       type: EXCEL_TYPE
     });
-    FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+    FileSaver.saveAs(data, 'Quotations' + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
   }
-
 
 }

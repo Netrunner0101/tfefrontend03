@@ -329,7 +329,7 @@ export class DeliveryIdComponent implements OnInit {
       pageMargins: [ 40, 40, 40, 40 ],
     };
 
-    pdfMake.createPdf(docDefinition).download('delivery_n°'+this.delivery.id_delivery);
+    pdfMake.createPdf(docDefinition).download('delivery_n°'+this.delivery.id_delivery+'_'+new Date().toLocaleDateString("fr-FR", { year: 'numeric', month: 'long', day: 'numeric'}));
   }
 
 }

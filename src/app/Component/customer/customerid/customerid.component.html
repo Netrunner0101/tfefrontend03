@@ -55,6 +55,9 @@
           <mat-form-field>
             <mat-label  for="vat"> Numéro de TVA : </mat-label>
             <input matInput  type="text" class="form-control" formControlName="vat">
+            <mat-error *ngIf="updateCustomerForm.get('vat')?.errors?.['unique']">
+              Error, valeur existe déjà en base de données.
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field>

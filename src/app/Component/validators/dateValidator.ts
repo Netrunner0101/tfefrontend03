@@ -36,5 +36,4 @@ export function dateLessThan( firstDateField:string,secondDateField:string) : Va
     }
     return null;
   }
-
 }

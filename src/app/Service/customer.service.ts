@@ -54,6 +54,11 @@ export class CustomerService {
 
   update(id_customer:any,customer:any){
     this.id = Number(id_customer) ;
+    return this.http.put(this.url+'/api/Customer/'+this.id,customer,this.httpOptions).pipe(
+      catchError((this.handleError)
+      )
+    );
+    /*
     this.http.put(this.url+'/api/Customer/'+this.id,customer,this.httpOptions).subscribe(
       (response) =>{
         window.location.reload();
@@ -62,7 +67,7 @@ export class CustomerService {
       (error) =>{
         console.log("Error : "+ error);
       }
-    );
+    );*/
   }
 
   delete(id_customer:any){

@@ -20,15 +20,16 @@
           <thead>
           <tr>
             <th scope="col"> N° Offre  </th>
-            <th scope="col"> Adrese de départ : </th>
-            <th scope="col"> Ville de départ :  </th>
+            <th scope="col"> Adrese de départ </th>
+            <th scope="col"> Ville de départ  </th>
             <th scope="col"> Code Postal  </th>
-            <th scope="col"> Adrese d'arrivée : </th>
-            <th scope="col"> Ville d'arrivée  :  </th>
-            <th scope="col"> Code Postal  </th>
+            <th scope="col"> Adrese d'arrivée </th>
+            <th scope="col"> Ville d'arrivée </th>
+            <th scope="col"> Code Postal </th>
             <th scope="col"> Type de transport  </th>
-            <th scope="col"> Prix : </th>
-            <th scope="col"> Action: </th>
+            <th scope="col"> Prix</th>
+            <th scope="col"> Transporteur </th>
+            <th scope="col"> Action </th>
           </tr>
           </thead>
           <tbody *ngFor="let q of QuData | filter:searchQuotations">
@@ -42,6 +43,11 @@
               <td> {{ q.destination_postal_code }} </td>
               <td> {{ q.type_transport}} </td>
               <td> {{ q.price }} € </td>
+              <td >
+                <ul *ngFor="let i of q.transporter_quotations">
+                  <li> {{ i.transporter.name}}   </li>
+                </ul>
+              </td>
               <td>
                 <button type="button" (click)='deleteQuotations(q.id_quotations )' matTooltip="Supprimer"> <mat-icon> delete_outline </mat-icon> </button>
                 <button><a [routerLink]="['/quotations/',q.id_quotations]" [queryParams]="{id_quotations:q.id_quotations }" matTooltip="Détails offre de prix"> <mat-icon> description </mat-icon> </a> </button>

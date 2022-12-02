@@ -113,6 +113,8 @@ export class QuotationsIdComponent implements OnInit {
   *
   * */
 
+  // To avoid duplicate value => no Id in intermadiary table
+
   InsertTransporter(id_quotations:number,id_transporter:number){
     this.quServ.updateTransporterFromQuotations(id_quotations,id_transporter).subscribe(
       (data)=> {
