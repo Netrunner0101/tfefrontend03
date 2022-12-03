@@ -10,6 +10,7 @@ import pdfMake from 'pdfmake/build/pdfmake';
 // @ts-ignore
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import {dateLessThan} from "../../validators/dateValidator";
+import {Margins} from "pdfmake/interfaces";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -189,12 +190,12 @@ export class DeliveryIdComponent implements OnInit {
         {text:'Fait le : '+ new Date().toLocaleDateString("fr-FR", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}),
         fontSize: 12,
         bold: true,
-        margin: [300, 0, 0, 0],
+        margin: [300, 0, 0, 0] as Margins,
         },
         {text:'Livraison n° '+ this.delivery.id_delivery,
           fontSize: 20,
           bold: true,
-          margin: [ 150, 10, 10, 0 ]
+          margin: [ 150, 10, 10, 0 ] as Margins,
         },
         {text:' Adresse de livraison : '  ,
           styles: 'content_title',
@@ -203,7 +204,7 @@ export class DeliveryIdComponent implements OnInit {
         {text: this.delivery.destination_adress ,
           fontSize: 16,
           bold: true,
-          margin: [20, 10]
+          margin: [20, 10] as Margins,
         },
         {text:' Date de Sortie : ',
           fontSize: 12
@@ -211,7 +212,7 @@ export class DeliveryIdComponent implements OnInit {
         {text: new Date(this.delivery.outbout_date).toLocaleDateString() ,
           fontSize: 16 ,
           bold: true ,
-          margin: [20, 10] ,
+          margin: [20, 10]  as Margins,
           lineHeight: 2 ,
         },
         {text: ' Transporteur : ',
@@ -220,30 +221,30 @@ export class DeliveryIdComponent implements OnInit {
         },
         {text:  'Nom du transporteur : ' ,
           fontSize: 12 ,
-          margin: [ 100, 5, 0, 0 ]
+          margin: [ 100, 5, 0, 0 ] as Margins,
         },
         {text:  this.delivery.transporter.name,
           fontSize: 16 ,
           bold: true ,
-          margin: [ 100, 5, 0, 0 ]
+          margin: [ 100, 5, 0, 0 ] as Margins,
         },
         {text:  ' Email : ' ,
           fontSize: 12 ,
-          margin: [ 100, 5, 0, 0 ]
+          margin: [ 100, 5, 0, 0 ] as Margins,
         },
         {text:  this.delivery.transporter.email ,
           fontSize: 16 ,
           bold: true ,
-          margin: [ 100, 5, 0, 0 ]
+          margin: [ 100, 5, 0, 0 ] as Margins,
         },
         {text:  ' Numéro téléphone : ' ,
           fontSize: 12 ,
-          margin: [ 100, 5, 0, 0 ]
+          margin: [ 100, 5, 0, 0 ] as Margins,
         },
         {text:+ this.delivery.transporter.phoneNumber ,
           fontSize: 16 ,
           bold: true ,
-          margin: [ 100, 5, 0, 0 ],
+          margin: [ 100, 5, 0, 0 ] as Margins,
           lineHeight: 2 ,
         },
         {text: ' Client : ',
@@ -251,22 +252,22 @@ export class DeliveryIdComponent implements OnInit {
         },
         {text:' Nom de client : ',
           fontSize: 12 ,
-          margin: [ 100, 5, 0, 0 ]
+          margin: [ 100, 5, 0, 0 ] as Margins,
         },
         {text: this.delivery.customer.name,
           fontSize: 16 ,
           bold: true ,
-          margin: [ 100, 5, 0, 0 ] ,
+          margin: [ 100, 5, 0, 0 ] as Margins,
           lineHeight: 2 ,
         },
         {text:' Email client : ',
           fontSize: 12 ,
-          margin: [ 100, 5, 0, 0 ]
+          margin: [ 100, 5, 0, 0 ]as Margins,
         },
         {text: this.delivery.customer.email,
           fontSize: 16 ,
           bold: true ,
-          margin: [ 100, 5, 0, 0 ] ,
+          margin: [ 100, 5, 0, 0 ] as Margins,
           lineHeight: 2 ,
         },
         {text: 'Contenu : ',
@@ -274,21 +275,21 @@ export class DeliveryIdComponent implements OnInit {
         },
         {text:' Nombre de packets : ' ,
           fontSize: 12 ,
-          margin: [ 100, 5 , 0, 0 ]
+          margin: [ 100, 5 , 0, 0 ] as Margins,
         },
         {text:this.delivery.number_package + ' pcs',
           fontSize: 16 ,
           bold: true ,
-          margin: [ 100, 5, 0, 0 ]
+          margin: [ 100, 5, 0, 0 ] as Margins,
         },
         {text:' Poids : ' ,
           fontSize: 12,
-          margin: [ 100, 5, 0, 0 ]
+          margin: [ 100, 5, 0, 0 ] as Margins,
         },
         {text: this.delivery.weight  + ' kg',
           fontSize: 16,
           bold: true,
-          margin: [ 100, 5, 0, 0 ]
+          margin: [ 100, 5, 0, 0 ]as Margins,
         },
         {text:' Dimension : ' ,
           fontSize: 12,
@@ -296,7 +297,7 @@ export class DeliveryIdComponent implements OnInit {
         {text: this.delivery.dimension ,
           fontSize: 16,
           bold: true,
-          margin: [ 100, 5, 0, 0 ],
+          margin: [ 100, 5, 0, 0 ]as Margins,
           lineHeight: 2,
         },
         {text: ' Remarques : ',
@@ -305,28 +306,28 @@ export class DeliveryIdComponent implements OnInit {
         },
         {text: this.delivery.remarks , styles: 'remarks',
           fontSize: 17,
-          margin: [ 100, 5, 0, 0 ]
+          margin: [ 100, 5, 0, 0 ]as Margins,
         },
       ],
       styles: {
         header: {
           fontSize: 45,
           bold: true,
-          margin: [10, 10],
+          margin: [10, 10] as Margins,
         },
         content:{
           fontSize: 25,
           bold: true,
-          margin: [20, 0, 40, 0],
+          margin: [20, 0, 40, 0] as Margins,
         },
         content_title:{
           fontSize: 25,
           bold: true,
-          margin: [20, 0, 40, 0],
+          margin: [20, 0, 40, 0] as Margins,
         },
 
       },
-      pageMargins: [ 40, 40, 40, 40 ],
+      pageMargins: [ 40, 40, 40, 40 ]as Margins,
     };
 
     pdfMake.createPdf(docDefinition).download('delivery_n°'+this.delivery.id_delivery+'_'+new Date().toLocaleDateString("fr-FR", { year: 'numeric', month: 'long', day: 'numeric'}));
