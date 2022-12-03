@@ -152,7 +152,7 @@ export class DeliveryService {
   // Warehouse
   updateWarehouseFromDelivery(id_delivery:number,id_warehouse:number){
     try{
-      this.http.put(this.url+'/api/Delivery/'+id_delivery+'/Warehouse/'+id_warehouse,{}).subscribe(
+      this.http.put(this.url_prod+'/api/Delivery/'+id_delivery+'/Warehouse/'+id_warehouse,{}).subscribe(
         (res) =>{
           window.location.reload();
         }
@@ -164,7 +164,7 @@ export class DeliveryService {
 
   deleteWarehouseFromDelivery(id_delivery:number){
     try{
-      this.http.delete(this.url+'/api/Delivery/'+id_delivery+'/Warehouse').subscribe(
+      this.http.delete(this.url_prod+'/api/Delivery/'+id_delivery+'/Warehouse').subscribe(
         (res) => {
           window.location.reload();
         }
