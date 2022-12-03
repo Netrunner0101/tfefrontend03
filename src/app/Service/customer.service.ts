@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {url_dev} from "../global";
+import {url_dev, url_production} from "../global";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {catchError, Observable, throwError} from "rxjs";
@@ -18,6 +18,8 @@ export class CustomerService {
   };
 
   private url = url_dev;
+
+  private url_prod = url_production;
 
   id: undefined | number ;
 
@@ -38,15 +40,15 @@ export class CustomerService {
   }
 
   AllCustomer():Observable<Customer>{
-    return this.http.get<Customer>(this.url+'/api/Customer/customers');
+    return this.http.get<Customer>(this.url_prod+'/api/Customer/customers');
   }
 
   CustomerById(id_customer:any):Observable<Customer>{
-    return this.http.get<Customer>(this.url+'/api/Customer/customers/'+id_customer);
+    return this.http.get<Customer>(this.url_prod+'/api/Customer/customers/'+id_customer);
   }
 
   create(customer:any):Observable<any>{
-    return this.http.post(this.url+'/api/Customer',customer,this.httpOptions).pipe(
+    return this.http.post(this.url_prod+'/api/Customer',customer,this.httpOptions).pipe(
       catchError((this.handleError)
       )
     );
@@ -54,7 +56,7 @@ export class CustomerService {
 
   update(id_customer:any,customer:any){
     this.id = Number(id_customer) ;
-    return this.http.put(this.url+'/api/Customer/'+this.id,customer,this.httpOptions).pipe(
+    return this.http.put(this.url_prod+'/api/Customer/'+this.id,customer,this.httpOptions).pipe(
       catchError((this.handleError)
       )
     );
@@ -71,7 +73,7 @@ export class CustomerService {
   }
 
   delete(id_customer:any){
-    this.http.delete(this.url+'/api/Customer/'+id_customer,{}).subscribe(
+    this.http.delete(this.url_prod+'/api/Customer/'+id_customer,{}).subscribe(
       (data:any) =>{
         window.location.reload();
         console.log(data)

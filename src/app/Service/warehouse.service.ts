@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {url_dev} from "../global";
+import {url_dev, url_production} from "../global";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable, throwError} from "rxjs";
 import {Warehouse} from "../Models/Warehouse";
@@ -13,6 +13,8 @@ export class WarehouseService {
   id: undefined | number ;
 
   private url = url_dev;
+
+  private url_prod = url_production;
 
   constructor(
     private http:HttpClient,
@@ -45,15 +47,15 @@ export class WarehouseService {
   }
 
   AllWarehouse():Observable<Warehouse>{
-    return this.http.get<Warehouse>(this.url+'/api/Warehouse/warehouses');
+    return this.http.get<Warehouse>(this.url_prod+'/api/Warehouse/warehouses');
   }
 
   getById(id_warehouse:any):Observable<Warehouse>{
-    return this.http.get<Warehouse>(this.url+'/api/Warehouse/warehouses/'+id_warehouse);
+    return this.http.get<Warehouse>(this.url_prod+'/api/Warehouse/warehouses/'+id_warehouse);
   }
 
   create(warehouse:any):Observable<any>{
-    return this.http.post(this.url+'/api/Warehouse',warehouse,this.httpOptions).pipe(
+    return this.http.post(this.url_prod+'/api/Warehouse',warehouse,this.httpOptions).pipe(
       catchError((this.handleError)
       )
     );
@@ -61,7 +63,7 @@ export class WarehouseService {
 
   update(id_warehouse:any,warehouse:any){
     this.id = Number(id_warehouse);
-    return this.http.put(this.url+'/api/Warehouse/'+this.id,warehouse).subscribe(
+    return this.http.put(this.url_prod+'/api/Warehouse/'+this.id,warehouse).subscribe(
       (response) =>{
         window.location.reload();
         console.log(response);
@@ -74,7 +76,7 @@ export class WarehouseService {
 
   delete(id_warehouse:any){
     try{
-      this.http.delete(this.url+'/api/Warehouse/'+id_warehouse,{}).subscribe(
+      this.http.delete(this.url_prod+'/api/Warehouse/'+id_warehouse,{}).subscribe(
         (data:any) =>{
           window.location.reload();
           console.log(data)

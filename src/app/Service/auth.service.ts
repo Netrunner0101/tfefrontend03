@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {url_dev} from "../global";
+import {url_dev, url_production} from "../global";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {catchError, Observable, throwError} from "rxjs";
@@ -11,6 +11,7 @@ export class AuthService {
 
   registerSucess:boolean = false;
   private url = url_dev;
+  private url_prod = url_production;
   private isLogged:boolean = false;
 
   constructor(private http:HttpClient,private router:Router) { }
@@ -31,14 +32,14 @@ export class AuthService {
 
 
   register(user:any){
-    return this.http.post(this.url+'/api/Authenticate/register-user',user).pipe(
+    return this.http.post(this.url_prod+'/api/Authenticate/register-user',user).pipe(
       catchError((this.handleError)
       )
     );
   }
 
   login(user:any){
-    this.http.post(this.url+'/api/Authenticate/login',user).subscribe(
+    this.http.post(this.url_prod+'/api/Authenticate/login',user).subscribe(
       (data:any) =>{
         console.log(data);
         sessionStorage.setItem('token',data.token);

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {url_dev} from "../global";
+import {url_dev, url_production} from "../global";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {catchError, Observable, retry, throwError} from "rxjs";
@@ -21,6 +21,8 @@ export class DeliveryService {
 
   private url = url_dev;
 
+  private url_prod = url_production;
+
   constructor(private http:HttpClient,private router:Router) { }
 
 
@@ -39,15 +41,15 @@ export class DeliveryService {
   }
 
   AllDelivery():Observable<Delivery>{
-    return this.http.get<Delivery>(this.url+'/api/Delivery/deliveries');
+    return this.http.get<Delivery>(this.url_prod+'/api/Delivery/deliveries');
   }
 
   DeliveryById(id_delivery:any):Observable<Delivery>{
-    return this.http.get<Delivery>(this.url+'/api/Delivery/deliveries/'+id_delivery);
+    return this.http.get<Delivery>(this.url_prod+'/api/Delivery/deliveries/'+id_delivery);
   }
 
   create(delivery:any){
-      this.http.post(this.url+'/api/Delivery',delivery).subscribe(
+      this.http.post(this.url_prod+'/api/Delivery',delivery).subscribe(
         (response:any) =>{
           console.log(response)
         }
@@ -55,7 +57,7 @@ export class DeliveryService {
   }
 
   createNewDelivery(delivery:any):Observable<any>{
-    return this.http.post(this.url+'/api/Delivery/newDelivery',delivery).pipe(
+    return this.http.post(this.url_prod+'/api/Delivery/newDelivery',delivery).pipe(
       catchError((this.handleError)
       )
     );
@@ -63,7 +65,7 @@ export class DeliveryService {
 
   update(id_delivery:any,delivery:any){
     this.id = Number(id_delivery) ;
-    return this.http.put(this.url+'/api/Delivery/'+this.id,delivery).subscribe(
+    return this.http.put(this.url_prod+'/api/Delivery/'+this.id,delivery).subscribe(
       (response) =>{
         window.location.reload();
         console.log(response);

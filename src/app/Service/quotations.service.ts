@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {url_dev} from "../global";
+import {url_dev, url_production} from "../global";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {catchError, Observable, throwError} from "rxjs";
 import {Quotations} from "../Models/Quotations";
@@ -12,6 +12,8 @@ export class QuotationsService {
   id: undefined | number ;
 
   private url = url_dev;
+
+  private url_prod = url_production;
 
   constructor(private http:HttpClient) { }
 
@@ -30,15 +32,15 @@ export class QuotationsService {
   }
 
   getAll():Observable<Quotations>{
-    return this.http.get<Quotations>(this.url+'/api/Quotations/quotations');
+    return this.http.get<Quotations>(this.url_prod+'/api/Quotations/quotations');
   }
 
   getById(id_quotations:any):Observable<Quotations>{
-    return this.http.get<Quotations>(this.url+'/api/Quotations/quotations/'+id_quotations);
+    return this.http.get<Quotations>(this.url_prod+'/api/Quotations/quotations/'+id_quotations);
   }
 
   create(quotations:any):Observable<any>{
-    return this.http.post(this.url+'/api/Quotations',quotations).pipe(
+    return this.http.post(this.url_prod+'/api/Quotations',quotations).pipe(
       catchError((this.handleError)
       )
     );
@@ -47,7 +49,7 @@ export class QuotationsService {
   update(id_quotations:any,quotations:any){
     try{
       this.id = Number(id_quotations) ;
-      this.http.put(this.url+'/api/Quotations/'+this.id,quotations).subscribe(
+      this.http.put(this.url_prod+'/api/Quotations/'+this.id,quotations).subscribe(
         (response) =>{
           window.location.reload();
           console.log(response);
@@ -60,7 +62,7 @@ export class QuotationsService {
 
   delete(id_quotations:any){
     try{
-      this.http.delete(this.url+'/api/Quotations/'+id_quotations,{}).subscribe(
+      this.http.delete(this.url_prod+'/api/Quotations/'+id_quotations,{}).subscribe(
         (data:any) =>{
           console.log(data)
         }
@@ -71,7 +73,7 @@ export class QuotationsService {
   }
 
   updateTransporterFromQuotations(id_quotations:number,id_transporter:number):Observable<any>{
-    return this.http.put(this.url+'/api/Quotations/'+id_quotations+'/transporter/'+id_transporter,{}).pipe(
+    return this.http.put(this.url_prod+'/api/Quotations/'+id_quotations+'/transporter/'+id_transporter,{}).pipe(
       catchError((this.handleError)
       )
     );
@@ -79,7 +81,7 @@ export class QuotationsService {
 
   deleteTransporterFromQuotations(id_quotations:number,id_transporter:number){
     try{
-      this.http.delete(this.url+'/api/Quotations/'+id_quotations+'/transporter/'+id_transporter).subscribe(
+      this.http.delete(this.url_prod+'/api/Quotations/'+id_quotations+'/transporter/'+id_transporter).subscribe(
         (res) => {
           window.location.reload();
         }

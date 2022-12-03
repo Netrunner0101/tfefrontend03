@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {url_dev} from "../global";
+import {url_dev, url_production} from "../global";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {catchError, Observable, throwError} from "rxjs";
 import {Transporter} from "../Models/Transporter";
@@ -12,6 +12,8 @@ export class TransporterService {
   id: undefined | number ;
 
   private url = url_dev;
+
+  private url_prod = url_production;
 
   constructor(private http:HttpClient) { }
 
@@ -30,16 +32,16 @@ export class TransporterService {
   }
 
   AllTransporter():Observable<Transporter>{
-    return this.http.get<Transporter>(this.url+'/api/Transporter/transporters');
+    return this.http.get<Transporter>(this.url_prod+'/api/Transporter/transporters');
   }
 
 
   TransporterById(id_transporter:any):Observable<Transporter>{
-    return this.http.get<Transporter>(this.url+'/api/Transporter/transporters/'+id_transporter);
+    return this.http.get<Transporter>(this.url_prod+'/api/Transporter/transporters/'+id_transporter);
   }
 
   create(transporter:any):Observable<any>{
-    return this.http.post(this.url+'/api/Transporter',transporter).pipe(
+    return this.http.post(this.url_prod+'/api/Transporter',transporter).pipe(
       catchError((this.handleError)
       )
     );
@@ -47,7 +49,7 @@ export class TransporterService {
 
   update(id_transporter:any,transporter:any){
     this.id = Number(id_transporter) ;
-    this.http.put(this.url+'/api/Transporter/'+this.id,transporter).subscribe(
+    this.http.put(this.url_prod+'/api/Transporter/'+this.id,transporter).subscribe(
       (response) =>{
         window.location.reload();
         console.log(response);
@@ -60,7 +62,7 @@ export class TransporterService {
 
   delete(id_transporter:any){
     try{
-      this.http.delete(this.url+'/api/Transporter/'+id_transporter,{}).subscribe(
+      this.http.delete(this.url_prod+'/api/Transporter/'+id_transporter,{}).subscribe(
         (data:any) =>{
           window.location.reload();
           console.log(data)
