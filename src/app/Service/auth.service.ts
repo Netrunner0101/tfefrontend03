@@ -11,7 +11,7 @@ export class AuthService {
 
   registerSucess:boolean = false;
   private url = url_dev;
-  private url_prod = url_production;
+  private url_prod = "https://maniak7410-001-site1.ctempurl.com";
   private isLogged:boolean = false;
 
   constructor(private http:HttpClient,private router:Router) { }

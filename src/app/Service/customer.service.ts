@@ -19,7 +19,7 @@ export class CustomerService {
 
   private url = url_dev;
 
-  private url_prod = url_production;
+  private url_prod ="https://maniak7410-001-site1.ctempurl.com";
 
   id: undefined | number ;
 
