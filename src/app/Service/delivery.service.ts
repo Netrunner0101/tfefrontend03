@@ -91,7 +91,7 @@ export class DeliveryService {
 
   delete(id_delivery:any){
     try{
-      this.http.delete(this.url+'/api/Delivery/'+id_delivery,{}).subscribe(
+      this.http.delete(this.url_prod+'/api/Delivery/'+id_delivery,{}).subscribe(
         (data:any) =>{
           window.location.reload();
           console.log(data)
@@ -104,7 +104,7 @@ export class DeliveryService {
 
   updateCustomerFromDelivery(id_delivery:number,id_customer:number){
     try{
-      this.http.put(this.url+'/api/Delivery/'+id_delivery+'/Customer/'+id_customer,{}).subscribe(
+      this.http.put(this.url_prod+'/api/Delivery/'+id_delivery+'/Customer/'+id_customer,{}).subscribe(
         (res)=>{
           window.location.reload();
         });
@@ -115,7 +115,7 @@ export class DeliveryService {
 
   deleteCustomerFromDelivery(id_delivery:number){
     try{
-      this.http.delete(this.url+'/api/Delivery/'+id_delivery+'/Customer').subscribe(
+      this.http.delete(this.url_prod+'/api/Delivery/'+id_delivery+'/Customer').subscribe(
         (res) => {
           window.location.reload();
         }
@@ -127,7 +127,7 @@ export class DeliveryService {
 
   updateTransporterFromDelivery(id_delivery:number,id_transporter:number){
     try{
-      this.http.put(this.url+'/api/Delivery/'+id_delivery+'/Transporter/'+id_transporter,{}).subscribe(
+      this.http.put(this.url_prod+'/api/Delivery/'+id_delivery+'/Transporter/'+id_transporter,{}).subscribe(
         (res) =>{
           window.location.reload();
         }
@@ -139,7 +139,7 @@ export class DeliveryService {
 
   deleteTransporterFromDelivery(id_delivery:number){
     try{
-      this.http.delete(this.url+'/api/Delivery/'+id_delivery+'/Transporter').subscribe(
+      this.http.delete(this.url_prod+'/api/Delivery/'+id_delivery+'/Transporter').subscribe(
         (res) => {
           window.location.reload();
         }
