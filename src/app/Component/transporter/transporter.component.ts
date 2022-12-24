@@ -31,10 +31,26 @@ export class TransporterComponent implements OnInit {
   }
 
   deleteTransporter(id_transporter:any){
-    this.tranServ.delete(id_transporter);
-    window.location.reload();
+    this.tranServ.delete(id_transporter).subscribe(
+      (r) =>{
+        console.log("Delete delivery sucess");
+        window.location.reload();
+      }
+    );
   }
-
+  /*
+  *
+  *
+  *  deleteDelivery(idd:any){
+    this._deliveryService.delete(idd).subscribe(
+      (r) => {
+        console.log("Delete delivery sucess");
+        location.reload();
+      }
+    )
+  }
+  *
+  * */
 
   exportExcel() {
     if (this.TransporterData.length > 0) {

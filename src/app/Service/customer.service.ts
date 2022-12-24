@@ -19,7 +19,7 @@ export class CustomerService {
 
   private url = url_dev;
 
-  private url_prod ="https://maniak7410-001-site1.ctempurl.com";
+  private url_prod = "https://maniak7410-001-site1.ctempurl.com/";
 
   id: undefined | number ;
 
@@ -40,15 +40,15 @@ export class CustomerService {
   }
 
   AllCustomer():Observable<Customer>{
-    return this.http.get<Customer>(this.url_prod+'/api/Customer/customers');
+    return this.http.get<Customer>(this.url_prod+'api/Customer/customers');
   }
 
   CustomerById(id_customer:any):Observable<Customer>{
-    return this.http.get<Customer>(this.url_prod+'/api/Customer/customers/'+id_customer);
+    return this.http.get<Customer>(this.url_prod+'api/Customer/customers/'+id_customer);
   }
 
   create(customer:any):Observable<any>{
-    return this.http.post(this.url_prod+'/api/Customer',customer,this.httpOptions).pipe(
+    return this.http.post(this.url_prod+'api/Customer',customer,this.httpOptions).pipe(
       catchError((this.handleError)
       )
     );
@@ -56,7 +56,7 @@ export class CustomerService {
 
   update(id_customer:any,customer:any){
     this.id = Number(id_customer) ;
-    return this.http.put(this.url_prod+'/api/Customer/'+this.id,customer,this.httpOptions).pipe(
+    return this.http.put(this.url_prod+'api/Customer/'+this.id,customer,this.httpOptions).pipe(
       catchError((this.handleError)
       )
     );
@@ -72,18 +72,7 @@ export class CustomerService {
     );*/
   }
 
-  delete(id_customer:any){
-    this.http.delete(this.url_prod+'/api/Customer/'+id_customer,{}).subscribe(
-      (data:any) =>{
-        window.location.reload();
-        console.log(data)
-      },
-      (error) =>{
-        console.log("Error : "+ error);
-      }
-    );
+  delete(id_customer:any):Observable<any> {
+    return this.http.delete(this.url_prod + 'api/Customer/' + id_customer)
   }
-
-
-
 }

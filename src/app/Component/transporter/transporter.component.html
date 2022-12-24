@@ -42,8 +42,8 @@
           <td> {{ trans.email }} </td>
           <td> {{ trans.phoneNumber }} </td>
           <td>
-            <button type="button" (click)='deleteTransporter(trans.id_transporter)' matTooltip="Supprimer"> <mat-icon>delete_outline</mat-icon>  </button>
-            <button><a [routerLink]="['/transporter/',trans.id_transporter]" [queryParams]="{id_transporter:trans.id_transporter}" matTooltip="Détails Transporteur"> <mat-icon>description</mat-icon> </a></button>
+            <button type="button" (click)='deleteTransporter(trans.id_transporter)'> <mat-icon matTooltip="Supprimer">delete_outline</mat-icon>  </button>
+            <button type="button"><a [routerLink]="['/transporter/',trans.id_transporter]" [queryParams]="{id_transporter:trans.id_transporter}" matTooltip="Détails Transporteur"> <mat-icon>description</mat-icon> </a></button>
           </td>
         </tr>
         </tbody>

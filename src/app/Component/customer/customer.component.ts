@@ -33,8 +33,12 @@ export class CustomerComponent implements OnInit {
   }
 
   deleteCustomer(id_customer:any){
-    this.cusServ.delete(id_customer);
-    window.location.reload();
+    this.cusServ.delete(id_customer).subscribe(
+      (r) =>{
+        console.log("Delete Customer sucess");
+        window.location.reload();
+      }
+    );
   }
 
   exportExcel() {

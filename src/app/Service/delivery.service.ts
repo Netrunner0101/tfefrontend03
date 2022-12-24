@@ -21,7 +21,7 @@ export class DeliveryService {
 
   private url = url_dev;
 
-  private url_prod = "https://maniak7410-001-site1.ctempurl.com";
+  private url_prod = "https://maniak7410-001-site1.ctempurl.com/";
 
   constructor(private http:HttpClient,private router:Router) { }
 
@@ -40,15 +40,15 @@ export class DeliveryService {
   }
 
   AllDelivery():Observable<Delivery>{
-    return this.http.get<Delivery>(this.url_prod+'/api/Delivery/deliveries');
+    return this.http.get<Delivery>(this.url_prod+'api/Delivery/deliveries');
   }
 
   DeliveryById(id_delivery:any):Observable<Delivery>{
-    return this.http.get<Delivery>(this.url_prod+'/api/Delivery/deliveries/'+id_delivery);
+    return this.http.get<Delivery>(this.url_prod+'api/Delivery/deliveries/'+id_delivery);
   }
 
   create(delivery:any){
-      this.http.post(this.url_prod+'/api/Delivery',delivery).subscribe(
+      this.http.post(this.url_prod+'api/Delivery',delivery).subscribe(
         (response:any) =>{
           console.log(response)
         }
@@ -56,7 +56,7 @@ export class DeliveryService {
   }
 
   createNewDelivery(delivery:any):Observable<any>{
-    return this.http.post(this.url_prod+'/api/Delivery/newDelivery',delivery).pipe(
+    return this.http.post(this.url_prod+'api/Delivery/newDelivery',delivery).pipe(
       catchError((this.handleError)
       )
     );
@@ -64,7 +64,7 @@ export class DeliveryService {
 
   update(id_delivery:any,delivery:any){
     this.id = Number(id_delivery) ;
-    return this.http.put(this.url_prod+'/api/Delivery/'+this.id,delivery).subscribe(
+    return this.http.put(this.url_prod+'api/Delivery/'+this.id,delivery).subscribe(
       (response) =>{
         window.location.reload();
         console.log(response);
@@ -88,22 +88,13 @@ export class DeliveryService {
      */
   }
 
-  delete(id_delivery:any){
-    try{
-      this.http.delete(this.url_prod+'/api/Delivery/'+id_delivery,{}).subscribe(
-        (data:any) =>{
-          window.location.reload();
-          console.log(data)
-        }
-      );
-    }catch (e) {
-      console.log("Error");
-    }
+  delete(id_delivery:any):Observable<any>{
+    return this.http.delete(this.url_prod+'api/Delivery/'+id_delivery);
   }
 
   updateCustomerFromDelivery(id_delivery:number,id_customer:number){
     try{
-      this.http.put(this.url_prod+'/api/Delivery/'+id_delivery+'/Customer/'+id_customer,{}).subscribe(
+      this.http.put(this.url_prod+'api/Delivery/'+id_delivery+'/Customer/'+id_customer,{}).subscribe(
         (res)=>{
           window.location.reload();
         });
@@ -114,7 +105,7 @@ export class DeliveryService {
 
   deleteCustomerFromDelivery(id_delivery:number){
     try{
-      this.http.delete(this.url_prod+'/api/Delivery/'+id_delivery+'/Customer').subscribe(
+      this.http.delete(this.url_prod+'api/Delivery/'+id_delivery+'/Customer').subscribe(
         (res) => {
           window.location.reload();
         }
@@ -126,7 +117,7 @@ export class DeliveryService {
 
   updateTransporterFromDelivery(id_delivery:number,id_transporter:number){
     try{
-      this.http.put(this.url_prod+'/api/Delivery/'+id_delivery+'/Transporter/'+id_transporter,{}).subscribe(
+      this.http.put(this.url_prod+'api/Delivery/'+id_delivery+'/Transporter/'+id_transporter,{}).subscribe(
         (res) =>{
           window.location.reload();
         }
@@ -138,7 +129,7 @@ export class DeliveryService {
 
   deleteTransporterFromDelivery(id_delivery:number){
     try{
-      this.http.delete(this.url_prod+'/api/Delivery/'+id_delivery+'/Transporter').subscribe(
+      this.http.delete(this.url_prod+'api/Delivery/'+id_delivery+'/Transporter').subscribe(
         (res) => {
           window.location.reload();
         }
@@ -151,7 +142,7 @@ export class DeliveryService {
   // Warehouse
   updateWarehouseFromDelivery(id_delivery:number,id_warehouse:number){
     try{
-      this.http.put(this.url_prod+'/api/Delivery/'+id_delivery+'/Warehouse/'+id_warehouse,{}).subscribe(
+      this.http.put(this.url_prod+'api/Delivery/'+id_delivery+'/Warehouse/'+id_warehouse,{}).subscribe(
         (res) =>{
           window.location.reload();
         }
@@ -163,7 +154,7 @@ export class DeliveryService {
 
   deleteWarehouseFromDelivery(id_delivery:number){
     try{
-      this.http.delete(this.url_prod+'/api/Delivery/'+id_delivery+'/Warehouse').subscribe(
+      this.http.delete(this.url_prod+'api/Delivery/'+id_delivery+'/Warehouse').subscribe(
         (res) => {
           window.location.reload();
         }

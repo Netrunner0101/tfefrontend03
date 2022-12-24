@@ -56,8 +56,12 @@ export class DeliveryComponent implements OnInit {
   }
 
   deleteDelivery(id_delivery:any){
-    this.delService.delete(id_delivery);
-    window.location.reload();
+    this.delService.delete(id_delivery).subscribe(
+      (r) =>{
+        console.log("Delete delivery sucess");
+        window.location.reload();
+      }
+    );
   }
 
   exportExcel() {

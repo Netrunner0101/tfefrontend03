@@ -31,10 +31,13 @@ export class WarehouseComponent implements OnInit {
   }
 
   deleteWarehouse(id_warehouse:any){
-    this.whServ.delete(id_warehouse);
-    window.location.reload();
+    this.whServ.delete(id_warehouse).subscribe(
+      (r) =>{
+        console.log("Delete warehouse Entry sucess");
+        window.location.reload();
+      }
+    );
   }
-
 
   exportExcel() {
     if (this.WhData.length > 0) {

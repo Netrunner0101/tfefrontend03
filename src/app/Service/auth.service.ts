@@ -11,7 +11,7 @@ export class AuthService {
 
   registerSucess:boolean = false;
   private url = url_dev;
-  private url_prod = "https://maniak7410-001-site1.ctempurl.com";
+  private url_prod = "https://maniak7410-001-site1.ctempurl.com/";
   private isLogged:boolean = false;
 
   constructor(private http:HttpClient,private router:Router) { }
@@ -32,14 +32,14 @@ export class AuthService {
 
 
   register(user:any){
-    return this.http.post(this.url_prod+'/api/Authenticate/register-user',user).pipe(
+    return this.http.post(this.url_prod+'api/Authenticate/register-user',user).pipe(
       catchError((this.handleError)
       )
     );
   }
 
   login(user:any){
-    this.http.post(this.url_prod+'/api/Authenticate/login',user).subscribe(
+    this.http.post(this.url_prod+'api/Authenticate/login',user).subscribe(
       (data:any) =>{
         console.log(data);
         sessionStorage.setItem('token',data.token);
